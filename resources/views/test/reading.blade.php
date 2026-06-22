@@ -54,7 +54,7 @@
                                     <span class="text-xs font-bold text-slate-500 uppercase tracking-wider">Pertanyaan Terkait</span>
                                     <span class="text-xs font-semibold text-slate-600">Soal {{ $passage->questions->first()->order_number }} - {{ $passage->questions->last()->order_number }}</span>
                                 </div>
-                                <div class="bg-white rounded-b-xl border border-slate-200 p-6 overflow-y-auto custom-scrollbar flex-grow space-y-8 shadow-sm">
+                                <div class="relative questions-scroll-container bg-white rounded-b-xl border border-slate-200 p-6 overflow-y-auto custom-scrollbar flex-grow space-y-8 shadow-sm">
                                     @foreach($passage->questions as $indexInPassage => $q)
                                         <div id="question-card-{{ $q->id }}" class="question-card p-4 rounded-xl border border-slate-100 bg-slate-50/30 hover:border-slate-200 transition-all duration-200 space-y-4">
                                             <!-- Soal Header -->
@@ -196,7 +196,7 @@
             activePassageId = passageId;
         }
 
-        function focusQuestion(questionId, orderNumber, passageId) {
+        function focusQuestion(questionId, orderNumber, passageId, shouldScroll = true) {
             // Switch passage if different
             if (activePassageId !== passageId) {
                 switchPassage(passageId);
@@ -237,7 +237,15 @@
                 qCard.classList.add('border-blue-300', 'bg-blue-50/10');
 
                 // Scroll the parent container to show this card
-                qCard.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                if (shouldScroll) {
+                    const container = qCard.closest('.questions-scroll-container');
+                    if (container) {
+                        container.scrollTo({
+                            top: qCard.offsetTop - 16,
+                            behavior: 'smooth'
+                        });
+                    }
+                }
             }
         }
 
@@ -291,7 +299,7 @@
             }
 
             updateProgressBar();
-            focusQuestion(questionId, orderNumber, passageId);
+            focusQuestion(questionId, orderNumber, passageId, false);
         }
 
         function updateProgressBar() {
