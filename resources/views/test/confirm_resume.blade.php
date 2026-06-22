@@ -1,0 +1,72 @@
+<x-app-layout>
+    <x-slot name="header">
+        <h2 class="font-semibold text-xl text-slate-800 leading-tight">
+            {{ __('Konfirmasi Sesi Tes') }}
+        </h2>
+    </x-slot>
+
+    <div class="py-12">
+        <div class="max-w-xl mx-auto sm:px-6 lg:px-8">
+            <div class="bg-white overflow-hidden shadow-xl sm:rounded-xl border border-amber-200">
+                <!-- Header Alert -->
+                <div class="bg-amber-550 bg-amber-50 p-6 border-b border-amber-100 flex items-start space-x-4">
+                    <div class="p-2 bg-amber-100 rounded-lg text-amber-800">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
+                        </svg>
+                    </div>
+                    <div>
+                        <h3 class="text-lg font-bold text-amber-900">Sesi Tes Belum Selesai</h3>
+                        <p class="text-sm text-amber-700 mt-1">
+                            Sistem mendeteksi bahwa Anda memiliki sesi tes yang sedang berjalan dan belum diselesaikan.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Body details -->
+                <div class="p-6 space-y-4">
+                    <div class="bg-slate-550 bg-slate-50 p-4 rounded-lg border border-slate-200 text-sm text-slate-700 space-y-2">
+                        <div class="flex justify-between">
+                            <span class="font-medium">Waktu Mulai:</span>
+                            <span class="font-semibold">{{ $activeSession->started_at->timezone('Asia/Jakarta')->format('d M Y - H:i') }} WIB</span>
+                        </div>
+                        <div class="flex justify-between">
+                            <span class="font-medium">Section Terakhir:</span>
+                            <span class="font-semibold px-2 py-0.5 bg-blue-100 text-blue-800 rounded text-xs uppercase">{{ $activeSession->current_section }}</span>
+                        </div>
+                    </div>
+
+                    <div class="text-sm text-slate-600 leading-relaxed">
+                        Apakah Anda ingin <strong>melanjutkan</strong> sesi tes tersebut atau <strong>memulai baru</strong>? Memulai tes baru akan menghapus semua jawaban dan kemajuan dari sesi sebelumnya.
+                    </div>
+
+                    <!-- Actions -->
+                    <div class="flex flex-col sm:flex-row sm:space-x-3 space-y-3 sm:space-y-0 pt-4">
+                        <form method="POST" action="{{ route('test.start') }}" class="flex-1">
+                            @csrf
+                            <input type="hidden" name="confirm_resume" value="1">
+                            <button type="submit" class="w-full bg-blue-900 hover:bg-blue-800 text-white text-center py-2.5 px-4 rounded-lg font-semibold shadow-md transition duration-150 flex items-center justify-center space-x-1">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14.752 11.168l-3.197-2.132A1 1 0 0010 9.87v4.263a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664z" />
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                                </svg>
+                                <span>Lanjutkan Sesi</span>
+                            </button>
+                        </form>
+
+                        <form method="POST" action="{{ route('test.start') }}" class="flex-1" onsubmit="return confirm('Apakah Anda yakin ingin memulai tes baru? Sesi sebelumnya beserta semua jawabannya akan Dihapus secara permanen.')">
+                            @csrf
+                            <input type="hidden" name="confirm_new" value="1">
+                            <button type="submit" class="w-full bg-white hover:bg-slate-100 text-slate-800 border border-slate-300 text-center py-2.5 px-4 rounded-lg font-semibold shadow-sm transition duration-150 flex items-center justify-center space-x-1">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-red-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
+                                </svg>
+                                <span>Mulai Baru</span>
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</x-app-layout>
