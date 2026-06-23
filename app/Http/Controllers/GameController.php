@@ -13,4 +13,12 @@ class GameController extends Controller
     {
         return view('game.index');
     }
+
+    /**
+     * Display the 3D game.
+     */
+    public function game3d()
+    {
+        return view('game.3d');
+    }
 }

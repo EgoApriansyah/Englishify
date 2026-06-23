@@ -18,9 +18,34 @@
                     <x-nav-link :href="route('material.index')" :active="request()->routeIs('material.*')">
                         {{ __('Materi') }}
                     </x-nav-link>
-                    <x-nav-link :href="route('game.index')" :active="request()->routeIs('game.*')">
-                        {{ __('Game') }}
-                    </x-nav-link>
+                    <!-- Game Dropdown -->
+                    <div class="inline-flex items-center">
+                        <x-dropdown align="left" width="48">
+                            <x-slot name="trigger">
+                                @php
+                                $gameActive = request()->routeIs('game.*');
+                                $gameClasses = $gameActive
+                                            ? 'inline-flex items-center px-1 pt-1 border-b-2 border-indigo-650 text-sm font-bold leading-5 text-indigo-600 focus:outline-none focus:border-indigo-700 transition duration-150 ease-in-out cursor-pointer h-16'
+                                            : 'inline-flex items-center px-1 pt-1 border-b-2 border-transparent text-sm font-semibold leading-5 text-slate-500 hover:text-slate-700 hover:border-slate-300 focus:outline-none focus:text-slate-700 focus:border-slate-300 transition duration-150 ease-in-out cursor-pointer h-16';
+                                @endphp
+                                <button class="{{ $gameClasses }}">
+                                    <span>{{ __('Game') }}</span>
+                                    <svg class="ms-1 h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+                                        <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" />
+                                    </svg>
+                                </button>
+                            </x-slot>
+
+                            <x-slot name="content">
+                                <x-dropdown-link :href="route('game.index')" class="font-bold">
+                                    {{ __('Word Scramble (2D)') }}
+                                </x-dropdown-link>
+                                <x-dropdown-link :href="route('game.3d')" class="font-bold">
+                                    {{ __('English Collector (3D)') }}
+                                </x-dropdown-link>
+                            </x-slot>
+                        </x-dropdown>
+                    </div>
                 </div>
             </div>
 
@@ -79,9 +104,23 @@
             <x-responsive-nav-link :href="route('material.index')" :active="request()->routeIs('material.*')">
                 {{ __('Materi') }}
             </x-responsive-nav-link>
-            <x-responsive-nav-link :href="route('game.index')" :active="request()->routeIs('game.*')">
-                {{ __('Game') }}
-            </x-responsive-nav-link>
+            <!-- Mobile Game Menu -->
+            <div x-data="{ open: {{ request()->routeIs('game.*') ? 'true' : 'false' }} }" class="block">
+                <button @click="open = !open" class="w-full flex items-center justify-between ps-3 pe-4 py-2 border-l-4 {{ request()->routeIs('game.*') ? 'border-indigo-500 text-indigo-750 bg-indigo-50/50' : 'border-transparent text-gray-600 hover:text-gray-800 hover:bg-gray-50' }} text-start text-base font-bold focus:outline-none transition duration-150 ease-in-out cursor-pointer">
+                    <span>{{ __('Game') }}</span>
+                    <svg class="h-4 w-4 transform transition-transform duration-200" :class="{ 'rotate-180': open }" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+                        <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" />
+                    </svg>
+                </button>
+                <div x-show="open" class="ps-4 space-y-1 bg-slate-50/50 py-1" style="display: none;">
+                    <x-responsive-nav-link :href="route('game.index')" :active="request()->routeIs('game.index')">
+                        {{ __('Word Scramble (2D)') }}
+                    </x-responsive-nav-link>
+                    <x-responsive-nav-link :href="route('game.3d')" :active="request()->routeIs('game.3d')">
+                        {{ __('English Collector (3D)') }}
+                    </x-responsive-nav-link>
+                </div>
+            </div>
         </div>
 
         <!-- Responsive Settings Options -->

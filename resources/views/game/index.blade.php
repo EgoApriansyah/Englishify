@@ -88,28 +88,28 @@
                 </div>
 
                 <!-- SECTION 2: GAME BOARD -->
-                <div x-show="gameState === 'playing'" class="p-6 md:p-8 flex flex-col justify-between" style="min-height: 520px;"
+                <div x-show="gameState === 'playing'" class="fixed inset-0 w-screen h-screen bg-gradient-to-br from-indigo-950 via-slate-900 to-purple-950 text-white z-50 p-6 md:p-8 flex flex-col justify-between" style="display: none;"
                      :class="feedbackState === 'wrong' ? 'animate-shake' : ''">
                     
                     <!-- Game Header Panel: Score, Combo, Progress -->
-                    <div class="flex items-center justify-between gap-4 border-b border-slate-100 pb-4">
+                    <div class="flex items-center justify-between gap-4 border-b border-slate-800 pb-4">
                         <div class="flex items-center gap-2">
-                            <button @click="quitGame()" class="text-slate-400 hover:text-rose-500 p-1.5 rounded-lg hover:bg-slate-100 transition cursor-pointer">
+                            <button @click="quitGame()" class="text-slate-300 hover:text-rose-500 p-2 rounded-xl bg-slate-900/60 border border-slate-700/50 hover:bg-slate-900 transition cursor-pointer">
                                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor" class="w-5 h-5">
                                   <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 19.5 8.25 12l7.5-7.5" />
                                 </svg>
                             </button>
-                            <span class="text-xs font-bold text-slate-500 uppercase tracking-widest bg-slate-100 px-3 py-1.5 rounded-xl mr-1" x-text="getCategoryTitle()"></span>
+                            <span class="text-xs font-black text-cyan-400 uppercase tracking-widest bg-slate-900/60 border border-slate-700/50 px-3 py-2 rounded-xl mr-1" x-text="getCategoryTitle()"></span>
                             
                             <!-- BGM Toggle Button -->
-                            <button @click="toggleBgm()" class="p-1.5 rounded-lg text-slate-400 hover:text-indigo-650 hover:bg-slate-100 transition cursor-pointer flex items-center justify-center shrink-0" title="Mute/Unmute Musik">
+                            <button @click="toggleBgm()" class="p-2 rounded-xl bg-slate-900/60 border border-slate-700/50 hover:bg-slate-900 text-slate-300 hover:text-indigo-400 transition cursor-pointer flex items-center justify-center shrink-0" title="Mute/Unmute Musik">
                                 <template x-if="bgmEnabled">
-                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="w-5 h-5 text-slate-550">
+                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="w-4 h-4">
                                       <path stroke-linecap="round" stroke-linejoin="round" d="M19.114 5.636a9 9 0 0 1 0 12.728M16.463 8.288a5.25 5.25 0 0 1 0 7.424M6.75 8.25l4.72-4.72a.75.75 0 0 1 1.28.53v15.88a.75.75 0 0 1-1.28.53l-4.72-4.72H4.51c-.88 0-1.704-.507-1.938-1.354A9.009 9.009 0 0 1 2.25 12c0-.83.112-1.633.322-2.396C2.806 8.756 3.63 8.25 4.51 8.25H6.75Z" />
                                     </svg>
                                 </template>
                                 <template x-if="!bgmEnabled">
-                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="w-5 h-5 text-rose-450">
+                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="w-4 h-4 text-rose-550">
                                       <path stroke-linecap="round" stroke-linejoin="round" d="M17.25 9.75 19.5 12m0 0 2.25 2.25M19.5 12l2.25-2.25M19.5 12l-2.25 2.25m-10.5-6 4.72-4.72a.75.75 0 0 1 1.28.53v15.88a.75.75 0 0 1-1.28.53l-4.72-4.72H4.51c-.88 0-1.704-.507-1.938-1.354A9.009 9.009 0 0 1 2.25 12c0-.83.112-1.633.322-2.396C2.806 8.756 3.63 8.25 4.51 8.25H6.75Z" />
                                     </svg>
                                 </template>
@@ -118,19 +118,19 @@
                         
                         <div class="flex items-center gap-4">
                             <!-- Combo Indicator -->
-                            <div x-show="combo > 0" class="flex items-center bg-rose-50 border border-rose-100 text-rose-600 font-extrabold text-xs px-3 py-1.5 rounded-xl animate-pulse">
+                            <div x-show="combo > 0" class="flex items-center bg-rose-500/10 border border-rose-500/30 text-rose-450 font-extrabold text-xs px-3 py-1.5 rounded-xl animate-pulse">
                                 x<span x-text="combo"></span> Combo!
                             </div>
                             <!-- Score Display -->
-                            <div class="text-right">
+                            <div class="px-4 py-1 bg-slate-900/60 border border-slate-700/50 rounded-xl text-right">
                                 <span class="text-[9px] font-bold text-slate-400 uppercase tracking-widest block">Skor</span>
-                                <span class="text-xl font-black text-indigo-600" x-text="score"></span>
+                                <span class="text-lg font-black text-cyan-400" x-text="score"></span>
                             </div>
                         </div>
                     </div>
 
                     <!-- Timer Bar (Shrinks and changes color) -->
-                    <div class="w-full bg-slate-100 h-2 rounded-full overflow-hidden mt-3 relative">
+                    <div class="w-full bg-slate-800/80 border border-slate-700/50 h-3.5 rounded-full overflow-hidden mt-3 relative">
                         <div class="h-full rounded-full transition-all duration-100 linear"
                              :style="'width: ' + (timeLeft / 30 * 100) + '%'"
                              :class="timeLeft > 15 ? 'bg-emerald-500' : (timeLeft > 6 ? 'bg-amber-500' : 'bg-rose-500 animate-pulse')">
@@ -140,8 +140,8 @@
                     <!-- Word Tracker Progress Bubbles -->
                     <div class="flex justify-center items-center gap-1.5 mt-4">
                         <template x-for="idx in 10">
-                            <span class="w-3 h-3 rounded-full border transition-all duration-300"
-                                  :class="idx <= currentWordIndex ? 'bg-indigo-600 border-indigo-600' : 'bg-slate-100 border-slate-200'"></span>
+                            <span class="w-3.5 h-3.5 rounded-full border transition-all duration-300"
+                                  :class="idx <= currentWordIndex ? 'bg-cyan-400 border-cyan-400 shadow-md shadow-cyan-400/30' : 'bg-slate-850 border-slate-700'"></span>
                         </template>
                     </div>
 
@@ -151,20 +151,20 @@
                         <div class="flex justify-center flex-wrap gap-2.5 min-h-[50px] items-center">
                             <template x-for="(letter, index) in userAnswer" :key="letter.id">
                                 <button @click="removeLetter(index)" 
-                                        class="w-12 h-12 bg-indigo-50 border-2 border-indigo-600 text-indigo-700 hover:bg-indigo-100 font-extrabold text-xl rounded-xl flex items-center justify-center shadow-md shadow-indigo-600/5 transform hover:-translate-y-0.5 active:translate-y-0 cursor-pointer">
+                                        class="w-12 h-12 bg-indigo-950/80 border-2 border-cyan-400 text-cyan-300 hover:border-cyan-300 font-extrabold text-xl rounded-xl flex items-center justify-center shadow-lg shadow-cyan-500/10 transform hover:-translate-y-0.5 active:translate-y-0 transition cursor-pointer">
                                     <span x-text="letter.char"></span>
                                 </button>
                             </template>
                             <!-- Empty dashes when letters are not filled -->
                             <template x-for="n in Math.max(0, getWordLength() - userAnswer.length)">
-                                <span class="w-12 h-12 border-2 border-dashed border-slate-200 rounded-xl flex items-center justify-center text-slate-300 font-black">?</span>
+                                <span class="w-12 h-12 border-2 border-dashed border-slate-800 bg-slate-900/40 rounded-xl flex items-center justify-center text-slate-650 font-black">?</span>
                             </template>
                         </div>
 
                         <!-- Clue Box -->
-                        <div class="max-w-xl mx-auto bg-slate-50/80 border border-slate-100 p-4 rounded-2xl">
-                            <span class="text-[10px] font-black text-slate-400 uppercase tracking-widest block mb-1">Clue / Definisi</span>
-                            <p class="text-sm text-slate-600 font-medium leading-relaxed italic" x-text="getWordClue()"></p>
+                        <div class="max-w-xl mx-auto bg-slate-900/60 border border-slate-800 p-4 rounded-2xl backdrop-blur-sm shadow-md">
+                            <span class="text-[9px] font-bold text-slate-500 uppercase tracking-widest block mb-1">Clue / Definisi</span>
+                            <p class="text-sm text-slate-200 font-bold leading-relaxed italic" x-text="getWordClue()"></p>
                         </div>
 
                         <!-- Scrambled bubbles selector -->
@@ -172,8 +172,8 @@
                             <template x-for="letter in scrambledLetters" :key="letter.id">
                                 <button @click="clickLetter(letter)" 
                                         :disabled="letter.selected"
-                                        :class="letter.selected ? 'opacity-20 scale-95 border-slate-100 bg-slate-50 text-slate-300' : 'bg-slate-100 border-slate-200 hover:border-slate-350 hover:bg-slate-50 hover:-translate-y-0.5 text-slate-800'"
-                                        class="w-12 h-12 border font-extrabold text-lg rounded-xl flex items-center justify-center transition select-none cursor-pointer">
+                                        :class="letter.selected ? 'opacity-10 scale-90 border-slate-900 bg-slate-950 text-slate-700' : 'bg-indigo-900/40 border border-indigo-750/80 hover:border-cyan-400 hover:bg-indigo-950/80 hover:-translate-y-0.5 text-white'"
+                                        class="w-12 h-12 border font-extrabold text-lg rounded-xl flex items-center justify-center transition select-none cursor-pointer shadow-md shadow-indigo-950/20">
                                     <span x-text="letter.char"></span>
                                 </button>
                             </template>
@@ -181,8 +181,8 @@
                     </div>
 
                     <!-- Action Controls Footer -->
-                    <div class="flex items-center justify-between gap-4 border-t border-slate-100 pt-5">
-                        <button @click="resetCurrentWord()" class="inline-flex items-center gap-1.5 px-4 py-2.5 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-600 text-xs font-bold transition cursor-pointer">
+                    <div class="flex items-center justify-between gap-4 border-t border-slate-800 pt-5">
+                        <button @click="resetCurrentWord()" class="inline-flex items-center gap-1.5 px-4 py-2.5 rounded-xl bg-slate-900 border border-slate-750 hover:bg-slate-850 text-slate-350 text-xs font-bold transition cursor-pointer shadow-md">
                             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="w-4 h-4">
                               <path stroke-linecap="round" stroke-linejoin="round" d="M16.023 9.348h4.992v-.001M2.985 19.644v-4.992m0 0h4.992m-4.993 0 3.181 3.183a8.25 8.25 0 0 0 13.803-3.7M4.031 9.865a8.25 8.25 0 0 1 13.803-3.7l3.181 3.182m0-4.991v4.99" />
                             </svg>
@@ -192,20 +192,20 @@
                         <div class="flex items-center gap-2">
                             <button @click="useHint()" 
                                     :disabled="hintsUsed >= 3 || score < 50 || timeLeft < 5"
-                                    :class="hintsUsed >= 3 || score < 50 || timeLeft < 5 ? 'opacity-50 cursor-not-allowed bg-amber-50 text-amber-400' : 'bg-amber-50 hover:bg-amber-100 text-amber-700'"
-                                    class="inline-flex items-center gap-1.5 px-4 py-2.5 rounded-xl text-xs font-bold transition cursor-pointer">
-                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="w-4 h-4">
-                                  <path stroke-linecap="round" stroke-linejoin="round" d="M12 18a3.75 3.75 0 0 0 .495-7.467 5.99 5.99 0 0 0-1.925 3.546 5.974 5.974 0 0 1-2.133-1A3.75 3.75 0 0 0 12 18Z" />
-                                  <path stroke-linecap="round" stroke-linejoin="round" d="M12 18a3.75 3.75 0 0 0 .495-7.467 5.99 5.99 0 0 0-1.925 3.546 5.974 5.974 0 0 1-2.133-1A3.75 3.75 0 0 0 12 18Z" />
-                                  <path stroke-linecap="round" stroke-linejoin="round" d="M12 2.25V4.5m5.3-2.3-1.6 1.6m3.8 3.7h-2.25M12 19.5v2.25m-5.3-2.3 1.6-1.6m-3.8-3.7h2.25" />
-                                </svg>
+                                    :class="hintsUsed >= 3 || score < 50 || timeLeft < 5 ? 'opacity-40 cursor-not-allowed bg-amber-600/30 text-amber-500/70 border border-amber-800/40' : 'bg-amber-600 hover:bg-amber-700 text-white border border-amber-500'"
+                                     class="inline-flex items-center gap-1.5 px-4 py-2.5 rounded-xl text-xs font-bold transition cursor-pointer shadow-md">
+                                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="w-4 h-4">
+                                   <path stroke-linecap="round" stroke-linejoin="round" d="M12 18a3.75 3.75 0 0 0 .495-7.467 5.99 5.99 0 0 0-1.925 3.546 5.974 5.974 0 0 1-2.133-1A3.75 3.75 0 0 0 12 18Z" />
+                                   <path stroke-linecap="round" stroke-linejoin="round" d="M12 18a3.75 3.75 0 0 0 .495-7.467 5.99 5.99 0 0 0-1.925 3.546 5.974 5.974 0 0 1-2.133-1A3.75 3.75 0 0 0 12 18Z" />
+                                   <path stroke-linecap="round" stroke-linejoin="round" d="M12 2.25V4.5m5.3-2.3-1.6 1.6m3.8 3.7h-2.25M12 19.5v2.25m-5.3-2.3 1.6-1.6m-3.8-3.7h2.25" />
+                                 </svg>
                                 <span>Hint (-50pt)</span>
                             </button>
 
-                            <button @click="skipWord()" class="inline-flex items-center gap-1.5 px-4 py-2.5 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-600 text-xs font-bold transition cursor-pointer">
+                            <button @click="skipWord()" class="inline-flex items-center gap-1.5 px-4 py-2.5 rounded-xl bg-slate-900 border border-slate-750 hover:bg-slate-850 text-slate-350 text-xs font-bold transition cursor-pointer shadow-md">
                                 <span>Skip</span>
                                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="w-4 h-4">
-                                  <path stroke-linecap="round" stroke-linejoin="round" d="M3 8.25V18a2.25 2.25 0 0 0 2.25 2.25h13.5A2.25 2.25 0 0 0 21 18V8.25m-18 0V6a2.25 2.25 0 0 1 2.25-2.25h13.5A2.25 2.25 0 0 1 21 6v2.25m-18 0h18M5.25 6h.008v.008H5.25V6ZM7.5 6h.008v.008H7.5V6Zm2.25 0h.008v.008H9.75V6Z" />
+                                  <path stroke-linecap="round" stroke-linejoin="round" d="M3 8.25V18a2.25 2.25 0 0 0 2.25 2.25h13.5A2.25 2.25 0 0 0 21 18V8.25m-18 0V6a2.25 2.25 0 0 1 2.25-2.25h13.5A2.25 2.25 0 0 1 21 6v2.25m-18 0h18M5.25 6h.008v.008H5.25V6ZM7.5 6h.008v.008H7.5V6Zm2.25 0h.008v.008H9.75V6Zm2.25 0h.008v.008H9.75V6Z" />
                                 </svg>
                             </button>
                         </div>
@@ -213,35 +213,35 @@
                 </div>
 
                 <!-- SECTION 3: GAME OVER / SUMMARY -->
-                <div x-show="gameState === 'game_over'" class="p-8 md:p-12 text-center space-y-8 flex flex-col justify-center" style="min-height: 520px;">
-                    <div class="space-y-3">
-                        <div class="inline-flex p-4 bg-emerald-50 rounded-full text-emerald-500 shadow-md shadow-emerald-500/10 animate-bounce">
+                <div x-show="gameState === 'game_over'" class="fixed inset-0 w-screen h-screen flex flex-col justify-center items-center bg-gradient-to-br from-indigo-950 via-slate-900 to-purple-950 text-white z-50 p-6" style="display: none;">
+                    <div class="space-y-3 text-center">
+                        <div class="inline-flex p-4 bg-emerald-500/10 border border-emerald-550/30 rounded-full text-emerald-450 shadow-md shadow-emerald-500/10 animate-bounce">
                             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="w-12 h-12">
                               <path stroke-linecap="round" stroke-linejoin="round" d="M16.5 18.75h-9m9 0a3 3 0 0 1 3 3h-15a3 3 0 0 1 3-3m9 0v-3.375c0-.621-.503-1.125-1.125-1.125h-6.75c-.622 0-1.125.504-1.125 1.125v3.375m9 0h-9M9 3.75h6m-6 3h6m-6 3h6m-9 3h12" />
                             </svg>
                         </div>
-                        <h3 class="text-3xl font-black text-slate-800 tracking-tight">Permainan Selesai!</h3>
-                        <p class="text-sm text-slate-400 font-medium">Bagus sekali! Anda berhasil menyelesaikan semua kata di sesi ini.</p>
+                        <h3 class="text-3xl font-black text-emerald-400 tracking-tight">Permainan Selesai!</h3>
+                        <p class="text-sm text-slate-400 font-medium max-w-sm mx-auto">Bagus sekali! Anda berhasil menyelesaikan semua kata di sesi ini.</p>
                     </div>
 
                     <!-- Final Score panel -->
-                    <div class="max-w-xs mx-auto bg-slate-50 border border-slate-100 rounded-3xl p-6 grid grid-cols-2 gap-4">
-                        <div class="border-r border-slate-200">
-                            <span class="text-[9px] font-bold text-slate-400 uppercase tracking-widest block">Skor Akhir</span>
-                            <span class="text-2xl font-black text-indigo-600" x-text="score"></span>
+                    <div class="max-w-xs w-full mx-auto bg-slate-900 border border-slate-800 rounded-3xl p-6 grid grid-cols-2 gap-4 my-6 shadow-xl">
+                        <div class="border-r border-slate-800 text-center">
+                            <span class="text-[9px] font-bold text-slate-550 uppercase tracking-widest block">Skor Akhir</span>
+                            <span class="text-2xl font-black text-cyan-400" x-text="score"></span>
                         </div>
-                        <div>
-                            <span class="text-[9px] font-bold text-slate-400 uppercase tracking-widest block">Max Combo</span>
+                        <div class="text-center">
+                            <span class="text-[9px] font-bold text-slate-550 uppercase tracking-widest block">Max Combo</span>
                             <span class="text-2xl font-black text-rose-500" x-text="maxCombo"></span>
                         </div>
                     </div>
 
                     <!-- Action buttons -->
                     <div class="flex flex-col sm:flex-row justify-center gap-3 pt-4">
-                        <button @click="selectCategory(selectedCategory)" class="px-6 py-3.5 bg-indigo-600 hover:bg-indigo-700 text-white font-bold rounded-xl shadow-lg shadow-indigo-600/10 transition cursor-pointer">
+                        <button @click="selectCategory(selectedCategory)" class="px-6 py-3.5 bg-indigo-600 hover:bg-indigo-700 text-white font-bold rounded-xl shadow-lg shadow-indigo-650/20 transition cursor-pointer border border-indigo-500/20">
                             Main Lagi
                         </button>
-                        <button @click="gameState = 'select_category'" class="px-6 py-3.5 bg-white hover:bg-slate-50 border border-slate-200 text-slate-600 font-bold rounded-xl transition cursor-pointer">
+                        <button @click="gameState = 'select_category'" class="px-6 py-3.5 bg-slate-900 hover:bg-slate-850 border border-slate-800 text-slate-350 font-bold rounded-xl transition cursor-pointer">
                             Pilih Kategori Lain
                         </button>
                     </div>

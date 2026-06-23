@@ -43,6 +43,7 @@ Route::middleware(['auth'])->group(function () {
 
     // Games
     Route::get('/game', [GameController::class, 'index'])->name('game.index');
+    Route::get('/game/3d', [GameController::class, 'game3d'])->name('game.3d');
 
     // Profile Settings
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
