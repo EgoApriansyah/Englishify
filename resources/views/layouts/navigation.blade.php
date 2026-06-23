@@ -18,6 +18,9 @@
                     <x-nav-link :href="route('material.index')" :active="request()->routeIs('material.*')">
                         {{ __('Materi') }}
                     </x-nav-link>
+                    <x-nav-link :href="route('game.index')" :active="request()->routeIs('game.*')">
+                        {{ __('Game') }}
+                    </x-nav-link>
                 </div>
             </div>
 
@@ -75,6 +78,9 @@
             </x-responsive-nav-link>
             <x-responsive-nav-link :href="route('material.index')" :active="request()->routeIs('material.*')">
                 {{ __('Materi') }}
+            </x-responsive-nav-link>
+            <x-responsive-nav-link :href="route('game.index')" :active="request()->routeIs('game.*')">
+                {{ __('Game') }}
             </x-responsive-nav-link>
         </div>
 

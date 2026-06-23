@@ -5,6 +5,7 @@ use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\TestController;
 use App\Http\Controllers\ResultController;
 use App\Http\Controllers\MaterialController;
+use App\Http\Controllers\GameController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
 
@@ -39,6 +40,9 @@ Route::middleware(['auth'])->group(function () {
     // Materials
     Route::get('/materi', [MaterialController::class, 'index'])->name('material.index');
     Route::get('/materi/{slug}', [MaterialController::class, 'show'])->name('material.show');
+
+    // Games
+    Route::get('/game', [GameController::class, 'index'])->name('game.index');
 
     // Profile Settings
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
