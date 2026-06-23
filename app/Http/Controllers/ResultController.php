@@ -53,7 +53,7 @@ class ResultController extends Controller
         $readingRaw   = $correctReading;
 
         // Scaled score (linear approximation, scale 31–68)
-        $listeningScaled  = round(31 + ($listeningRaw / 10) * 37);
+        $listeningScaled  = round(31 + ($listeningRaw / 18) * 37);
         $structureScaled  = round(31 + ($structureRaw / 20) * 37);
         $readingScaled    = round(31 + ($readingRaw   / 35) * 37);
 

@@ -20,6 +20,7 @@ return new class extends Migration
             $table->timestamp('listening_started_at')->nullable();
             $table->timestamp('structure_started_at')->nullable();
             $table->timestamp('reading_started_at')->nullable();
+            $table->boolean('listening_audio_played')->default(false);
             $table->timestamps();
         });
     }

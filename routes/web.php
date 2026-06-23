@@ -4,6 +4,7 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\TestController;
 use App\Http\Controllers\ResultController;
+use App\Http\Controllers\MaterialController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
 
@@ -21,6 +22,7 @@ Route::middleware(['auth'])->group(function () {
     // Listening Section
     Route::get('/test/{session}/listening', [TestController::class, 'listening'])->name('test.listening');
     Route::post('/test/{session}/listening', [TestController::class, 'submitListening'])->name('test.listening.submit');
+    Route::post('/test/{session}/listening/play', [TestController::class, 'markAudioAsPlayed'])->name('test.listening.play');
     
     // Structure Section
     Route::get('/test/{session}/structure', [TestController::class, 'structure'])->name('test.structure');
@@ -33,6 +35,10 @@ Route::middleware(['auth'])->group(function () {
     // Results & Reviews
     Route::get('/test/{session}/result', [ResultController::class, 'show'])->name('test.result');
     Route::get('/test/{session}/review', [ResultController::class, 'review'])->name('test.review');
+
+    // Materials
+    Route::get('/materi', [MaterialController::class, 'index'])->name('material.index');
+    Route::get('/materi/{slug}', [MaterialController::class, 'show'])->name('material.show');
 
     // Profile Settings
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');

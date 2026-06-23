@@ -14,7 +14,8 @@ use Illuminate\Database\Eloquent\Attributes\Fillable;
     'current_section',
     'listening_started_at',
     'structure_started_at',
-    'reading_started_at'
+    'reading_started_at',
+    'listening_audio_played'
 ])]
 class TestSession extends Model
 {
@@ -26,6 +27,7 @@ class TestSession extends Model
             'listening_started_at' => 'datetime',
             'structure_started_at' => 'datetime',
             'reading_started_at' => 'datetime',
+            'listening_audio_played' => 'boolean',
         ];
     }
 

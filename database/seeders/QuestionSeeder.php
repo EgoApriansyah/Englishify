@@ -20,138 +20,219 @@ class QuestionSeeder extends Seeder
         Question::truncate();
         DB::statement('SET FOREIGN_KEY_CHECKS=1;');
 
+        $orderNumber = 1;
+
         // ==========================================
-        // 1. LISTENING COMPREHENSION (10 Questions)
+        // 1. LISTENING COMPREHENSION (18 Questions)
         // ==========================================
         $listeningQuestions = [
-            // --- Short Conversations (4 Questions) ---
+            // --- Part A (10 Questions) ---
             [
                 'section' => 'listening',
                 'sub_type' => 'short_conversation',
-                'order_number' => 1,
-                'transcript' => "Man: I can't believe how hard the chemistry exam was yesterday.\nWoman: Tell me about it. I studied for three days and still felt unprepared.\nMan: Do you think Professor Adams will curve the grades?",
-                'question_text' => 'What are the students mainly discussing?',
-                'option_a' => 'A chemistry experiment they conducted.',
-                'option_b' => 'A difficult exam they recently took.',
-                'option_c' => 'A professor\'s grading policy.',
-                'option_d' => 'Their study schedule for next week.',
+                'transcript' => null,
+                'question_text' => 'Pilihlah jawaban yang paling tepat berdasarkan rekaman audio.',
+                'option_a' => 'He knew that cherries were pricier than.',
+                'option_b' => 'He bought cherries and grapes because of not knowing their prices.',
+                'option_c' => 'He didn\'t know that cherries were pricier than grapes',
+                'option_d' => 'He didn\'t buy either grapes or cherries because both were pricy.',
+                'correct_answer' => 'C',
+            ],
+            [
+                'section' => 'listening',
+                'sub_type' => 'short_conversation',
+                'transcript' => null,
+                'question_text' => 'Pilihlah jawaban yang paling tepat berdasarkan rekaman audio.',
+                'option_a' => 'She felt it wasn’t fair.',
+                'option_b' => 'She was in rage.',
+                'option_c' => 'She felt inferior.',
+                'option_d' => 'She wasn\'t furious.',
                 'correct_answer' => 'B',
             ],
             [
                 'section' => 'listening',
                 'sub_type' => 'short_conversation',
-                'order_number' => 2,
-                'transcript' => "Woman: Are you still planning to take the history seminar this semester?\nMan: I was, but it conflicts with my biology lab. I'll have to wait until next spring.\nWoman: That's too bad. Professor Harris is supposed to be excellent.",
-                'question_text' => 'Why is the man unable to take the history seminar?',
-                'option_a' => 'He decides to take it next spring instead.',
-                'option_b' => 'He does not like Professor Harris.',
-                'option_c' => 'It is scheduled at the same time as his biology lab.',
-                'option_d' => 'The class is already full.',
+                'transcript' => null,
+                'question_text' => 'Pilihlah jawaban yang paling tepat berdasarkan rekaman audio.',
+                'option_a' => 'He is unhappy at the thought of retiring.',
+                'option_b' => 'He hates to leave his job soon.',
+                'option_c' => 'He is retiring too fast.',
+                'option_d' => 'He is eager to leave his job.',
+                'correct_answer' => 'D',
+            ],
+            [
+                'section' => 'listening',
+                'sub_type' => 'short_conversation',
+                'transcript' => null,
+                'question_text' => 'Pilihlah jawaban yang paling tepat berdasarkan rekaman audio.',
+                'option_a' => 'The rent was given by her for Tom.',
+                'option_b' => 'She was asked money for paying the rent.',
+                'option_c' => 'Tom gave her money for the rent.',
+                'option_d' => 'The money was lent by Tom early this month.',
                 'correct_answer' => 'C',
             ],
             [
                 'section' => 'listening',
                 'sub_type' => 'short_conversation',
-                'order_number' => 3,
-                'transcript' => "Man: Did you find a room for the weekend conference yet?\nWoman: Every hotel near the convention center is completely booked. I might have to stay further out and take a taxi.\nMan: You should check the subway line; it might save you some money.",
-                'question_text' => 'What does the man suggest the woman do?',
-                'option_a' => 'Stay at a hotel near the convention center.',
-                'option_b' => 'Book a room immediately.',
-                'option_c' => 'Use the subway to commute to the conference.',
-                'option_d' => 'Cancel her trip to the conference.',
-                'correct_answer' => 'C',
+                'transcript' => null,
+                'question_text' => 'Pilihlah jawaban yang paling tepat berdasarkan rekaman audio.',
+                'option_a' => 'She shouldn\'t leave her purse here.',
+                'option_b' => 'She\'s probably in the apartment.',
+                'option_c' => 'Her purse must not be in the apartment.',
+                'option_d' => 'She left the apartment without taking her purse',
+                'correct_answer' => 'B',
             ],
             [
                 'section' => 'listening',
                 'sub_type' => 'short_conversation',
-                'order_number' => 4,
-                'transcript' => "Woman: Excuse me, do you have any copy paper left? The tray in the library printer is empty.\nMan: I just ordered some this morning, but it won't arrive until tomorrow. You could try the student lounge upstairs.\nWoman: Thanks, I'll head up there right away.",
-                'question_text' => 'What will the woman probably do next?',
-                'option_a' => 'Wait until tomorrow to print her documents.',
-                'option_b' => 'Go to the upstairs student lounge.',
-                'option_c' => 'Order copy paper online.',
-                'option_d' => 'Ask the librarian to refill the printer.',
+                'transcript' => null,
+                'question_text' => 'Pilihlah jawaban yang paling tepat berdasarkan rekaman audio.',
+                'option_a' => 'Chuck looked at him in the hospital.',
+                'option_b' => 'Chuck didn\'t seem to be doing very well.',
+                'option_c' => 'This visit was better than the last.',
+                'option_d' => 'Chuck had improved.',
+                'correct_answer' => 'D',
+            ],
+            [
+                'section' => 'listening',
+                'sub_type' => 'short_conversation',
+                'transcript' => null,
+                'question_text' => 'Pilihlah jawaban yang paling tepat berdasarkan rekaman audio.',
+                'option_a' => 'She didn’t think that he’d do the dishes.',
+                'option_b' => 'The plates did not need to be washed.',
+                'option_c' => 'She asked him to be ready to go.',
+                'option_d' => 'The dishes would not be done.',
+                'correct_answer' => 'A',
+            ],
+            [
+                'section' => 'listening',
+                'sub_type' => 'short_conversation',
+                'transcript' => null,
+                'question_text' => 'Pilihlah jawaban yang paling tepat berdasarkan rekaman audio.',
+                'option_a' => 'Professor described the lesson for his class.',
+                'option_b' => 'There was a long line to register for the required class.',
+                'option_c' => 'Professor’s requirement for the course is high.',
+                'option_d' => 'Professor required the class to outline his course.',
+                'correct_answer' => 'A',
+            ],
+            [
+                'section' => 'listening',
+                'sub_type' => 'short_conversation',
+                'transcript' => null,
+                'question_text' => 'Pilihlah jawaban yang paling tepat berdasarkan rekaman audio.',
+                'option_a' => 'She\'s shopping for a carpet.',
+                'option_b' => 'She needs to help him find something.',
+                'option_c' => 'She\'s found a new ring.',
+                'option_d' => 'She\'s thankful she has a rag.',
+                'correct_answer' => 'A',
+            ],
+            [
+                'section' => 'listening',
+                'sub_type' => 'short_conversation',
+                'transcript' => null,
+                'question_text' => 'Pilihlah jawaban yang paling tepat berdasarkan rekaman audio.',
+                'option_a' => 'She ran into another car at the corner.',
+                'option_b' => 'She ran to her cousin because she’s scared.',
+                'option_c' => 'She unexpectedly met one of her relatives.',
+                'option_d' => 'Carl was running from place to place.',
+                'correct_answer' => 'C',
+            ],
+
+            // --- Part B (4 Questions) ---
+            [
+                'section' => 'listening',
+                'sub_type' => 'long_conversation',
+                'transcript' => null,
+                'question_text' => 'Pilihlah jawaban yang paling tepat berdasarkan rekaman audio.',
+                'option_a' => 'Trash orbiting Earth.',
+                'option_b' => 'Becoming space scientists.',
+                'option_c' => 'A trip by an astronaut to the Moon.',
+                'option_d' => 'The overabundance of garbage on Earth.',
+                'correct_answer' => 'D',
+            ],
+            [
+                'section' => 'listening',
+                'sub_type' => 'long_conversation',
+                'transcript' => null,
+                'question_text' => 'Pilihlah jawaban yang paling tepat berdasarkan rekaman audio.',
+                'option_a' => 'From a lecture.',
+                'option_b' => 'On a television program.',
+                'option_c' => 'In a magazine article.',
+                'option_d' => 'In a book.',
+                'correct_answer' => 'B',
+            ],
+            [
+                'section' => 'listening',
+                'sub_type' => 'long_conversation',
+                'transcript' => null,
+                'question_text' => 'Pilihlah jawaban yang paling tepat berdasarkan rekaman audio.',
+                'option_a' => '3,000 tons',
+                'option_b' => '3,000 pounds',
+                'option_c' => '13,000 pounds',
+                'option_d' => '300 tons',
+                'correct_answer' => 'B',
+            ],
+            [
+                'section' => 'listening',
+                'sub_type' => 'long_conversation',
+                'transcript' => null,
+                'question_text' => 'Pilihlah jawaban yang paling tepat berdasarkan rekaman audio.',
+                'option_a' => 'The problem will take care of itself.',
+                'option_b' => 'Scientists will find solutions to the problem.',
+                'option_c' => 'She will be able to travel in space.',
+                'option_d' => 'The junk will fall to Earth.',
                 'correct_answer' => 'B',
             ],
 
-            // --- Long Conversations (3 Questions) ---
-            [
-                'section' => 'listening',
-                'sub_type' => 'long_conversation',
-                'order_number' => 5,
-                'transcript' => "Man: Hey Sarah, did you hear about the new internship program at the university's environmental lab?\nWoman: No, I haven't! What kind of work are they doing?\nMan: They're studying local water pollution. Interns will help collect samples from the river and analyze them in the lab.\nWoman: That sounds perfect for my environmental science major. Is it paid?\nMan: Yes, it offers a stipend, and you can get up to three course credits.\nWoman: Wow, I'd love to apply. Do you know when the application is due?\nMan: Next Friday by 5:00 PM. You need a resume and a recommendation letter from a science faculty member.",
-                'question_text' => 'What is the main purpose of the conversation?',
-                'option_a' => 'To discuss a water pollution problem in the local river.',
-                'option_b' => 'To prepare for an environmental science class.',
-                'option_c' => 'To share information about an internship program.',
-                'option_d' => 'To ask for a faculty recommendation letter.',
-                'correct_answer' => 'C',
-            ],
-            [
-                'section' => 'listening',
-                'sub_type' => 'long_conversation',
-                'order_number' => 6,
-                'transcript' => "Woman: Hi Professor Miller, do you have a few minutes? I have some questions about my research paper topic.\nMan: Of course, Lisa. Come in. What's on your mind?\nWoman: I wanted to write about the economic impact of the California Gold Rush, but the topic seems too broad.\nMan: Yes, that is a huge topic. Perhaps you could narrow it down to a specific city or a particular industry, like transportation or supply merchants.\nWoman: I like the idea of looking at supply merchants. Many of them became wealthier than the actual miners.\nMan: Excellent point! Levi Strauss is a classic example. Focus on how merchants supplied the miners' daily needs.\nWoman: Thank you, Professor! That helps a lot. I'll start looking for primary sources on that specific angle.",
-                'question_text' => 'What does Professor Miller suggest Lisa do with her research topic?',
-                'option_a' => 'Change it to a completely different historical period.',
-                'option_b' => 'Focus on California gold mining techniques.',
-                'option_c' => 'Narrow it down to supply merchants during the Gold Rush.',
-                'option_d' => 'Write about Levi Strauss\'s life story.',
-                'correct_answer' => 'C',
-            ],
-            [
-                'section' => 'listening',
-                'sub_type' => 'long_conversation',
-                'order_number' => 7,
-                'transcript' => "Man: Hi, I'd like to return this textbook. I bought it last week, but I decided to drop the class.\nWoman: I can help you with that. Do you have the receipt?\nMan: Yes, here it is. It's still in the original shrink-wrap, too.\nWoman: Perfect. As long as it's within the first ten days of the semester and the book is in its original condition, we can give you a full refund.\nMan: Great. Will it go back to my credit card?\nWoman: Yes, it will take about three to five business days to show up on your account.\nMan: Excellent, thank you for your help.",
-                'question_text' => 'Why is the man returning the textbook?',
-                'option_a' => 'He found a cheaper copy online.',
-                'option_b' => 'He dropped the course for which the book was required.',
-                'option_c' => 'The textbook was damaged when he bought it.',
-                'option_d' => 'He bought the wrong edition of the book.',
-                'correct_answer' => 'B',
-            ],
-
-            // --- Talks (3 Questions) ---
+            // --- Part C (4 Questions) ---
             [
                 'section' => 'listening',
                 'sub_type' => 'talk',
-                'order_number' => 8,
-                'transcript' => "Professor: Good afternoon, class. Today we will discuss bioluminescence, which is the production and emission of light by a living organism. This phenomenon is incredibly common in ocean life, particularly in the deep sea where sunlight cannot penetrate. Organisms use bioluminescence for various reasons, including attracting prey, finding mates, and deterring predators. The light is generated through a chemical reaction involving a light-emitting molecule called luciferin and an enzyme called luciferase. While we most commonly associate bioluminescence with fireflies on land, the ocean is where this adaptation truly thrives, showing us how organisms evolve to survive in extreme environments.",
-                'question_text' => 'What is the talk mainly about?',
-                'option_a' => 'Chemical reactions in the deep ocean.',
-                'option_b' => 'The survival adaptations of fireflies.',
-                'option_c' => 'The process and purpose of bioluminescence.',
-                'option_d' => 'Deep-sea exploration techniques.',
+                'transcript' => null,
+                'question_text' => 'Pilihlah jawaban yang paling tepat berdasarkan rekaman audio.',
+                'option_a' => 'On the first day of class',
+                'option_b' => 'In the final week of the semester',
+                'option_c' => 'In the middle of the semester',
+                'option_d' => 'At the end of class',
+                'correct_answer' => 'A',
+            ],
+            [
+                'section' => 'listening',
+                'sub_type' => 'talk',
+                'transcript' => null,
+                'question_text' => 'Pilihlah jawaban yang paling tepat berdasarkan rekaman audio.',
+                'option_a' => 'In two weeks',
+                'option_b' => 'In three weeks',
+                'option_c' => 'Later today',
+                'option_d' => 'By Friday of this week',
+                'correct_answer' => 'D',
+            ],
+            [
+                'section' => 'listening',
+                'sub_type' => 'talk',
+                'transcript' => null,
+                'question_text' => 'Pilihlah jawaban yang paling tepat berdasarkan rekaman audio.',
+                'option_a' => 'Books listed in student journals',
+                'option_b' => 'Books from outside the library',
+                'option_c' => 'Both books and journals',
+                'option_d' => 'Journal and magazine articles',
                 'correct_answer' => 'C',
             ],
             [
                 'section' => 'listening',
                 'sub_type' => 'talk',
-                'order_number' => 9,
-                'transcript' => "Speaker: Welcome to the campus astronomical observatory. Tonight, we have a clear view, which is perfect for observing the planet Jupiter. Jupiter is the largest planet in our solar system, classified as a gas giant. It consists mostly of hydrogen and helium, much like the Sun. One of its most famous features is the Great Red Spot, a giant storm that has been raging for hundreds of years. Through our telescope tonight, you should also be able to see Jupiter's four largest moons, discovered by Galileo Galilei in 1610: Io, Europa, Ganymede, and Callisto. Please line up behind the main telescope, and feel free to ask any questions.",
-                'question_text' => 'Which of the following is mentioned as a feature of Jupiter?',
-                'option_a' => 'It has a solid rocky surface.',
-                'option_b' => 'It consists mostly of oxygen and nitrogen.',
-                'option_c' => 'It has a giant storm called the Great Red Spot.',
-                'option_d' => 'It was discovered by Galileo in 1610.',
-                'correct_answer' => 'C',
-            ],
-            [
-                'section' => 'listening',
-                'sub_type' => 'talk',
-                'order_number' => 10,
-                'transcript' => "Professor: Today we will explore a concept in economics known as opportunity cost. Simply put, opportunity cost is the value of the next best alternative that you give up when making a choice. For example, if you decide to spend two hours studying for an exam instead of working at a part-time job, the opportunity cost is the wages you would have earned during those two hours. Every decision we make, whether personal or business-related, involves opportunity cost because resources like time and money are always finite. Understanding opportunity cost helps individuals and businesses make more rational and efficient decisions.",
-                'question_text' => 'What is the definition of opportunity cost according to the lecturer?',
-                'option_a' => 'The financial cost of attending college.',
-                'option_b' => 'The value of the next best alternative that is foregone.',
-                'option_c' => 'The total time spent on studying and working.',
-                'option_d' => 'The profit margin of a business decision.',
-                'correct_answer' => 'B',
+                'transcript' => null,
+                'question_text' => 'Pilihlah jawaban yang paling tepat berdasarkan rekaman audio.',
+                'option_a' => 'Two',
+                'option_b' => 'Three',
+                'option_c' => 'Five',
+                'option_d' => 'Seven',
+                'correct_answer' => 'D',
             ],
         ];
 
         foreach ($listeningQuestions as $q) {
+            $q['order_number'] = $orderNumber++;
             Question::create($q);
         }
 
@@ -163,7 +244,6 @@ class QuestionSeeder extends Seeder
             [
                 'section' => 'structure',
                 'sub_type' => 'structure',
-                'order_number' => 11,
                 'question_text' => 'The geographic center of the United States ___ in North Dakota, but rather in Lebanon, Kansas.',
                 'option_a' => 'is not located',
                 'option_b' => 'not located',
@@ -174,7 +254,6 @@ class QuestionSeeder extends Seeder
             [
                 'section' => 'structure',
                 'sub_type' => 'structure',
-                'order_number' => 12,
                 'question_text' => '___ standard time zones was proposed by Sandford Fleming in 1876.',
                 'option_a' => 'The system of',
                 'option_b' => 'For the system of',
@@ -185,7 +264,6 @@ class QuestionSeeder extends Seeder
             [
                 'section' => 'structure',
                 'sub_type' => 'structure',
-                'order_number' => 13,
                 'question_text' => 'Not only ___ light, but it also generates heat when electricity passes through it.',
                 'option_a' => 'does the filament produce',
                 'option_b' => 'the filament produces',
@@ -196,7 +274,6 @@ class QuestionSeeder extends Seeder
             [
                 'section' => 'structure',
                 'sub_type' => 'structure',
-                'order_number' => 14,
                 'question_text' => 'The active volcano, ___ in Hawaii, attracts thousands of tourists every year.',
                 'option_a' => 'situated',
                 'option_b' => 'is situated',
@@ -207,7 +284,6 @@ class QuestionSeeder extends Seeder
             [
                 'section' => 'structure',
                 'sub_type' => 'structure',
-                'order_number' => 15,
                 'question_text' => 'The more complex a molecule is, ___ its properties are to predict.',
                 'option_a' => 'the more difficult',
                 'option_b' => 'it is more difficult',
@@ -218,7 +294,6 @@ class QuestionSeeder extends Seeder
             [
                 'section' => 'structure',
                 'sub_type' => 'structure',
-                'order_number' => 16,
                 'question_text' => '___ native to North America, the grizzly bear is now found primarily in Alaska and Canada.',
                 'option_a' => 'Once',
                 'option_b' => 'When was',
@@ -229,7 +304,6 @@ class QuestionSeeder extends Seeder
             [
                 'section' => 'structure',
                 'sub_type' => 'structure',
-                'order_number' => 17,
                 'question_text' => 'In the deep ocean, where sunlight cannot penetrate, organisms must ___ to extreme pressure and darkness.',
                 'option_a' => 'adapt',
                 'option_b' => 'adapting',
@@ -240,7 +314,6 @@ class QuestionSeeder extends Seeder
             [
                 'section' => 'structure',
                 'sub_type' => 'structure',
-                'order_number' => 18,
                 'question_text' => '___ of the committee, Dr. Green chaired the discussion on environmental policy.',
                 'option_a' => 'As chairperson',
                 'option_b' => 'He was chairperson',
@@ -251,7 +324,6 @@ class QuestionSeeder extends Seeder
             [
                 'section' => 'structure',
                 'sub_type' => 'structure',
-                'order_number' => 19,
                 'question_text' => 'Bioluminescent mushrooms, ___ grow on decaying wood, illuminate the forest floor at night.',
                 'option_a' => 'which',
                 'option_b' => 'they',
@@ -262,7 +334,6 @@ class QuestionSeeder extends Seeder
             [
                 'section' => 'structure',
                 'sub_type' => 'structure',
-                'order_number' => 20,
                 'question_text' => 'Only after the storm subsided ___ to inspect the damage to their homes.',
                 'option_a' => 'did the residents return',
                 'option_b' => 'the residents returned',
@@ -272,120 +343,110 @@ class QuestionSeeder extends Seeder
             ],
 
             // --- Written Expression (10 Questions - Identify the grammatically incorrect phrase) ---
-            // Format: We mark the underlined options A, B, C, D clearly.
             [
                 'section' => 'structure',
                 'sub_type' => 'written_expression',
-                'order_number' => 21,
                 'question_text' => 'The [majority] (A) of the [peoples] (B) living in the coastal region [rely] (C) on [fishing] (D) for their livelihood.',
                 'option_a' => 'majority',
                 'option_b' => 'peoples',
                 'option_c' => 'rely',
                 'option_d' => 'fishing',
-                'correct_answer' => 'B', // 'people' should be used instead of 'peoples' when referring to a general group of humans
+                'correct_answer' => 'B',
             ],
             [
                 'section' => 'structure',
                 'sub_type' => 'written_expression',
-                'order_number' => 22,
                 'question_text' => 'Although she [has] (A) studied piano [for] (B) many years, she [plays] (C) it very [good] (D).',
                 'option_a' => 'has',
                 'option_b' => 'for',
                 'option_c' => 'plays',
                 'option_d' => 'good',
-                'correct_answer' => 'D', // 'well' should be used to modify the verb 'plays'
+                'correct_answer' => 'D',
             ],
             [
                 'section' => 'structure',
                 'sub_type' => 'written_expression',
-                'order_number' => 23,
                 'question_text' => 'Many of the [information] (A) in the report [was] (B) outdated, [making] (C) it difficult to form [a] (D) conclusion.',
                 'option_a' => 'Many',
                 'option_b' => 'was',
                 'option_c' => 'making',
                 'option_d' => 'a',
-                'correct_answer' => 'A', // 'Much' should be used with the uncountable noun 'information'
+                'correct_answer' => 'A',
             ],
             [
                 'section' => 'structure',
                 'sub_type' => 'written_expression',
-                'order_number' => 24,
                 'question_text' => 'The team [has] (A) decided to [postponed] (B) the meeting [until] (C) next [Monday] (D).',
                 'option_a' => 'has',
                 'option_b' => 'postponed',
                 'option_c' => 'until',
                 'option_d' => 'Monday',
-                'correct_answer' => 'B', // infinitive 'to postpone' should follow 'to'
+                'correct_answer' => 'B',
             ],
             [
                 'section' => 'structure',
                 'sub_type' => 'written_expression',
-                'order_number' => 25,
                 'question_text' => 'Light [travels] (A) much [more faster] (B) than sound, [which] (C) explains why lightning is [seen] (D) before thunder.',
                 'option_a' => 'travels',
                 'option_b' => 'more faster',
                 'option_c' => 'which',
                 'option_d' => 'seen',
-                'correct_answer' => 'B', // double comparative: should be 'faster'
+                'correct_answer' => 'B',
             ],
             [
                 'section' => 'structure',
                 'sub_type' => 'written_expression',
-                'order_number' => 26,
                 'question_text' => 'The [results] (A) of the experiment [were] (B) similar [to] (C) the [former] (D) study.',
                 'option_a' => 'results',
                 'option_b' => 'were',
                 'option_c' => 'to',
                 'option_d' => 'former',
-                'correct_answer' => 'D', // should compare similar things: "similar to those of the former study" or "to the previous study's results"
+                'correct_answer' => 'D',
             ],
             [
                 'section' => 'structure',
                 'sub_type' => 'written_expression',
-                'order_number' => 27,
                 'question_text' => 'Neither the teacher [nor] (A) the students [was] (B) able [to solve] (C) the complex puzzle [quickly] (D).',
                 'option_a' => 'nor',
                 'option_b' => 'was',
                 'option_c' => 'to solve',
                 'option_d' => 'quickly',
-                'correct_answer' => 'B', // singular/plural agreement: "nor the students were" (agrees with closest subject)
+                'correct_answer' => 'B',
             ],
             [
                 'section' => 'structure',
                 'sub_type' => 'written_expression',
-                'order_number' => 28,
                 'question_text' => 'To [success] (A) in the business world, one [must] (B) be willing to [adapt] (C) to [changing] (D) market conditions.',
                 'option_a' => 'success',
                 'option_b' => 'must',
                 'option_c' => 'adapt',
                 'option_d' => 'changing',
-                'correct_answer' => 'A', // should be verb 'succeed' after infinitive 'To'
+                'correct_answer' => 'A',
             ],
             [
                 'section' => 'structure',
                 'sub_type' => 'written_expression',
-                'order_number' => 29,
                 'question_text' => 'The [large] (A) database [allows] (B) users to search [efficient] (C) for [various] (D) research papers.',
                 'option_a' => 'large',
                 'option_b' => 'allows',
                 'option_c' => 'efficient',
                 'option_d' => 'various',
-                'correct_answer' => 'C', // should be adverb 'efficiently' to modify the verb 'search'
+                'correct_answer' => 'C',
             ],
             [
                 'section' => 'structure',
                 'sub_type' => 'written_expression',
-                'order_number' => 30,
                 'question_text' => 'The government [recently] (A) announced a [new] (B) policy [designing] (C) to reduce [carbon] (D) emissions.',
                 'option_a' => 'recently',
                 'option_b' => 'new',
                 'option_c' => 'designing',
                 'option_d' => 'carbon',
-                'correct_answer' => 'C', // should be passive participle 'designed'
+                'correct_answer' => 'C',
             ],
         ];
 
         foreach ($structureQuestions as $q) {
+            $q['order_number'] = $orderNumber++;
             Question::create($q);
         }
 
@@ -401,7 +462,6 @@ class QuestionSeeder extends Seeder
 
         $p1Questions = [
             [
-                'order_number' => 31,
                 'question_text' => 'What is the main topic of the passage?',
                 'option_a' => 'The chemical formula of glucose.',
                 'option_b' => 'The role of photosynthesis in Earth\'s atmospheric history.',
@@ -410,7 +470,6 @@ class QuestionSeeder extends Seeder
                 'correct_answer' => 'B',
             ],
             [
-                'order_number' => 32,
                 'question_text' => 'According to the passage, when did photosynthetic organisms first emerge?',
                 'option_a' => '2.4 billion years ago',
                 'option_b' => '1.2 billion years ago',
@@ -419,7 +478,6 @@ class QuestionSeeder extends Seeder
                 'correct_answer' => 'A',
             ],
             [
-                'order_number' => 33,
                 'question_text' => 'The word "pivotal" in paragraph 1 is closest in meaning to:',
                 'option_a' => 'gradual',
                 'option_b' => 'crucial',
@@ -428,7 +486,6 @@ class QuestionSeeder extends Seeder
                 'correct_answer' => 'B',
             ],
             [
-                'order_number' => 34,
                 'question_text' => 'Before the Great Oxidation Event, what was Earth\'s atmosphere primarily composed of?',
                 'option_a' => 'Oxygen, nitrogen, and argon',
                 'option_b' => 'Methane, ammonia, and carbon dioxide',
@@ -437,7 +494,6 @@ class QuestionSeeder extends Seeder
                 'correct_answer' => 'B',
             ],
             [
-                'order_number' => 35,
                 'question_text' => 'What first happened to the oxygen produced by early photosynthetic life?',
                 'option_a' => 'It escaped directly into the atmosphere.',
                 'option_b' => 'It reacted with dissolved iron in the oceans.',
@@ -446,7 +502,6 @@ class QuestionSeeder extends Seeder
                 'correct_answer' => 'B',
             ],
             [
-                'order_number' => 36,
                 'question_text' => 'Why did the Great Oxidation Event cause a mass extinction?',
                 'option_a' => 'The Earth\'s temperature cooled down dramatically.',
                 'option_b' => 'Oxygen was toxic to obligate anaerobic microbes.',
@@ -455,7 +510,6 @@ class QuestionSeeder extends Seeder
                 'correct_answer' => 'B',
             ],
             [
-                'order_number' => 37,
                 'question_text' => 'The word "precipitated" in paragraph 2 is closest in meaning to:',
                 'option_a' => 'prevented',
                 'option_b' => 'triggered',
@@ -464,7 +518,6 @@ class QuestionSeeder extends Seeder
                 'correct_answer' => 'B',
             ],
             [
-                'order_number' => 38,
                 'question_text' => 'What can be inferred about the transition of life to land?',
                 'option_a' => 'It occurred before the oceans were saturated with iron.',
                 'option_b' => 'It was made possible by the formation of the protective ozone layer.',
@@ -473,7 +526,6 @@ class QuestionSeeder extends Seeder
                 'correct_answer' => 'B',
             ],
             [
-                'order_number' => 39,
                 'question_text' => 'Which of the following is NOT mentioned as a reactant or product of photosynthesis?',
                 'option_a' => 'Carbon dioxide',
                 'option_b' => 'Water',
@@ -487,6 +539,7 @@ class QuestionSeeder extends Seeder
             $q['passage_id'] = $p1->id;
             $q['section'] = 'reading';
             $q['sub_type'] = 'reading';
+            $q['order_number'] = $orderNumber++;
             Question::create($q);
         }
 
@@ -498,7 +551,6 @@ class QuestionSeeder extends Seeder
 
         $p2Questions = [
             [
-                'order_number' => 40,
                 'question_text' => 'What is the main focus of the passage?',
                 'option_a' => 'The life and inventions of James Watt.',
                 'option_b' => 'The factors and innovations that initiated the Industrial Revolution.',
@@ -507,7 +559,6 @@ class QuestionSeeder extends Seeder
                 'correct_answer' => 'B',
             ],
             [
-                'order_number' => 41,
                 'question_text' => 'Which resources were essential for powering steam engines and making machinery?',
                 'option_a' => 'Wood and copper',
                 'option_b' => 'Coal and iron ore',
@@ -516,7 +567,6 @@ class QuestionSeeder extends Seeder
                 'correct_answer' => 'B',
             ],
             [
-                'order_number' => 42,
                 'question_text' => 'The word "surplus" in paragraph 1 is closest in meaning to:',
                 'option_a' => 'shortage',
                 'option_b' => 'excess',
@@ -525,7 +575,6 @@ class QuestionSeeder extends Seeder
                 'correct_answer' => 'B',
             ],
             [
-                'order_number' => 43,
                 'question_text' => 'How did the Agricultural Revolution contribute to the Industrial Revolution?',
                 'option_a' => 'It provided capital through crop sales to colonies.',
                 'option_b' => 'It created population growth and a surplus of labor for factories.',
@@ -534,7 +583,6 @@ class QuestionSeeder extends Seeder
                 'correct_answer' => 'B',
             ],
             [
-                'order_number' => 44,
                 'question_text' => 'What major improvement did James Watt make in the 1770s?',
                 'option_a' => 'He invented the spinning jenny.',
                 'option_b' => 'He improved the efficiency of the steam engine.',
@@ -543,7 +591,6 @@ class QuestionSeeder extends Seeder
                 'correct_answer' => 'B',
             ],
             [
-                'order_number' => 45,
                 'question_text' => 'Before Watt\'s improvements, how were early factories generally restricted geographically?',
                 'option_a' => 'They had to be near coal mines.',
                 'option_b' => 'They had to be located near fast-flowing rivers for water power.',
@@ -552,7 +599,6 @@ class QuestionSeeder extends Seeder
                 'correct_answer' => 'B',
             ],
             [
-                'order_number' => 46,
                 'question_text' => 'The word "mechanization" in paragraph 2 is closest in meaning to:',
                 'option_a' => 'manual labor',
                 'option_b' => 'use of machinery',
@@ -561,7 +607,6 @@ class QuestionSeeder extends Seeder
                 'correct_answer' => 'B',
             ],
             [
-                'order_number' => 47,
                 'question_text' => 'What effect did steam locomotives and steamships have on commerce?',
                 'option_a' => 'They decreased the demand for raw materials.',
                 'option_b' => 'They allowed for the rapid transit of materials and goods.',
@@ -570,7 +615,6 @@ class QuestionSeeder extends Seeder
                 'correct_answer' => 'B',
             ],
             [
-                'order_number' => 48,
                 'question_text' => 'What was a major social consequence of the industrial growth mentioned?',
                 'option_a' => 'A decline in overall population growth.',
                 'option_b' => 'Migration of rural laborers to rapidly expanding cities.',
@@ -584,6 +628,7 @@ class QuestionSeeder extends Seeder
             $q['passage_id'] = $p2->id;
             $q['section'] = 'reading';
             $q['sub_type'] = 'reading';
+            $q['order_number'] = $orderNumber++;
             Question::create($q);
         }
 
@@ -595,7 +640,6 @@ class QuestionSeeder extends Seeder
 
         $p3Questions = [
             [
-                'order_number' => 49,
                 'question_text' => 'Why are coral reefs referred to as the "rainforests of the sea"?',
                 'option_a' => 'They receive high amounts of underwater rainfall.',
                 'option_b' => 'They support a vast diversity of marine species despite their small area.',
@@ -604,7 +648,6 @@ class QuestionSeeder extends Seeder
                 'correct_answer' => 'B',
             ],
             [
-                'order_number' => 50,
                 'question_text' => 'What creates the physical structure of a coral reef?',
                 'option_a' => 'Volcanic rock deposits.',
                 'option_b' => 'Calcium carbonate secreted by coral polyps.',
@@ -613,7 +656,6 @@ class QuestionSeeder extends Seeder
                 'correct_answer' => 'B',
             ],
             [
-                'order_number' => 51,
                 'question_text' => 'The word "symbiotic" in paragraph 1 describes a relationship that is:',
                 'option_a' => 'predatory',
                 'option_b' => 'mutually beneficial',
@@ -622,7 +664,6 @@ class QuestionSeeder extends Seeder
                 'correct_answer' => 'B',
             ],
             [
-                'order_number' => 52,
                 'question_text' => 'What do zooxanthellae provide to coral polyps?',
                 'option_a' => 'Calcium carbonate and protection',
                 'option_b' => 'Glucose and amino acids',
@@ -631,7 +672,6 @@ class QuestionSeeder extends Seeder
                 'correct_answer' => 'B',
             ],
             [
-                'order_number' => 53,
                 'question_text' => 'According to the passage, what is the primary trigger of coral bleaching?',
                 'option_a' => 'An increase in ocean acidity.',
                 'option_b' => 'An elevation in sea temperatures.',
@@ -640,7 +680,6 @@ class QuestionSeeder extends Seeder
                 'correct_answer' => 'B',
             ],
             [
-                'order_number' => 54,
                 'question_text' => 'What actually happens during the process of coral bleaching?',
                 'option_a' => 'Corals secrete white paint to reflect solar heat.',
                 'option_b' => 'Corals expel their symbiotic zooxanthellae.',
@@ -649,7 +688,6 @@ class QuestionSeeder extends Seeder
                 'correct_answer' => 'B',
             ],
             [
-                'order_number' => 55,
                 'question_text' => 'The word "susceptible" in paragraph 2 is closest in meaning to:',
                 'option_a' => 'immune',
                 'option_b' => 'vulnerable',
@@ -658,7 +696,6 @@ class QuestionSeeder extends Seeder
                 'correct_answer' => 'B',
             ],
             [
-                'order_number' => 56,
                 'question_text' => 'What is a consequence of persistent coral death on human coastal communities?',
                 'option_a' => 'It leads to higher sea levels globally.',
                 'option_b' => 'It leaves coastlines more vulnerable to erosion.',
@@ -667,7 +704,6 @@ class QuestionSeeder extends Seeder
                 'correct_answer' => 'B',
             ],
             [
-                'order_number' => 57,
                 'question_text' => 'Which of the following ocean floor percentages is occupied by coral reefs?',
                 'option_a' => '25%',
                 'option_b' => 'less than 0.1%',
@@ -681,6 +717,7 @@ class QuestionSeeder extends Seeder
             $q['passage_id'] = $p3->id;
             $q['section'] = 'reading';
             $q['sub_type'] = 'reading';
+            $q['order_number'] = $orderNumber++;
             Question::create($q);
         }
 
@@ -692,7 +729,6 @@ class QuestionSeeder extends Seeder
 
         $p4Questions = [
             [
-                'order_number' => 58,
                 'question_text' => 'Where was the field of artificial intelligence formally founded in 1956?',
                 'option_a' => 'Stanford University',
                 'option_b' => 'Dartmouth College',
@@ -701,7 +737,6 @@ class QuestionSeeder extends Seeder
                 'correct_answer' => 'B',
             ],
             [
-                'order_number' => 59,
                 'question_text' => 'What did early AI pioneers predict would happen within a generation?',
                 'option_a' => 'Computers would replace all human workers.',
                 'option_b' => 'Machines capable of simulating human intelligence would be built.',
@@ -710,7 +745,6 @@ class QuestionSeeder extends Seeder
                 'correct_answer' => 'B',
             ],
             [
-                'order_number' => 60,
                 'question_text' => 'The word "premature" in paragraph 2 is closest in meaning to:',
                 'option_a' => 'accurate',
                 'option_b' => 'too early',
@@ -719,7 +753,6 @@ class QuestionSeeder extends Seeder
                 'correct_answer' => 'B',
             ],
             [
-                'order_number' => 61,
                 'question_text' => 'What caused the first "AI winter" in the 1970s?',
                 'option_a' => 'Global weather changes that affected universities.',
                 'option_b' => 'Limited computing power and lack of digital data.',
@@ -728,7 +761,6 @@ class QuestionSeeder extends Seeder
                 'correct_answer' => 'B',
             ],
             [
-                'order_number' => 62,
                 'question_text' => 'Which system experienced a brief popularity during the 1980s?',
                 'option_a' => 'Deep neural networks',
                 'option_b' => 'Expert systems',
@@ -737,7 +769,6 @@ class QuestionSeeder extends Seeder
                 'correct_answer' => 'B',
             ],
             [
-                'order_number' => 63,
                 'question_text' => 'The word "resurgence" in paragraph 2 is closest in meaning to:',
                 'option_a' => 'decline',
                 'option_b' => 'revival',
@@ -746,7 +777,6 @@ class QuestionSeeder extends Seeder
                 'correct_answer' => 'B',
             ],
             [
-                'order_number' => 64,
                 'question_text' => 'What three factors propelled the 21st-century breakthrough in AI?',
                 'option_a' => 'Symbolic logic, rule-based systems, and government grants.',
                 'option_b' => 'Big data, powerful parallel hardware, and machine learning.',
@@ -755,7 +785,6 @@ class QuestionSeeder extends Seeder
                 'correct_answer' => 'B',
             ],
             [
-                'order_number' => 65,
                 'question_text' => 'How does modern AI training differ from early approach?',
                 'option_a' => 'It relies strictly on manually pre-programmed rules.',
                 'option_b' => 'It trains neural networks on massive datasets rather than pre-programming rules.',
@@ -769,6 +798,7 @@ class QuestionSeeder extends Seeder
             $q['passage_id'] = $p4->id;
             $q['section'] = 'reading';
             $q['sub_type'] = 'reading';
+            $q['order_number'] = $orderNumber++;
             Question::create($q);
         }
     }

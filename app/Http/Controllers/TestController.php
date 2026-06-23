@@ -93,6 +93,21 @@ class TestController extends Controller
     }
 
     /**
+     * Mark the listening audio as played for the session.
+     */
+    public function markAudioAsPlayed($sessionId)
+    {
+        $session = TestSession::where('id', $sessionId)
+            ->where('user_id', Auth::id())
+            ->firstOrFail();
+
+        $session->listening_audio_played = true;
+        $session->save();
+
+        return response()->json(['success' => true]);
+    }
+
+    /**
      * Submit Listening Section
      */
     public function submitListening(Request $request, $sessionId)

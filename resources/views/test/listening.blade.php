@@ -16,9 +16,37 @@
                     <div class="bg-blue-50 border-l-4 border-blue-900 p-4 rounded-r-lg shadow-sm">
                         <h4 class="font-bold text-blue-950 text-sm">Petunjuk Section 1 (Listening Comprehension)</h4>
                         <p class="text-xs text-blue-800 mt-1 leading-relaxed">
-                            Bacalah transkrip percakapan atau monolog di bawah ini dengan saksama, kemudian pilih satu jawaban yang paling tepat (A, B, C, atau D) untuk menjawab pertanyaan yang diajukan.
+                            Dengarkan rekaman audio yang diputar, lalu jawab 18 pertanyaan yang diajukan dengan memilih opsi jawaban yang paling tepat (A, B, C, atau D).
                         </p>
                     </div>
+
+                    <!-- Audio Player Card -->
+                    <div class="bg-white p-5 rounded-xl border border-slate-200 shadow-sm flex flex-col md:flex-row items-center justify-between gap-4">
+                        <div class="flex items-center gap-4">
+                            <div class="w-12 h-12 rounded-full bg-indigo-50 flex items-center justify-center text-indigo-600 shrink-0">
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="w-6 h-6">
+                                  <path stroke-linecap="round" stroke-linejoin="round" d="M19.114 5.636a9 9 0 0 1 0 12.728M16.463 8.288a5.25 5.25 0 0 1 0 7.424M6.75 8.25l4.72-4.72a.75.75 0 0 1 1.28.53v15.88a.75.75 0 0 1-1.28.53l-4.72-4.72H4.51c-.88 0-1.704-.507-1.938-1.354A9.009 9.009 0 0 1 2.25 12c0-.83.112-1.633.322-2.396C2.806 8.756 3.63 8.25 4.51 8.25H6.75Z" />
+                                </svg>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-slate-800 text-sm">Audio Simulasi Listening Comprehension</h4>
+                                <p class="text-xs text-slate-400 mt-0.5 leading-relaxed">
+                                    Hanya dapat diputar <strong>satu kali</strong>, tidak dapat dihentikan (pause) atau dipercepat (seek).
+                                </p>
+                            </div>
+                        </div>
+                        <div class="shrink-0">
+                            <button type="button" id="play-audio-btn" onclick="startListeningAudio()" 
+                                class="px-5 py-2.5 bg-indigo-600 hover:bg-indigo-700 disabled:bg-slate-200 disabled:text-slate-400 text-white font-bold text-sm rounded-xl shadow-md shadow-indigo-600/10 flex items-center gap-2 transition cursor-pointer">
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-5 h-5">
+                                  <path fill-rule="evenodd" d="M4.5 5.653c0-1.427 1.529-2.33 2.779-1.643l11.54 6.347c1.295.712 1.295 2.573 0 3.286L7.28 19.99c-1.25.687-2.779-.217-2.779-1.643V5.653Z" clip-rule="evenodd" />
+                                </svg>
+                                <span>Putar Audio</span>
+                            </button>
+                        </div>
+                    </div>
+
+                    <audio id="listening-audio" src="{{ asset('assets/LISTENING.mp3') }}" preload="auto"></audio>
 
                     <!-- Progress Bar -->
                     <div class="bg-white p-4 rounded-xl border border-slate-100 shadow-sm space-y-2">
@@ -44,18 +72,8 @@
 
                             <!-- Question Body -->
                             <div class="p-6 space-y-6">
-                                <!-- Transcript block -->
-                                @if($q->transcript)
-                                    <div class="bg-slate-50 p-5 rounded-xl border border-slate-200 font-sans text-slate-800 text-base leading-relaxed whitespace-pre-line shadow-inner">
-                                        <div class="text-xs text-slate-500 font-bold uppercase tracking-wider mb-2 select-none border-b border-slate-200 pb-1">
-                                            Audio Transcript (Teks Percakapan)
-                                        </div>
-                                        {!! nl2br(e($q->transcript)) !!}
-                                    </div>
-                                @endif
-
                                 <!-- Question Text -->
-                                <div class="text-lg font-bold text-slate-900">
+                                <div class="text-base font-semibold text-slate-600 italic">
                                     {{ $q->question_text }}
                                 </div>
 
@@ -273,6 +291,88 @@
             }
 
             updateProgressBar();
+        }
+
+        // --- Audio Player Logic ---
+        const audio = document.getElementById('listening-audio');
+        const playBtn = document.getElementById('play-audio-btn');
+        let maxPlayedTime = 0;
+        let isAlreadyPlayed = {{ $session->listening_audio_played ? 'true' : 'false' }};
+
+        // Check if already played
+        if (isAlreadyPlayed) {
+            disableAudioButton("Audio Telah Diputar");
+        }
+
+        function startListeningAudio() {
+            if (isAlreadyPlayed) return;
+
+            audio.play().then(() => {
+                isAlreadyPlayed = true;
+                playBtn.disabled = true;
+                playBtn.classList.remove('bg-indigo-600', 'hover:bg-indigo-700');
+                playBtn.classList.add('bg-slate-100', 'text-slate-500');
+                playBtn.innerHTML = `
+                    <svg class="animate-spin -ml-1 mr-2 h-4 w-4 text-slate-500 inline-block" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                      <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+                      <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                    </svg>
+                    <span>Audio Sedang Diputar...</span>
+                `;
+
+                // Mark as played in Database
+                fetch("{{ route('test.listening.play', $session->id) }}", {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json",
+                        "X-CSRF-TOKEN": "{{ csrf_token() }}"
+                    }
+                }).catch(err => {
+                    console.error("Gagal menyimpan status pemutaran:", err);
+                });
+            }).catch(err => {
+                console.error("Gagal memutar audio:", err);
+                alert("Gagal memutar audio. Pastikan browser Anda mengizinkan pemutaran audio (autoplay policy) atau lakukan klik/interaksi terlebih dahulu.");
+            });
+
+            // Track maximum played time during natural playback
+            audio.addEventListener('timeupdate', () => {
+                if (!audio.seeking) {
+                    maxPlayedTime = Math.max(maxPlayedTime, audio.currentTime);
+                }
+            });
+
+            // Prevent seeking (forward or backward)
+            audio.addEventListener('seeking', () => {
+                if (Math.abs(audio.currentTime - maxPlayedTime) > 0.5) {
+                    audio.currentTime = maxPlayedTime;
+                }
+            });
+
+            // Prevent pausing/stopping the audio
+            audio.addEventListener('pause', () => {
+                if (!audio.ended) {
+                    audio.play().catch(err => {
+                        console.error("Gagal memutar kembali audio:", err);
+                    });
+                }
+            });
+
+            audio.addEventListener('ended', () => {
+                disableAudioButton("Audio Selesai");
+            });
+        }
+
+        function disableAudioButton(text) {
+            playBtn.disabled = true;
+            playBtn.classList.remove('bg-indigo-600', 'hover:bg-indigo-700');
+            playBtn.classList.add('bg-slate-100', 'text-slate-400');
+            playBtn.innerHTML = `
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="w-5 h-5 text-slate-400 inline-block mr-1">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M18.364 18.364A9 9 0 0 0 5.636 5.636m12.728 12.728A9 9 0 0 1 5.636 5.636m12.728 12.728L5.636 5.636" />
+                </svg>
+                <span>${text}</span>
+            `;
         }
 
         function updateProgressBar() {
