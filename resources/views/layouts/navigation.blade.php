@@ -38,14 +38,17 @@
 
                             <x-slot name="content">
                                 <x-dropdown-link :href="route('game.index')" class="font-bold">
-                                    {{ __('Word Scramble (2D)') }}
+                                    {{ __('Word Scramble') }}
                                 </x-dropdown-link>
                                 <x-dropdown-link :href="route('game.3d')" class="font-bold">
-                                    {{ __('English Collector (3D)') }}
+                                    {{ __('English Collector') }}
                                 </x-dropdown-link>
                             </x-slot>
                         </x-dropdown>
                     </div>
+                    <x-nav-link :href="route('leaderboard.index')" :active="request()->routeIs('leaderboard.*')">
+                        {{ __('Leaderboard') }}
+                    </x-nav-link>
                 </div>
             </div>
 
@@ -121,6 +124,9 @@
                     </x-responsive-nav-link>
                 </div>
             </div>
+            <x-responsive-nav-link :href="route('leaderboard.index')" :active="request()->routeIs('leaderboard.*')">
+                {{ __('Leaderboard') }}
+            </x-responsive-nav-link>
         </div>
 
         <!-- Responsive Settings Options -->

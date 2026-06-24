@@ -6,6 +6,7 @@ use App\Http\Controllers\TestController;
 use App\Http\Controllers\ResultController;
 use App\Http\Controllers\MaterialController;
 use App\Http\Controllers\GameController;
+use App\Http\Controllers\LeaderboardController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
 
@@ -44,6 +45,9 @@ Route::middleware(['auth'])->group(function () {
     // Games
     Route::get('/game', [GameController::class, 'index'])->name('game.index');
     Route::get('/game/3d', [GameController::class, 'game3d'])->name('game.3d');
+
+    // Leaderboard
+    Route::get('/leaderboard', [LeaderboardController::class, 'index'])->name('leaderboard.index');
 
     // Profile Settings
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
