@@ -7,6 +7,7 @@ use App\Http\Controllers\ResultController;
 use App\Http\Controllers\MaterialController;
 use App\Http\Controllers\GameController;
 use App\Http\Controllers\LeaderboardController;
+use App\Http\Controllers\PracticeController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
 
@@ -48,6 +49,11 @@ Route::middleware(['auth'])->group(function () {
 
     // Leaderboard
     Route::get('/leaderboard', [LeaderboardController::class, 'index'])->name('leaderboard.index');
+
+    // Practice Mode
+    Route::get('/practice', [PracticeController::class, 'index'])->name('practice.index');
+    Route::get('/practice/{id}/shadowing', [PracticeController::class, 'shadowing'])->name('practice.shadowing');
+    Route::get('/practice/{id}/dictation', [PracticeController::class, 'dictation'])->name('practice.dictation');
 
     // Profile Settings
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');

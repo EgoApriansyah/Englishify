@@ -25,6 +25,7 @@ class DatabaseSeeder extends Seeder
         $this->call([
             QuestionSeeder::class,
             MaterialSeeder::class,
+            PracticeVideoSeeder::class,
         ]);
     }
 }

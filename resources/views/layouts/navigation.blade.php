@@ -49,6 +49,9 @@
                     <x-nav-link :href="route('leaderboard.index')" :active="request()->routeIs('leaderboard.*')">
                         {{ __('Leaderboard') }}
                     </x-nav-link>
+                    <x-nav-link :href="route('practice.index')" :active="request()->routeIs('practice.*')">
+                        {{ __('Practice') }}
+                    </x-nav-link>
                 </div>
             </div>
 
@@ -126,6 +129,9 @@
             </div>
             <x-responsive-nav-link :href="route('leaderboard.index')" :active="request()->routeIs('leaderboard.*')">
                 {{ __('Leaderboard') }}
+            </x-responsive-nav-link>
+            <x-responsive-nav-link :href="route('practice.index')" :active="request()->routeIs('practice.*')">
+                {{ __('Practice') }}
             </x-responsive-nav-link>
         </div>
 

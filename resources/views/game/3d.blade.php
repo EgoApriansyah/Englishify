@@ -16,7 +16,7 @@
                               <path stroke-linecap="round" stroke-linejoin="round" d="m21 7.5-9-5.25L3 7.5m18 0-9 5.25m9-5.25v9l-9 5.25M3 7.5l9 5.25M3 7.5v9l9 5.25m0-9v9" />
                             </svg>
                         </div>
-                        <h3 class="text-2xl md:text-3xl font-extrabold text-slate-800 tracking-tight">English Collector 3D</h3>
+                        <h3 class="text-2xl md:text-3xl font-extrabold text-slate-800 tracking-tight">English Collector</h3>
                         <p class="text-sm text-slate-500 max-w-md mx-auto leading-relaxed">
                             Kendalikan bola energi neon dalam 3D! Kumpulkan kristal huruf yang benar untuk mengeja kata target sambil menghindari rintangan huruf yang salah.
                         </p>
@@ -36,7 +36,7 @@
                                 <p class="text-xs text-slate-500 leading-relaxed">Kumpulkan kosakata akademik tingkat tinggi yang sering muncul di TOEFL.</p>
                             </div>
                             <button @click="selectCategory('vocabulary')" class="w-full bg-indigo-600 hover:bg-indigo-700 text-white text-xs font-bold py-2.5 rounded-xl transition cursor-pointer">
-                                Main 3D Sekarang
+                                Main Sekarang
                             </button>
                         </div>
 
@@ -52,7 +52,7 @@
                                 <p class="text-xs text-slate-500 leading-relaxed">Pahami berbagai struktur tata bahasa dengan mengeja istilah bahasanya.</p>
                             </div>
                             <button @click="selectCategory('grammar')" class="w-full bg-purple-600 hover:bg-purple-700 text-white text-xs font-bold py-2.5 rounded-xl transition cursor-pointer">
-                                Main 3D Sekarang
+                                Main Sekarang
                             </button>
                         </div>
 
@@ -68,7 +68,7 @@
                                 <p class="text-xs text-slate-500 leading-relaxed">Spesial pengumpulan kata sinonim/persamaan istilah bahasa Inggris populer.</p>
                             </div>
                             <button @click="selectCategory('synonyms')" class="w-full bg-amber-500 hover:bg-amber-650 text-white text-xs font-bold py-2.5 rounded-xl transition cursor-pointer">
-                                Main 3D Sekarang
+                                Main Sekarang
                             </button>
                         </div>
                     </div>
@@ -83,7 +83,6 @@
 
                 <!-- SECTION 2: 3D PLAYING CANVAS GRID -->
                 <div x-show="gameState === 'playing'" class="fixed inset-0 w-screen h-screen bg-slate-950 z-50" style="display: none;">
-                    <!-- ThreeJS Canvas Container -->
                     <div id="canvas-container" class="w-full h-full relative" @click="handleCanvasClick($event)">
                         <canvas id="game-canvas" class="w-full h-full block"></canvas>
                     </div>
