@@ -2,10 +2,11 @@
 
 @php
 $classes = ($active ?? false)
-            ? 'block w-full ps-3 pe-4 py-2 border-l-4 border-indigo-600 text-start text-base font-bold text-indigo-700 bg-indigo-50/50 focus:outline-none focus:text-indigo-800 focus:bg-indigo-100/50 focus:border-indigo-700 transition duration-150 ease-in-out'
-            : 'block w-full ps-3 pe-4 py-2 border-l-4 border-transparent text-start text-base font-semibold text-slate-600 hover:text-slate-800 hover:bg-slate-50 hover:border-slate-300 focus:outline-none focus:text-slate-800 focus:bg-slate-50 focus:border-slate-300 transition duration-150 ease-in-out';
+            ? 'block w-full ps-3 pe-4 py-2 border-l-4 border-fern text-start text-base font-body font-semibold text-white bg-white/10 focus:outline-none focus:text-white focus:bg-white/20 focus:border-fern transition duration-150 ease-in-out'
+            : 'block w-full ps-3 pe-4 py-2 border-l-4 border-transparent text-start text-base font-body font-medium text-white/70 hover:text-white hover:bg-white/5 hover:border-fern/50 focus:outline-none focus:text-white focus:bg-white/5 focus:border-fern/50 transition duration-150 ease-in-out';
 @endphp
 
 <a {{ $attributes->merge(['class' => $classes]) }}>
     {{ $slot }}
 </a>
+

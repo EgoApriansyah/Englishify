@@ -49,7 +49,7 @@ class LeaderboardController extends Controller
                     ->count();
 
                 // Compute standard scale score of TOEFL ITP (310 - 677)
-                $listeningScaled  = round(31 + ($correctListening / 10) * 37);
+                $listeningScaled  = round(31 + ($correctListening / 18) * 37);
                 $structureScaled  = round(31 + ($correctStructure / 20) * 37);
                 $readingScaled    = round(31 + ($correctReading / 35) * 37);
                 $totalScore = round((($listeningScaled + $structureScaled + $readingScaled) / 3) * 10);

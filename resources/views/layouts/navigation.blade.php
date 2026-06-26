@@ -1,163 +1,169 @@
-<nav x-data="{ open: false }" class="bg-white border-b border-slate-100/80 shadow-sm shadow-slate-100/20">
-    <!-- Primary Navigation Menu -->
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="flex justify-between h-16">
-            <div class="flex">
-                <!-- Logo -->
-                <div class="shrink-0 flex items-center">
-                    <a href="{{ route('dashboard') }}">
-                        <x-application-logo class="block h-9 w-auto fill-current text-gray-800" />
+@php
+    $navUser = Auth::user();
+    $lastFinishedSession = $navUser ? $navUser->testSessions()->whereNotNull('finished_at')->orderBy('finished_at', 'desc')->first() : null;
+    $navLastScore = null;
+    if ($lastFinishedSession) {
+        $correctListening = $lastFinishedSession->answers()->whereHas('question', function ($q) { $q->where('section', 'listening'); })->where('is_correct', true)->count();
+        $correctStructure = $lastFinishedSession->answers()->whereHas('question', function ($q) { $q->where('section', 'structure'); })->where('is_correct', true)->count();
+        $correctReading = $lastFinishedSession->answers()->whereHas('question', function ($q) { $q->where('section', 'reading'); })->where('is_correct', true)->count();
+        
+        $listeningScaled  = round(31 + ($correctListening / 18) * 37);
+        $structureScaled  = round(31 + ($correctStructure / 20) * 37);
+        $readingScaled    = round(31 + ($correctReading / 35) * 37);
+        $navLastScore = round((($listeningScaled + $structureScaled + $readingScaled) / 3) * 10);
+    }
+@endphp
+
+<!-- ============================================
+     DESKTOP/TABLET SIDEBAR
+     ============================================ -->
+<aside class="fixed top-0 bottom-0 left-0 w-60 bg-ink z-20 flex flex-col justify-between py-6 px-4 border-r border-white/5 hidden sm:flex transition-transform duration-300 transform" :class="sidebarOpen ? 'translate-x-0' : '-translate-x-full'">
+    <div>
+        <!-- Logo Area -->
+        <a href="{{ route('dashboard') }}" class="flex items-center gap-3 px-3 py-2 mb-8 border-b border-white/10 pb-4">
+            <img src="{{ asset('images/Logo.png') }}" class="h-8 w-auto object-contain shrink-0" alt="Logo">
+            <span class="text-xl font-bold text-white tracking-tight flex items-center">
+                Englishify<span class="text-green ml-0.5">•</span>
+            </span>
+        </a>
+
+        <!-- Navigation Stack -->
+        <nav class="space-y-1">
+            <div class="px-3 pb-2 text-[10px] font-bold text-white/30 uppercase tracking-widest">
+                Menu Utama
+            </div>
+            
+            <!-- Dashboard Link -->
+            <a href="{{ route('dashboard') }}" class="flex items-center gap-3 px-3 py-2.5 rounded-md text-sm font-medium transition-all duration-120 {{ request()->routeIs('dashboard') ? 'bg-green/15 text-green font-semibold' : 'text-white/60 hover:bg-white/5 hover:text-white' }}">
+                <svg class="w-5 h-5 shrink-0" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
+                </svg>
+                <span>Dashboard</span>
+            </a>
+
+            <!-- Materi Link -->
+            <a href="{{ route('material.index') }}" class="flex items-center gap-3 px-3 py-2.5 rounded-md text-sm font-medium transition-all duration-120 {{ request()->routeIs('material.*') ? 'bg-green/15 text-green font-semibold' : 'text-white/60 hover:bg-white/5 hover:text-white' }}">
+                <svg class="w-5 h-5 shrink-0" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
+                </svg>
+                <span>Materi</span>
+            </a>
+
+            <!-- Game Accordion / Stack -->
+            <div x-data="{ open: {{ request()->routeIs('game.*') ? 'true' : 'false' }} }" class="space-y-1">
+                <button @click="open = !open" class="w-full flex items-center justify-between px-3 py-2.5 rounded-md text-sm font-medium transition-all duration-120 {{ request()->routeIs('game.*') ? 'bg-green/15 text-green font-semibold' : 'text-white/60 hover:bg-white/5 hover:text-white' }}">
+                    <div class="flex items-center gap-3">
+                        <svg class="w-5 h-5 shrink-0" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M14.752 11.168l-3.197-2.132A1 1 0 0010 9.87v4.263a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664z" />
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                        </svg>
+                        <span>Mini Game</span>
+                    </div>
+                    <svg class="h-4 w-4 transform transition-transform duration-120" :class="{ 'rotate-180': open }" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                    </svg>
+                </button>
+                
+                <div x-show="open" class="pl-8 space-y-1" style="display: none;">
+                    <a href="{{ route('game.index') }}" class="block px-3 py-1.5 rounded-md text-xs font-medium transition-all {{ request()->routeIs('game.index') ? 'text-green font-semibold' : 'text-white/45 hover:text-white' }}">
+                        Word Scramble (2D)
+                    </a>
+                    <a href="{{ route('game.3d') }}" class="block px-3 py-1.5 rounded-md text-xs font-medium transition-all {{ request()->routeIs('game.3d') ? 'text-green font-semibold' : 'text-white/45 hover:text-white' }}">
+                        English Collector (3D)
                     </a>
                 </div>
+            </div>
 
-                <!-- Navigation Links -->
-                <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
-                    <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
-                        {{ __('Dashboard') }}
-                    </x-nav-link>
-                    <x-nav-link :href="route('material.index')" :active="request()->routeIs('material.*')">
-                        {{ __('Materi') }}
-                    </x-nav-link>
-                    <!-- Game Dropdown -->
-                    <div class="inline-flex items-center">
-                        <x-dropdown align="left" width="48">
-                            <x-slot name="trigger">
-                                @php
-                                $gameActive = request()->routeIs('game.*');
-                                $gameClasses = $gameActive
-                                            ? 'inline-flex items-center px-1 pt-1 border-b-2 border-indigo-650 text-sm font-bold leading-5 text-indigo-600 focus:outline-none focus:border-indigo-700 transition duration-150 ease-in-out cursor-pointer h-16'
-                                            : 'inline-flex items-center px-1 pt-1 border-b-2 border-transparent text-sm font-semibold leading-5 text-slate-500 hover:text-slate-700 hover:border-slate-300 focus:outline-none focus:text-slate-700 focus:border-slate-300 transition duration-150 ease-in-out cursor-pointer h-16';
-                                @endphp
-                                <button class="{{ $gameClasses }}">
-                                    <span>{{ __('Game') }}</span>
-                                    <svg class="ms-1 h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
-                                        <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" />
-                                    </svg>
-                                </button>
-                            </x-slot>
+            <!-- Leaderboard Link -->
+            <a href="{{ route('leaderboard.index') }}" class="flex items-center gap-3 px-3 py-2.5 rounded-md text-sm font-medium transition-all duration-120 {{ request()->routeIs('leaderboard.*') ? 'bg-green/15 text-green font-semibold' : 'text-white/60 hover:bg-white/5 hover:text-white' }}">
+                <svg class="w-5 h-5 shrink-0" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z" />
+                </svg>
+                <span>Leaderboard</span>
+            </a>
 
-                            <x-slot name="content">
-                                <x-dropdown-link :href="route('game.index')" class="font-bold">
-                                    {{ __('Word Scramble') }}
-                                </x-dropdown-link>
-                                <x-dropdown-link :href="route('game.3d')" class="font-bold">
-                                    {{ __('English Collector') }}
-                                </x-dropdown-link>
-                            </x-slot>
-                        </x-dropdown>
+            <!-- Profile Link -->
+            <a href="{{ route('profile.edit') }}" class="flex items-center gap-3 px-3 py-2.5 rounded-md text-sm font-medium transition-all duration-120 {{ request()->routeIs('profile.edit') ? 'bg-green/15 text-green font-semibold' : 'text-white/60 hover:bg-white/5 hover:text-white' }}">
+                <svg class="w-5 h-5 shrink-0" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
+                </svg>
+                <span>Profil</span>
+            </a>
+        </nav>
+    </div>
+
+    <!-- User Section Bottom -->
+    <div class="border-t border-white/10 pt-4 px-2 space-y-3">
+        @if($navUser)
+            <div class="flex items-center gap-3">
+                <div class="w-10 h-10 rounded-full bg-green text-white font-bold flex items-center justify-center shrink-0">
+                    {{ strtoupper(substr($navUser->name, 0, 2)) }}
+                </div>
+                <div class="min-w-0">
+                    <div class="text-sm font-bold text-white truncate">{{ $navUser->name }}</div>
+                    <div class="text-xs text-white/50 truncate">
+                        TOEFL: <span class="font-semibold text-green">{{ $navLastScore ?? '-' }}</span>
                     </div>
-                    <x-nav-link :href="route('leaderboard.index')" :active="request()->routeIs('leaderboard.*')">
-                        {{ __('Leaderboard') }}
-                    </x-nav-link>
-                    <x-nav-link :href="route('practice.index')" :active="request()->routeIs('practice.*')">
-                        {{ __('Practice') }}
-                    </x-nav-link>
                 </div>
             </div>
-
-            <!-- Settings Dropdown -->
-            <div class="hidden sm:flex sm:items-center sm:ms-6">
-                <x-dropdown align="right" width="48">
-                    <x-slot name="trigger">
-                        <button class="inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4 font-bold rounded-xl text-slate-600 bg-white hover:text-indigo-600 focus:outline-none transition ease-in-out duration-150 cursor-pointer">
-                            <div>{{ Auth::user()->name }}</div>
-
-                            <div class="ms-1">
-                                <svg class="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
-                                    <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" />
-                                </svg>
-                            </div>
-                        </button>
-                    </x-slot>
-
-                    <x-slot name="content">
-                        <x-dropdown-link :href="route('profile.edit')">
-                            {{ __('Profile') }}
-                        </x-dropdown-link>
-
-                        <!-- Authentication -->
-                        <form method="POST" action="{{ route('logout') }}">
-                            @csrf
-
-                            <x-dropdown-link :href="route('logout')"
-                                    onclick="event.preventDefault();
-                                                this.closest('form').submit();">
-                                {{ __('Log Out') }}
-                            </x-dropdown-link>
-                        </form>
-                    </x-slot>
-                </x-dropdown>
-            </div>
-
-            <!-- Hamburger -->
-            <div class="-me-2 flex items-center sm:hidden">
-                <button @click="open = ! open" class="inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-gray-500 hover:bg-gray-100 focus:outline-none focus:bg-gray-100 focus:text-gray-500 transition duration-150 ease-in-out">
-                    <svg class="h-6 w-6" stroke="currentColor" fill="none" viewBox="0 0 24 24">
-                        <path :class="{'hidden': open, 'inline-flex': ! open }" class="inline-flex" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
-                        <path :class="{'hidden': ! open, 'inline-flex': open }" class="hidden" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+            
+            <form method="POST" action="{{ route('logout') }}">
+                @csrf
+                <button type="submit" class="w-full text-left text-xs font-semibold text-red hover:text-red-500 transition-colors flex items-center gap-2 py-1 cursor-pointer">
+                    <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1" />
                     </svg>
+                    <span>Keluar</span>
                 </button>
-            </div>
-        </div>
+            </form>
+        @endif
     </div>
+</aside>
 
-    <!-- Responsive Navigation Menu -->
-    <div :class="{'block': open, 'hidden': ! open}" class="hidden sm:hidden">
-        <div class="pt-2 pb-3 space-y-1">
-            <x-responsive-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
-                {{ __('Dashboard') }}
-            </x-responsive-nav-link>
-            <x-responsive-nav-link :href="route('material.index')" :active="request()->routeIs('material.*')">
-                {{ __('Materi') }}
-            </x-responsive-nav-link>
-            <!-- Mobile Game Menu -->
-            <div x-data="{ open: {{ request()->routeIs('game.*') ? 'true' : 'false' }} }" class="block">
-                <button @click="open = !open" class="w-full flex items-center justify-between ps-3 pe-4 py-2 border-l-4 {{ request()->routeIs('game.*') ? 'border-indigo-500 text-indigo-750 bg-indigo-50/50' : 'border-transparent text-gray-600 hover:text-gray-800 hover:bg-gray-50' }} text-start text-base font-bold focus:outline-none transition duration-150 ease-in-out cursor-pointer">
-                    <span>{{ __('Game') }}</span>
-                    <svg class="h-4 w-4 transform transition-transform duration-200" :class="{ 'rotate-180': open }" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
-                        <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" />
-                    </svg>
-                </button>
-                <div x-show="open" class="ps-4 space-y-1 bg-slate-50/50 py-1" style="display: none;">
-                    <x-responsive-nav-link :href="route('game.index')" :active="request()->routeIs('game.index')">
-                        {{ __('Word Scramble (2D)') }}
-                    </x-responsive-nav-link>
-                    <x-responsive-nav-link :href="route('game.3d')" :active="request()->routeIs('game.3d')">
-                        {{ __('English Collector (3D)') }}
-                    </x-responsive-nav-link>
-                </div>
-            </div>
-            <x-responsive-nav-link :href="route('leaderboard.index')" :active="request()->routeIs('leaderboard.*')">
-                {{ __('Leaderboard') }}
-            </x-responsive-nav-link>
-            <x-responsive-nav-link :href="route('practice.index')" :active="request()->routeIs('practice.*')">
-                {{ __('Practice') }}
-            </x-responsive-nav-link>
-        </div>
+<!-- ============================================
+     MOBILE BOTTOM NAVIGATION
+     ============================================ -->
+<nav class="fixed bottom-0 left-0 right-0 h-16 bg-canvas border-t border-hairline flex items-center justify-around z-30 sm:hidden px-2 shadow-lg">
+    
+    <!-- Dashboard Link -->
+    <a href="{{ route('dashboard') }}" class="flex flex-col items-center justify-center flex-grow py-1 text-center {{ request()->routeIs('dashboard') ? 'text-green font-bold' : 'text-muted' }}">
+        <svg class="w-5 h-5" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
+        </svg>
+        <span class="text-[10px] mt-0.5">Dashboard</span>
+    </a>
 
-        <!-- Responsive Settings Options -->
-        <div class="pt-4 pb-1 border-t border-gray-200">
-            <div class="px-4">
-                <div class="font-medium text-base text-gray-800">{{ Auth::user()->name }}</div>
-                <div class="font-medium text-sm text-gray-500">{{ Auth::user()->email }}</div>
-            </div>
+    <!-- Materi Link -->
+    <a href="{{ route('material.index') }}" class="flex flex-col items-center justify-center flex-grow py-1 text-center {{ request()->routeIs('material.*') ? 'text-green font-bold' : 'text-muted' }}">
+        <svg class="w-5 h-5" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
+        </svg>
+        <span class="text-[10px] mt-0.5">Materi</span>
+    </a>
 
-            <div class="mt-3 space-y-1">
-                <x-responsive-nav-link :href="route('profile.edit')">
-                    {{ __('Profile') }}
-                </x-responsive-nav-link>
+    <!-- Game Link -->
+    <a href="{{ route('game.index') }}" class="flex flex-col items-center justify-center flex-grow py-1 text-center {{ request()->routeIs('game.*') ? 'text-green font-bold' : 'text-muted' }}">
+        <svg class="w-5 h-5" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M14.752 11.168l-3.197-2.132A1 1 0 0010 9.87v4.263a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664z" />
+            <path stroke-linecap="round" stroke-linejoin="round" d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+        </svg>
+        <span class="text-[10px] mt-0.5">Game</span>
+    </a>
 
-                <!-- Authentication -->
-                <form method="POST" action="{{ route('logout') }}">
-                    @csrf
+    <!-- Leaderboard Link -->
+    <a href="{{ route('leaderboard.index') }}" class="flex flex-col items-center justify-center flex-grow py-1 text-center {{ request()->routeIs('leaderboard.*') ? 'text-green font-bold' : 'text-muted' }}">
+        <svg class="w-5 h-5" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z" />
+        </svg>
+        <span class="text-[10px] mt-0.5">Skor</span>
+    </a>
 
-                    <x-responsive-nav-link :href="route('logout')"
-                            onclick="event.preventDefault();
-                                        this.closest('form').submit();">
-                        {{ __('Log Out') }}
-                    </x-responsive-nav-link>
-                </form>
-            </div>
-        </div>
-    </div>
+    <!-- Profil Link -->
+    <a href="{{ route('profile.edit') }}" class="flex flex-col items-center justify-center flex-grow py-1 text-center {{ request()->routeIs('profile.edit') ? 'text-green font-bold' : 'text-muted' }}">
+        <svg class="w-5 h-5" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
+        </svg>
+        <span class="text-[10px] mt-0.5">Profil</span>
+    </a>
 </nav>
+
