@@ -96,9 +96,13 @@
     <div class="border-t border-white/10 pt-4 px-2 space-y-3">
         @if($navUser)
             <div class="flex items-center gap-3">
-                <div class="w-10 h-10 rounded-full bg-green text-white font-bold flex items-center justify-center shrink-0">
-                    {{ strtoupper(substr($navUser->name, 0, 2)) }}
-                </div>
+                @if($navUser->profile_image)
+                    <img src="{{ asset('storage/' . $navUser->profile_image) }}" class="w-10 h-10 rounded-full object-cover shrink-0 border border-white/10" alt="Avatar">
+                @else
+                    <div class="w-10 h-10 rounded-full bg-green text-white font-bold flex items-center justify-center shrink-0">
+                        {{ strtoupper(substr($navUser->name, 0, 2)) }}
+                    </div>
+                @endif
                 <div class="min-w-0">
                     <div class="text-sm font-bold text-white truncate">{{ $navUser->name }}</div>
                     <div class="text-xs text-white/50 truncate">

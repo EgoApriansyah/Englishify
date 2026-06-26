@@ -44,9 +44,13 @@
                                         
                                         <!-- User Avatar/Initials -->
                                         <div class="relative inline-block mt-2">
-                                            <div class="relative w-12 h-12 md:w-14 md:h-14 rounded-full bg-surface border-2 border-hairline text-ink flex items-center justify-center font-bold text-sm md:text-base mx-auto">
-                                                {{ strtoupper(substr($second['user']->name, 0, 2)) }}
-                                            </div>
+                                            @if($second['user']->profile_image)
+                                                <img src="{{ asset('storage/' . $second['user']->profile_image) }}" class="w-12 h-12 md:w-14 md:h-14 rounded-full object-cover border-2 border-hairline mx-auto" alt="Avatar">
+                                            @else
+                                                <div class="relative w-12 h-12 md:w-14 md:h-14 rounded-full bg-surface border-2 border-hairline text-ink flex items-center justify-center font-bold text-sm md:text-base mx-auto">
+                                                    {{ strtoupper(substr($second['user']->name, 0, 2)) }}
+                                                </div>
+                                            @endif
                                         </div>
                                         
                                         <!-- Name -->
@@ -93,11 +97,16 @@
                                         <div class="relative inline-block mt-2">
                                             <!-- Glow effect -->
                                             <div class="absolute inset-0 rounded-full bg-yellow/20 blur-md opacity-40 animate-pulse"></div>
-                                            <div class="relative w-14 h-14 md:w-16 md:h-16 rounded-full bg-green-light border-2 border-yellow text-green-dark flex items-center justify-center font-bold text-base md:text-xl mx-auto shadow-md">
-                                                {{ strtoupper(substr($first['user']->name, 0, 2)) }}
-                                                <!-- Crown element -->
+                                            @if($first['user']->profile_image)
+                                                <img src="{{ asset('storage/' . $first['user']->profile_image) }}" class="relative w-14 h-14 md:w-16 md:h-16 rounded-full object-cover border-2 border-yellow mx-auto shadow-md" alt="Avatar">
                                                 <span class="absolute -top-5 left-1/2 transform -translate-x-1/2 text-xl filter drop-shadow animate-bounce">👑</span>
-                                            </div>
+                                            @else
+                                                <div class="relative w-14 h-14 md:w-16 md:h-16 rounded-full bg-green-light border-2 border-yellow text-green-dark flex items-center justify-center font-bold text-base md:text-xl mx-auto shadow-md">
+                                                    {{ strtoupper(substr($first['user']->name, 0, 2)) }}
+                                                    <!-- Crown element -->
+                                                    <span class="absolute -top-5 left-1/2 transform -translate-x-1/2 text-xl filter drop-shadow animate-bounce">👑</span>
+                                                </div>
+                                            @endif
                                         </div>
                                         
                                         <!-- Name -->
@@ -142,9 +151,13 @@
                                         
                                         <!-- User Avatar/Initials -->
                                         <div class="relative inline-block mt-2">
-                                            <div class="relative w-12 h-12 md:w-14 md:h-14 rounded-full bg-surface border-2 border-hairline text-ink flex items-center justify-center font-bold text-sm md:text-base mx-auto">
-                                                {{ strtoupper(substr($third['user']->name, 0, 2)) }}
-                                            </div>
+                                            @if($third['user']->profile_image)
+                                                <img src="{{ asset('storage/' . $third['user']->profile_image) }}" class="w-12 h-12 md:w-14 md:h-14 rounded-full object-cover border-2 border-hairline mx-auto" alt="Avatar">
+                                            @else
+                                                <div class="relative w-12 h-12 md:w-14 md:h-14 rounded-full bg-surface border-2 border-hairline text-ink flex items-center justify-center font-bold text-sm md:text-base mx-auto">
+                                                    {{ strtoupper(substr($third['user']->name, 0, 2)) }}
+                                                </div>
+                                            @endif
                                         </div>
                                         
                                         <!-- Name -->
@@ -223,10 +236,14 @@
                                                 #{{ $rank }}
                                             </span>
                                             
-                                            <!-- Avatar Initials -->
-                                            <div class="w-10 h-10 rounded-full bg-green-light text-green-dark flex items-center justify-center font-bold text-xs md:text-sm shadow-sm border border-hairline">
-                                                {{ strtoupper(substr($entry['user']->name, 0, 2)) }}
-                                            </div>
+                                            <!-- Avatar Image / Initials -->
+                                            @if($entry['user']->profile_image)
+                                                <img src="{{ asset('storage/' . $entry['user']->profile_image) }}" class="w-10 h-10 rounded-full object-cover shadow-sm border border-hairline" alt="Avatar">
+                                            @else
+                                                <div class="w-10 h-10 rounded-full bg-green-light text-green-dark flex items-center justify-center font-bold text-xs md:text-sm shadow-sm border border-hairline">
+                                                    {{ strtoupper(substr($entry['user']->name, 0, 2)) }}
+                                                </div>
+                                            @endif
                                             
                                             <!-- User Info -->
                                             <div>
