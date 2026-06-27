@@ -22,7 +22,7 @@
         <nav class="bg-canvas h-16 border-b border-hairline shadow-sm sticky top-0 z-50">
             <div class="max-w-container mx-auto px-6 lg:px-8 h-full flex justify-between items-center">
                 <a href="/" class="flex items-center gap-3 text-ink">
-                    <img src="{{ asset('images/Logo.png') }}" class="h-9 w-auto object-contain shrink-0" alt="Logo">
+                    
                     <span class="text-xl font-bold tracking-tight">Englishify<span class="text-green">•</span></span>
                 </a>
                 <div class="flex items-center gap-6">
@@ -444,7 +444,7 @@
                     <!-- Column 1: Logo -->
                     <div class="space-y-4">
                         <a href="/" class="flex items-center gap-3 text-ink">
-                            <img src="{{ asset('images/Logo.png') }}" class="h-8 w-auto object-contain shrink-0" alt="Logo">
+                            
                             <span class="text-lg font-bold tracking-tight text-ink">Englishify<span class="text-green">•</span></span>
                         </a>
                         <p class="text-xs text-muted max-w-xs leading-relaxed">

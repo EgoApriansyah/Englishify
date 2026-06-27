@@ -4,9 +4,6 @@
         <div>
             <div class="flex items-center gap-3">
                 <h1 class="text-display-sm font-bold text-ink">Selamat pagi, {{ $user->name }}</h1>
-                <span class="inline-flex items-center gap-1.5 px-3 py-1 bg-yellow-light text-yellow rounded-full font-bold text-xs border border-yellow/30">
-                    🔥 14 Hari Streak
-                </span>
             </div>
             <p class="text-body-md text-muted mt-1">Kamu dalam performa terbaik! Tetap jaga konsistensi belajarmu.</p>
         </div>
@@ -37,24 +34,42 @@
     <!-- Stat Row (4 cards) -->
     <div class="grid grid-cols-2 lg:grid-cols-4 gap-4 mb-8">
         <!-- Card 1 -->
-        <div class="bg-canvas p-5 rounded-lg border border-hairline shadow-card">
-            <span class="text-label-sm text-green uppercase tracking-wider block font-bold">XP Hari Ini</span>
-            <div class="flex items-baseline mt-2">
-                <span class="text-xp-number font-bold text-ink">340</span>
-                <span class="text-xs text-muted ml-1">/ 500 XP</span>
+        <div class="bg-ink p-5 rounded-lg border border-white/5 shadow-card relative overflow-hidden text-white">
+            <!-- Decorative Koala Background Image covering the entire card -->
+            <div class="absolute inset-0 z-0 pointer-events-none">
+                <img src="{{ asset('images/koala-minum.png') }}" class="w-full h-full object-cover" style="object-position: right center;" alt="Koala Minum Background">
+                <!-- overlay dark gradient to ensure text contrast on the left -->
+                <div class="absolute inset-0 bg-gradient-to-r from-ink/90 via-ink/55 to-transparent"></div>
             </div>
-            <div class="w-full bg-hairline h-1.5 rounded-pill overflow-hidden mt-3">
-                <div class="bg-yellow h-full" style="width: 68%"></div>
+
+            <div class="relative z-10">
+                <span class="text-label-sm text-green-light uppercase tracking-wider block font-bold">XP Hari Ini</span>
+                <div class="flex items-baseline mt-2">
+                    <span class="text-xp-number font-bold text-white">{{ $todayXp }}</span>
+                    <span class="text-xs text-white/70 ml-1">/ 500 XP</span>
+                </div>
+                <div class="w-full bg-white/10 h-1.5 rounded-pill overflow-hidden mt-3">
+                    <div class="bg-yellow h-full" style="width: {{ $todayXpPercentage }}%"></div>
+                </div>
             </div>
         </div>
         <!-- Card 2 -->
-        <div class="bg-canvas p-5 rounded-lg border border-hairline shadow-card">
-            <span class="text-label-sm text-blue uppercase tracking-wider block font-bold">Soal Selesai</span>
-            <div class="flex items-baseline mt-2">
-                <span class="text-xp-number font-bold text-ink">120</span>
-                <span class="text-xs text-muted ml-1">Soal</span>
+        <div class="bg-ink p-5 rounded-lg border border-white/5 shadow-card relative overflow-hidden text-white">
+            <!-- Decorative Koala Background Image covering the entire card -->
+            <div class="absolute inset-0 z-0 pointer-events-none">
+                <img src="{{ asset('images/koala-soal.png') }}" class="w-full h-full object-cover" style="object-position: right center;" alt="Koala Soal Background">
+                <!-- overlay dark gradient to ensure text contrast on the left -->
+                <div class="absolute inset-0 bg-gradient-to-r from-ink/90 via-ink/55 to-transparent"></div>
             </div>
-            <p class="text-[10px] text-muted mt-3">Meningkat 15% dari minggu lalu</p>
+
+            <div class="relative z-10">
+                <span class="text-label-sm text-blue-light uppercase tracking-wider block font-bold">Soal Selesai</span>
+                <div class="flex items-baseline mt-2">
+                    <span class="text-xp-number font-bold text-white">{{ $totalQuestionsAnswered }}</span>
+                    <span class="text-xs text-white/70 ml-1">Soal</span>
+                </div>
+                <p class="text-[10px] text-white/85 mt-3 font-normal">{{ $answeredThisWeek }} soal selesai 7 hari terakhir</p>
+            </div>
         </div>
         <!-- Card 3 -->
         <div class="bg-ink p-5 rounded-lg border border-white/5 shadow-card relative overflow-hidden text-white">
@@ -68,20 +83,29 @@
             <div class="relative z-10">
                 <span class="text-label-sm text-purple-light uppercase tracking-wider block font-bold">Akurasi</span>
                 <div class="flex items-baseline mt-2">
-                    <span class="text-xp-number font-bold text-white">85%</span>
+                    <span class="text-xp-number font-bold text-white">{{ $accuracy }}%</span>
                     <span class="text-xs text-white/70 ml-1">Rata-rata</span>
                 </div>
-                <p class="text-[10px] text-white/85 mt-3 font-normal">Seksi Reading tertinggi</p>
+                <p class="text-[10px] text-white/85 mt-3 font-normal">{{ $highestSectionText }}</p>
             </div>
         </div>
         <!-- Card 4 -->
-        <div class="bg-canvas p-5 rounded-lg border border-hairline shadow-card">
-            <span class="text-label-sm text-yellow uppercase tracking-wider block font-bold">Peringkat Liga</span>
-            <div class="flex items-baseline mt-2">
-                <span class="text-xp-number font-bold text-ink font-variant-numeric: tabular-nums">#3</span>
-                <span class="text-xs text-muted ml-1">Liga Emas</span>
+        <div class="bg-ink p-5 rounded-lg border border-white/5 shadow-card relative overflow-hidden text-white">
+            <!-- Decorative Koala Background Image covering the entire card -->
+            <div class="absolute inset-0 z-0 pointer-events-none">
+                <img src="{{ asset('images/koala-liga.png') }}" class="w-full h-full object-cover" style="object-position: right center;" alt="Koala Liga Background">
+                <!-- overlay dark gradient to ensure text contrast on the left -->
+                <div class="absolute inset-0 bg-gradient-to-r from-ink/90 via-ink/55 to-transparent"></div>
             </div>
-            <p class="text-[10px] text-muted mt-3">Aman dari zona degradasi</p>
+
+            <div class="relative z-10">
+                <span class="text-label-sm text-yellow uppercase tracking-wider block font-bold">Peringkat Liga</span>
+                <div class="flex items-baseline mt-2">
+                    <span class="text-xp-number font-bold text-white font-variant-numeric: tabular-nums">#{{ $currentUserRank }}</span>
+                    <span class="text-xs text-white/70 ml-1">{{ $leagueName }}</span>
+                </div>
+                <p class="text-[10px] text-white/85 mt-3 font-normal">{{ $leagueStatus }}</p>
+            </div>
         </div>
     </div>
 
@@ -98,7 +122,7 @@
                         <div class="flex items-center gap-3">
                             <span class="badge badge-listening">Listening</span>
                             <div>
-                                <h4 class="font-bold text-ink text-sm">Strategi Dialog Pendek</h4>
+                                <h4 class="font-bold text-ink text-sm">Short Conversations Strategies</h4>
                                 <p class="text-xs text-muted">Durasi estimasi: 15 menit</p>
                             </div>
                         </div>
@@ -108,7 +132,7 @@
                     <!-- Lesson 2 -->
                     <div class="flex items-center justify-between p-4 bg-surface border border-hairline rounded-lg hover:-translate-y-px transition duration-150">
                         <div class="flex items-center gap-3">
-                            <span class="badge badge-grammar">Grammar</span>
+                            <span class="badge badge-grammar">Structure & Grammar</span>
                             <div>
                                 <h4 class="font-bold text-ink text-sm">Subject-Verb Agreement</h4>
                                 <p class="text-xs text-muted">Durasi estimasi: 10 menit</p>
@@ -122,7 +146,7 @@
                         <div class="flex items-center gap-3">
                             <span class="badge badge-reading">Reading</span>
                             <div>
-                                <h4 class="font-bold text-ink text-sm">Menemukan Gagasan Utama</h4>
+                                <h4 class="font-bold text-ink text-sm">Finding the Main Idea</h4>
                                 <p class="text-xs text-muted">Durasi estimasi: 20 menit</p>
                             </div>
                         </div>
@@ -137,24 +161,9 @@
                     <h3 class="text-title-lg font-bold text-ink">Statistik Belajar (30 Hari)</h3>
                     <span class="text-xs font-semibold text-muted">Target Harian: 150 XP</span>
                 </div>
-                <!-- Mock SVG Line Chart -->
-                <div class="h-48 w-full bg-surface border border-hairline rounded-lg p-4 flex items-end justify-between relative overflow-hidden">
-                    <!-- Grid lines -->
-                    <div class="absolute inset-x-0 top-1/4 border-t border-dashed border-hairline/60"></div>
-                    <div class="absolute inset-x-0 top-2/4 border-t border-dashed border-hairline/60"></div>
-                    <div class="absolute inset-x-0 top-3/4 border-t border-dashed border-hairline/60"></div>
-                    
-                    <!-- Line graph path -->
-                    <svg class="absolute inset-0 h-full w-full" preserveAspectRatio="none" viewBox="0 0 100 100">
-                        <!-- Gradient under line -->
-                        <path d="M 0 100 L 10 90 L 20 85 L 30 92 L 40 70 L 50 65 L 60 78 L 70 50 L 80 40 L 90 48 L 100 30 L 100 100 Z" fill="rgba(34, 197, 94, 0.08)"></path>
-                        <!-- Green line -->
-                        <path d="M 0 100 L 10 90 L 20 85 L 30 92 L 40 70 L 50 65 L 60 78 L 70 50 L 80 40 L 90 48 L 100 30" fill="none" stroke="#22C55E" stroke-width="2.5" stroke-linecap="round"></path>
-                    </svg>
-                    
-                    <!-- Labels -->
-                    <span class="text-[9px] text-muted absolute left-2 top-2">XP</span>
-                    <span class="text-[9px] text-muted absolute bottom-2 right-2">Hari</span>
+                <!-- Interactive Chart.js Canvas -->
+                <div class="h-48 w-full relative">
+                    <canvas id="learningStatsChart"></canvas>
                 </div>
             </div>
         </div>
@@ -163,59 +172,35 @@
         <div class="lg:col-span-5">
             <!-- Leaderboard Card -->
             <div class="bg-canvas border border-hairline rounded-lg shadow-card p-6 h-full">
-                <h3 class="text-title-lg font-bold text-ink mb-4">Peringkat Liga Emas</h3>
+                <h3 class="text-title-lg font-bold text-ink mb-4">Peringkat {{ $leagueName }}</h3>
                 <div class="space-y-3">
-                    <!-- Row 1 -->
-                    <div class="flex items-center justify-between p-3 rounded-lg border border-hairline bg-surface">
-                        <div class="flex items-center gap-3">
-                            <span class="text-sm font-bold">🥇</span>
-                            <div class="w-8 h-8 rounded-full bg-blue text-white flex items-center justify-center font-bold text-xs">AM</div>
-                            <span class="text-sm font-bold text-ink">Ahmad Maulana</span>
-                        </div>
-                        <span class="text-xs font-bold text-ink">950 XP</span>
-                    </div>
-                    
-                    <!-- Row 2 -->
-                    <div class="flex items-center justify-between p-3 rounded-lg border border-hairline bg-surface">
-                        <div class="flex items-center gap-3">
-                            <span class="text-sm font-bold">🥈</span>
-                            <div class="w-8 h-8 rounded-full bg-purple text-white flex items-center justify-center font-bold text-xs">DN</div>
-                            <span class="text-sm font-bold text-ink">Dina Nurdiana</span>
-                        </div>
-                        <span class="text-xs font-bold text-ink">870 XP</span>
-                    </div>
-
-                    <!-- Row 3 (User itself highlighted) -->
-                    <div class="flex items-center justify-between p-3 rounded-lg border border-green bg-green-light font-bold">
-                        <div class="flex items-center gap-3">
-                            <span class="text-sm font-bold">🥉</span>
-                            <div class="w-8 h-8 rounded-full bg-green text-white flex items-center justify-center font-bold text-xs">
-                                {{ strtoupper(substr($user->name, 0, 2)) }}
+                    @foreach($sidebarLeaderboard as $entry)
+                        @if(isset($entry['is_separator']) && $entry['is_separator'])
+                            <div class="flex justify-center py-1">
+                                <span class="text-xs text-muted font-bold">•••</span>
                             </div>
-                            <span class="text-sm text-green-dark">{{ $user->name }} (Anda)</span>
-                        </div>
-                        <span class="text-xs text-green-dark">720 XP</span>
-                    </div>
-
-                    <!-- Row 4 -->
-                    <div class="flex items-center justify-between p-3 rounded-lg border border-hairline bg-surface">
-                        <div class="flex items-center gap-3">
-                            <span class="text-xs font-bold text-muted">4</span>
-                            <div class="w-8 h-8 rounded-full bg-blue text-white flex items-center justify-center font-bold text-xs">BP</div>
-                            <span class="text-sm font-bold text-ink font-normal">Budi Pradipta</span>
-                        </div>
-                        <span class="text-xs font-bold text-ink">610 XP</span>
-                    </div>
-
-                    <!-- Row 5 -->
-                    <div class="flex items-center justify-between p-3 rounded-lg border border-hairline bg-surface">
-                        <div class="flex items-center gap-3">
-                            <span class="text-xs font-bold text-muted">5</span>
-                            <div class="w-8 h-8 rounded-full bg-yellow text-white flex items-center justify-center font-bold text-xs">RI</div>
-                            <span class="text-sm font-bold text-ink font-normal">Riana Indah</span>
-                        </div>
-                        <span class="text-xs font-bold text-ink">540 XP</span>
-                    </div>
+                        @else
+                            <div class="flex items-center justify-between p-3 rounded-lg border {{ $entry['is_self'] ? 'border-green bg-green-light font-bold' : 'border-hairline bg-surface' }}">
+                                <div class="flex items-center gap-3">
+                                    @if($entry['rank'] === 1)
+                                        <span class="text-sm font-bold">🥇</span>
+                                    @elseif($entry['rank'] === 2)
+                                        <span class="text-sm font-bold">🥈</span>
+                                    @elseif($entry['rank'] === 3)
+                                        <span class="text-sm font-bold">🥉</span>
+                                    @else
+                                        <span class="text-xs font-bold text-muted w-5 text-center">{{ $entry['rank'] }}</span>
+                                    @endif
+                                    
+                                    <div class="w-8 h-8 rounded-full {{ $entry['is_self'] ? 'bg-green' : ($entry['rank'] === 1 ? 'bg-blue' : ($entry['rank'] === 2 ? 'bg-purple' : 'bg-yellow')) }} text-white flex items-center justify-center font-bold text-xs">
+                                        {{ strtoupper(substr($entry['name'], 0, 2)) }}
+                                    </div>
+                                    <span class="text-sm {{ $entry['is_self'] ? 'text-green-dark' : 'text-ink' }}">{{ $entry['name'] }} {!! $entry['is_self'] ? '<span class="text-xs text-green-dark/70 font-normal">(Anda)</span>' : '' !!}</span>
+                                </div>
+                                <span class="text-xs {{ $entry['is_self'] ? 'text-green-dark' : 'text-ink font-bold' }}">{{ $entry['xp'] }} XP</span>
+                            </div>
+                        @endif
+                    @endforeach
                 </div>
             </div>
         </div>
@@ -302,6 +287,98 @@
                   </table>
               </div>
           @endif
-      </div>
-  </x-app-layout>
+  @push('scripts')
+      <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+      <script>
+          document.addEventListener('DOMContentLoaded', function() {
+              const ctx = document.getElementById('learningStatsChart').getContext('2d');
+              
+              // Generate gradient fill
+              const gradient = ctx.createLinearGradient(0, 0, 0, 180);
+              gradient.addColorStop(0, 'rgba(34, 197, 94, 0.22)');
+              gradient.addColorStop(1, 'rgba(34, 197, 94, 0.00)');
+
+              const labels = @json($chartLabels);
+              const data = @json($chartData);
+
+              new Chart(ctx, {
+                  type: 'line',
+                  data: {
+                      labels: labels,
+                      datasets: [{
+                          label: 'XP diperoleh',
+                          data: data,
+                          borderColor: '#22C55E',
+                          borderWidth: 2.5,
+                          backgroundColor: gradient,
+                          fill: true,
+                          tension: 0.35,
+                          pointBackgroundColor: '#22C55E',
+                          pointBorderColor: '#ffffff',
+                          pointBorderWidth: 1.5,
+                          pointRadius: 3.5,
+                          pointHoverRadius: 5.5
+                      }]
+                  },
+                  options: {
+                      responsive: true,
+                      maintainAspectRatio: false,
+                      plugins: {
+                          legend: {
+                              display: false
+                          },
+                          tooltip: {
+                              backgroundColor: '#0F172A',
+                              titleColor: '#F8FAFC',
+                              bodyColor: '#F8FAFC',
+                              borderColor: '#334155',
+                              borderWidth: 1,
+                              padding: 8,
+                              boxPadding: 4,
+                              usePointStyle: true,
+                              callbacks: {
+                                  label: function(context) {
+                                      return ` ${context.parsed.y} XP`;
+                                  }
+                              }
+                          }
+                      },
+                      scales: {
+                          x: {
+                              grid: {
+                                  display: false
+                              },
+                              ticks: {
+                                  color: '#64748B',
+                                  font: {
+                                      size: 9,
+                                      family: 'Inter, system-ui, sans-serif'
+                                  },
+                                  maxRotation: 0,
+                                  autoSkip: true,
+                                  maxTicksLimit: 7
+                              }
+                          },
+                          y: {
+                              grid: {
+                                  color: 'rgba(226, 232, 240, 0.6)',
+                                  borderDash: [4, 4]
+                              },
+                              ticks: {
+                                  color: '#64748B',
+                                  font: {
+                                      size: 9,
+                                      family: 'Inter, system-ui, sans-serif'
+                                  },
+                                  stepSize: 50
+                              },
+                              min: 0
+                          }
+                      }
+                  }
+              });
+          });
+      </script>
+  @endpush
+</x-app-layout>
 

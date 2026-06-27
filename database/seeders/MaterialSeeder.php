@@ -31,7 +31,7 @@ class MaterialSeeder extends Seeder
 
                     <!-- Infographic Image -->
                     <div class="my-6 max-w-lg mx-auto border border-slate-200 rounded-3xl overflow-hidden shadow-sm">
-                        <img src="/images/singular_plural_nouns.png" alt="Singular and Plural Nouns Infographic" class="w-full h-auto">
+                        <img src="/images/singular.png" alt="Singular and Plural Nouns Infographic" class="w-full h-auto">
                     </div>
 
                     <h3 class="text-lg font-bold text-slate-800 mb-3">1. Aturan Dasar Perubahan Singular ke Plural</h3>
@@ -107,7 +107,7 @@ class MaterialSeeder extends Seeder
 
                     <!-- Infographic Image -->
                     <div class="my-6 max-w-lg mx-auto border border-slate-200 rounded-3xl overflow-hidden shadow-sm">
-                        <img src="/images/subject_verb_agreement.png" alt="Subject-Verb Agreement Infographic" class="w-full h-auto">
+                        <img src="/images/Subject_Verb_agreement.png" alt="Subject-Verb Agreement Infographic" class="w-full h-auto">
                     </div>
 
                     <h3 class="text-lg font-bold text-slate-800 mb-3">1. Subjek Tunggal vs. Subjek Jamak</h3>
@@ -168,7 +168,7 @@ class MaterialSeeder extends Seeder
 
                     <!-- Infographic Image -->
                     <div class="my-6 max-w-lg mx-auto border border-slate-200 rounded-3xl overflow-hidden shadow-sm">
-                        <img src="/images/listening_strategies.png" alt="Short Conversations Strategies Infographic" class="w-full h-auto">
+                        <img src="/images/Listening_Strategies.png" alt="Short Conversations Strategies Infographic" class="w-full h-auto">
                     </div>
 
                     <h3 class="text-lg font-bold text-slate-800 mb-3">Strategi 1: Fokus pada Baris Kedua (Second Speaker)</h3>
@@ -228,7 +228,7 @@ class MaterialSeeder extends Seeder
 
                     <!-- Infographic Image -->
                     <div class="my-6 max-w-lg mx-auto border border-slate-200 rounded-3xl overflow-hidden shadow-sm">
-                        <img src="/images/finding_main_idea.png" alt="Finding the Main Idea" class="w-full h-auto">
+                        <img src="/images/Finding_the_Main_Idea.png" alt="Finding the Main Idea" class="w-full h-auto">
                     </div>
 
                     <h3 class="text-lg font-bold text-slate-800 mb-3">Di Mana Menemukan Ide Pokok?</h3>
@@ -280,7 +280,7 @@ class MaterialSeeder extends Seeder
 
                     <!-- Infographic Image -->
                     <div class="my-6 max-w-lg mx-auto border border-slate-200 rounded-3xl overflow-hidden shadow-sm">
-                        <img src="/images/connectors_infographic.png" alt="Coordinate and Adverb Clause Connectors Infographic" class="w-full h-auto">
+                        <img src="/images/Connectors_Infographic.png" alt="Coordinate and Adverb Clause Connectors Infographic" class="w-full h-auto">
                     </div>
 
                     <h3 class="text-lg font-bold text-slate-800 mb-3">1. Coordinate Connectors (FANBOYS)</h3>

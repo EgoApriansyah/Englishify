@@ -41,7 +41,7 @@
                               cursor-pointer file:cursor-pointer" 
                        accept="image/*"
                        onchange="previewImage(event)" />
-                <p class="text-[10px] text-muted font-normal">PNG, JPG, atau WEBP (Maksimal 2MB).</p>
+                <p class="text-[10px] text-muted font-normal">PNG, JPG, atau WEBP (Maksimal 3MB).</p>
                 <x-input-error class="mt-2" :messages="$errors->get('profile_image')" />
             </div>
         </div>

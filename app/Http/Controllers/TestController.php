@@ -324,6 +324,13 @@ class TestController extends Controller
         $session->finished_at = Carbon::now();
         $session->save();
 
+        // Calculate XP earned from this test and add to user's total XP
+        $correctCount = $session->answers()->where('is_correct', true)->count();
+        $xpEarned = $correctCount * 10;
+        $user = $session->user;
+        $user->xp += $xpEarned;
+        $user->save();
+
         return redirect()->route('test.result', $session->id);
     }
 }

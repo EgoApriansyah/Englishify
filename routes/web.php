@@ -44,6 +44,7 @@ Route::middleware(['auth'])->group(function () {
 
     // Games
     Route::get('/game', [GameController::class, 'index'])->name('game.index');
+    Route::post('/game/save-xp', [GameController::class, 'saveXp'])->name('game.save-xp');
 
     // Leaderboard
     Route::get('/leaderboard', [LeaderboardController::class, 'index'])->name('leaderboard.index');

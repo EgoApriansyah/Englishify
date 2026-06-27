@@ -33,6 +33,7 @@ class DatabaseSeeder extends Seeder
             QuestionSeeder::class,
             MaterialSeeder::class,
             PracticeVideoSeeder::class,
+            UserActivitySeeder::class,
         ]);
     }
 }

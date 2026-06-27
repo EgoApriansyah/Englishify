@@ -424,8 +424,20 @@
 
                     const bgm = document.getElementById('bgm-audio');
                     if (bgm) {
-                        bgm.volume = 1.0;
+                        bgm.volume = 0.4; // Pleasant background volume
                     }
+
+                    // Try playing immediately
+                    this.playBgm();
+
+                    // Register interaction triggers to bypass browser autoplay restrictions
+                    const startBgmOnInteraction = () => {
+                        this.playBgm();
+                        window.removeEventListener('click', startBgmOnInteraction);
+                        window.removeEventListener('keydown', startBgmOnInteraction);
+                    };
+                    window.addEventListener('click', startBgmOnInteraction);
+                    window.addEventListener('keydown', startBgmOnInteraction);
                 },
 
                 playBgm() {
@@ -434,7 +446,7 @@
                         bgm.play().then(() => {
                             this.bgmPlaying = true;
                         }).catch(err => {
-                            console.log("BGM play blocked:", err);
+                            // Autoplay policies will block this until the first gesture, which is normal
                             this.bgmPlaying = false;
                         });
                     }
@@ -605,6 +617,26 @@
                         if (this.score > currentHigh) {
                             this.highScores[this.selectedCategory] = this.score;
                             localStorage.setItem('toefl_sentence_highscores', JSON.stringify(this.highScores));
+                        }
+
+                        // Calculate and send XP to server
+                        const xpEarned = Math.round(this.score / 10);
+                        if (xpEarned > 0) {
+                            fetch("{{ route('game.save-xp') }}", {
+                                method: "POST",
+                                headers: {
+                                    "Content-Type": "application/json",
+                                    "X-CSRF-TOKEN": "{{ csrf_token() }}"
+                                },
+                                body: JSON.stringify({ xp: xpEarned })
+                            })
+                            .then(res => res.json())
+                            .then(data => {
+                                console.log("XP saved successfully:", data);
+                            })
+                            .catch(err => {
+                                console.error("Failed to save XP:", err);
+                            });
                         }
                         
                         this.gameState = 'game_over';
