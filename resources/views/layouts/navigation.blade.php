@@ -21,7 +21,7 @@
     <div>
         <!-- Logo Area -->
         <a href="{{ route('dashboard') }}" class="flex items-center gap-3 px-3 py-2 mb-8 border-b border-white/10 pb-4">
-            <img src="{{ asset('images/Logo.png') }}" class="h-8 w-auto object-contain shrink-0" alt="Logo">
+
             <span class="text-xl font-bold text-white tracking-tight flex items-center">
                 Englishify<span class="text-green ml-0.5">•</span>
             </span>
@@ -49,30 +49,14 @@
                 <span>Materi</span>
             </a>
 
-            <!-- Game Accordion / Stack -->
-            <div x-data="{ open: {{ request()->routeIs('game.*') ? 'true' : 'false' }} }" class="space-y-1">
-                <button @click="open = !open" class="w-full flex items-center justify-between px-3 py-2.5 rounded-md text-sm font-medium transition-all duration-120 {{ request()->routeIs('game.*') ? 'bg-green/15 text-green font-semibold' : 'text-white/60 hover:bg-white/5 hover:text-white' }}">
-                    <div class="flex items-center gap-3">
-                        <svg class="w-5 h-5 shrink-0" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                            <path stroke-linecap="round" stroke-linejoin="round" d="M14.752 11.168l-3.197-2.132A1 1 0 0010 9.87v4.263a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664z" />
-                            <path stroke-linecap="round" stroke-linejoin="round" d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
-                        </svg>
-                        <span>Mini Game</span>
-                    </div>
-                    <svg class="h-4 w-4 transform transition-transform duration-120" :class="{ 'rotate-180': open }" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
-                    </svg>
-                </button>
-                
-                <div x-show="open" class="pl-8 space-y-1" style="display: none;">
-                    <a href="{{ route('game.index') }}" class="block px-3 py-1.5 rounded-md text-xs font-medium transition-all {{ request()->routeIs('game.index') ? 'text-green font-semibold' : 'text-white/45 hover:text-white' }}">
-                        Word Scramble (2D)
-                    </a>
-                    <a href="{{ route('game.3d') }}" class="block px-3 py-1.5 rounded-md text-xs font-medium transition-all {{ request()->routeIs('game.3d') ? 'text-green font-semibold' : 'text-white/45 hover:text-white' }}">
-                        English Collector (3D)
-                    </a>
-                </div>
-            </div>
+            <!-- Mini Game Link -->
+            <a href="{{ route('game.index') }}" class="flex items-center gap-3 px-3 py-2.5 rounded-md text-sm font-medium transition-all duration-120 {{ request()->routeIs('game.*') ? 'bg-green/15 text-green font-semibold' : 'text-white/60 hover:bg-white/5 hover:text-white' }}">
+                <svg class="w-5 h-5 shrink-0" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M14.752 11.168l-3.197-2.132A1 1 0 0010 9.87v4.263a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664z" />
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                </svg>
+                <span>Mini Game</span>
+            </a>
 
             <!-- Leaderboard Link -->
             <a href="{{ route('leaderboard.index') }}" class="flex items-center gap-3 px-3 py-2.5 rounded-md text-sm font-medium transition-all duration-120 {{ request()->routeIs('leaderboard.*') ? 'bg-green/15 text-green font-semibold' : 'text-white/60 hover:bg-white/5 hover:text-white' }}">
@@ -89,6 +73,16 @@
                 </svg>
                 <span>Profil</span>
             </a>
+
+            <!-- Admin Link (Only for admins) -->
+            @if(Auth::user() && Auth::user()->role === 'admin')
+                <a href="{{ route('admin.dashboard') }}" class="flex items-center gap-3 px-3 py-2.5 rounded-md text-sm font-medium transition-all duration-120 {{ request()->routeIs('admin.*') ? 'bg-green/15 text-green font-semibold' : 'text-white/60 hover:bg-white/5 hover:text-white' }}">
+                    <svg class="w-5 h-5 shrink-0" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M12 6V4m0 2a2 2 0 100 4m0-4a2 2 0 110 4m-6 8a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4m6 6v10m6-2a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4" />
+                    </svg>
+                    <span>Panel Admin</span>
+                </a>
+            @endif
         </nav>
     </div>
 

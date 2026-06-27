@@ -44,7 +44,6 @@ Route::middleware(['auth'])->group(function () {
 
     // Games
     Route::get('/game', [GameController::class, 'index'])->name('game.index');
-    Route::get('/game/3d', [GameController::class, 'game3d'])->name('game.3d');
 
     // Leaderboard
     Route::get('/leaderboard', [LeaderboardController::class, 'index'])->name('leaderboard.index');
@@ -53,6 +52,13 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+
+    // Admin Panel
+    Route::middleware(['admin'])->group(function () {
+        Route::get('/admin', [\App\Http\Controllers\AdminController::class, 'index'])->name('admin.dashboard');
+        Route::post('/admin/users', [\App\Http\Controllers\AdminController::class, 'storeUser'])->name('admin.users.store');
+        Route::delete('/admin/users/{user}', [\App\Http\Controllers\AdminController::class, 'destroyUser'])->name('admin.users.destroy');
+    });
 });
 
 require __DIR__.'/auth.php';

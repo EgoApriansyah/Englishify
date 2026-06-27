@@ -3,8 +3,8 @@
     <div class="py-12 bg-surface min-h-screen font-body select-text">
         <div class="max-w-4xl mx-auto sm:px-6 lg:px-8">
             
-            <!-- Main Game Container with Alpine.js -->
-            <div x-data="wordScrambleGame()" x-init="init()" class="bg-canvas rounded-lg border border-hairline shadow-card overflow-hidden relative" style="min-height: 520px;">
+            <!-- Sentence Builder Game Container with Alpine.js -->
+            <div x-data="sentenceBuilderGame()" x-init="init()" class="bg-canvas rounded-lg border border-hairline shadow-card overflow-hidden relative" style="min-height: 520px;">
                 
                 <!-- BGM Audio -->
                 <audio id="bgm-audio" src="{{ asset('assets/Overworld.mp3') }}" loop preload="auto"></audio>
@@ -15,72 +15,72 @@
                 <!-- SECTION 1: CATEGORY SELECTION -->
                 <div x-show="gameState === 'select_category'" class="p-8 md:p-12 space-y-8">
                     <div class="text-center space-y-3 font-body">
-                        <div class="inline-flex p-3 bg-green-light border border-hairline text-green rounded-lg shadow-inner">
-                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="w-10 h-10 text-green animate-bounce">
-                              <path stroke-linecap="round" stroke-linejoin="round" d="M9.813 15.904 9 21L12 18.75L15 21L14.188 15.904L18.25 12L13.125 11.25L12 6L10.875 11.25L5.75 12L9.813 15.904Z" />
+                        <div class="inline-flex p-3 bg-purple-light border border-hairline text-purple rounded-lg shadow-inner">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="w-10 h-10 text-purple animate-bounce">
+                              <path stroke-linecap="round" stroke-linejoin="round" d="M12 6.042A8.967 8.967 0 0 0 6 3.75c-1.052 0-2.062.18-3 .512v14.25A8.987 8.987 0 0 1 6 18c2.305 0 4.408.867 6 2.292m0-14.25a8.966 8.966 0 0 1 6-2.292c1.052 0 2.062.18 3 .512v14.25A8.987 8.987 0 0 0 18 18a8.967 8.967 0 0 0-6 2.292m0-14.25v14.25" />
                             </svg>
                         </div>
-                        <h3 class="text-2xl md:text-[32px] font-bold text-ink tracking-tight font-body">English Word Scramble</h3>
+                        <h3 class="text-2xl md:text-[32px] font-bold text-ink tracking-tight font-body">Sentence Builder</h3>
                         <p class="text-sm text-muted max-w-md mx-auto leading-relaxed font-body font-normal">
-                            Susun kembali huruf-huruf acak menjadi kata yang benar berdasarkan petunjuk definisi. Kumpulkan poin dan pertahankan combo Anda!
+                            Susun kata-kata acak menjadi kalimat bahasa Inggris yang gramatikal secara tepat berdasarkan terjemahan atau petunjuk tata bahasa.
                         </p>
                     </div>
 
                     <!-- Category Cards Selection Grid -->
                     <div class="grid grid-cols-1 md:grid-cols-3 gap-6 pt-4 font-body">
-                        <!-- Category: Vocabulary -->
+                        <!-- Category: Daily -->
                         <div class="bg-canvas rounded-lg border border-hairline p-6 flex flex-col justify-between space-y-4 hover:scale-[1.02] transition duration-120 shadow-card">
                             <div class="space-y-3">
                                 <div class="w-10 h-10 rounded-md bg-blue-light text-blue flex items-center justify-center shadow-md">
                                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="w-5 h-5">
-                                      <path stroke-linecap="round" stroke-linejoin="round" d="M12 6.042A8.967 8.967 0 0 0 6 3.75c-1.052 0-2.062.18-3 .512v14.25A8.987 8.987 0 0 1 6 18c2.305 0 4.408.867 6 2.292m0-14.25a8.966 8.966 0 0 1 6-2.292c1.052 0 2.062.18 3 .512v14.25A8.987 8.987 0 0 0 18 18a8.967 8.967 0 0 0-6 2.292m0-14.25v14.25" />
+                                      <path stroke-linecap="round" stroke-linejoin="round" d="M8.625 12a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Zm0 0H8.25m4.125 0a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Zm0 0H12m4.125 0a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Zm0 0h-.375M21 12c0 4.556-4.03 8.25-9 8.25a9.764 9.764 0 0 1-2.555-.337A5.972 5.972 0 0 1 5.41 20.97a5.969 5.969 0 0 1-.474-.065 4.48 4.48 0 0 0 .978-2.025c.09-.457-.133-.901-.467-1.226C3.93 16.178 3 14.189 3 12c0-4.556 4.03-8.25 9-8.25s9 3.694 9 8.25Z" />
                                     </svg>
                                 </div>
-                                <h4 class="font-bold text-ink text-base">Academic Vocab</h4>
-                                <p class="text-xs text-muted leading-relaxed font-body font-normal">Kosakata akademik tingkat tinggi yang sering muncul di teks TOEFL.</p>
+                                <h4 class="font-bold text-ink text-base">Daily Conversations</h4>
+                                <p class="text-xs text-muted leading-relaxed font-body font-normal">Kalimat santai sehari-hari untuk melatih kelancaran berkomunikasi.</p>
                                 <div class="text-[10px] font-bold text-blue bg-blue-light py-1 px-2.5 rounded-pill inline-block uppercase tracking-wider font-body">
-                                    High Score: <span x-text="highScores.vocabulary || 0"></span>
+                                    High Score: <span x-text="highScores.daily || 0"></span>
                                 </div>
                             </div>
-                            <button @click="selectCategory('vocabulary')" class="w-full bg-green hover:bg-green-dark text-white text-xs font-semibold py-2.5 rounded-md transition duration-120 cursor-pointer shadow-sm">
+                            <button @click="selectCategory('daily')" class="w-full bg-purple-600 hover:bg-purple-700 text-white text-xs font-semibold py-2.5 rounded-md transition duration-120 cursor-pointer shadow-sm">
                                 Main Sekarang
                             </button>
                         </div>
 
-                        <!-- Category: Grammar -->
+                        <!-- Category: TOEFL Structure -->
                         <div class="bg-canvas rounded-lg border border-hairline p-6 flex flex-col justify-between space-y-4 hover:scale-[1.02] transition duration-120 shadow-card">
                             <div class="space-y-3">
                                 <div class="w-10 h-10 rounded-md bg-purple-light text-purple flex items-center justify-center shadow-md">
                                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="w-5 h-5">
-                                      <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 14.25v-2.625a3.375 3.375 0 0 0-3.375-3.375h-1.5A1.125 1.125 0 0 1 13.5 7.125v-1.5a3.375 3.375 0 0 0-3.375-3.375H8.25m0 12.75h7.5m-7.5 3H12M10.5 2.25H5.625c-.621 0-1.125.504-1.125 1.125v17.25c0 .621.504 1.125 1.125 1.125h12.75c.621 0 1.125-.504 1.125-1.125V11.25a9 9 0 0 0-9-9Z" />
+                                      <path stroke-linecap="round" stroke-linejoin="round" d="M12 6.042A8.967 8.967 0 0 0 6 3.75c-1.052 0-2.062.18-3 .512v14.25A8.987 8.987 0 0 1 6 18c2.305 0 4.408.867 6 2.292m0-14.25a8.966 8.966 0 0 1 6-2.292c1.052 0 2.062.18 3 .512v14.25A8.987 8.987 0 0 0 18 18a8.967 8.967 0 0 0-6 2.292m0-14.25v14.25" />
                                     </svg>
                                 </div>
-                                <h4 class="font-bold text-ink text-base">Grammar Terms</h4>
-                                <p class="text-xs text-muted leading-relaxed font-body font-normal">Tebak istilah-istilah struktural tata bahasa Inggris.</p>
+                                <h4 class="font-bold text-ink text-base">TOEFL Structure</h4>
+                                <p class="text-xs text-muted leading-relaxed font-body font-normal">Penyusunan kalimat pasif, inversi, partisipel, dan konjungsi akademis.</p>
                                 <div class="text-[10px] font-bold text-purple bg-purple-light py-1 px-2.5 rounded-pill inline-block uppercase tracking-wider font-body">
-                                    High Score: <span x-text="highScores.grammar || 0"></span>
+                                    High Score: <span x-text="highScores.toefl_structure || 0"></span>
                                 </div>
                             </div>
-                            <button @click="selectCategory('grammar')" class="w-full bg-green hover:bg-green-dark text-white text-xs font-semibold py-2.5 rounded-md transition duration-120 cursor-pointer shadow-sm">
+                            <button @click="selectCategory('toefl_structure')" class="w-full bg-purple-600 hover:bg-purple-700 text-white text-xs font-semibold py-2.5 rounded-md transition duration-120 cursor-pointer shadow-sm">
                                 Main Sekarang
                             </button>
                         </div>
 
-                        <!-- Category: Synonyms -->
+                        <!-- Category: Idioms -->
                         <div class="bg-canvas rounded-lg border border-hairline p-6 flex flex-col justify-between space-y-4 hover:scale-[1.02] transition duration-120 shadow-card">
                             <div class="space-y-3">
                                 <div class="w-10 h-10 rounded-md bg-green-light text-green-dark flex items-center justify-center shadow-md">
                                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="w-5 h-5">
-                                      <path stroke-linecap="round" stroke-linejoin="round" d="M7.5 8.25h9m-9 3H12m-9.75 1.51c0 1.6 1.123 2.994 2.707 3.227 1.129.166 2.27.293 3.423.379L12 21l3.62-3.144c1.153-.086 2.294-.213 3.423-.379 1.584-.233 2.707-1.626 2.707-3.228V6.741c0-1.602-1.123-2.995-2.707-3.228A48.394 48.394 0 0 0 12 3c-2.392 0-4.744.175-7.043.513C3.373 3.746 2.25 5.14 2.25 6.741v5.018Z" />
+                                      <path stroke-linecap="round" stroke-linejoin="round" d="M15.3 16.2 21 21m-6-3h6m-6 3h6m-9-3H3m12-6H3m12-6H3" />
                                     </svg>
                                 </div>
-                                <h4 class="font-bold text-ink text-base">Synonyms Speed</h4>
-                                <p class="text-xs text-muted leading-relaxed font-body font-normal">Temukan persamaan kata dari ungkapan bahasa Inggris populer.</p>
+                                <h4 class="font-bold text-ink text-base">Idiomatic Phrases</h4>
+                                <p class="text-xs text-muted leading-relaxed font-body font-normal">Kuis menyusun ungkapan perumpamaan (*idiom*) bahasa Inggris populer.</p>
                                 <div class="text-[10px] font-bold text-green-dark bg-green-light py-1 px-2.5 rounded-pill inline-block uppercase tracking-wider font-body">
-                                    High Score: <span x-text="highScores.synonyms || 0"></span>
+                                    High Score: <span x-text="highScores.idioms || 0"></span>
                                 </div>
                             </div>
-                            <button @click="selectCategory('synonyms')" class="w-full bg-green hover:bg-green-dark text-white text-xs font-semibold py-2.5 rounded-md transition duration-120 cursor-pointer shadow-sm">
+                            <button @click="selectCategory('idioms')" class="w-full bg-purple-600 hover:bg-purple-700 text-white text-xs font-semibold py-2.5 rounded-md transition duration-120 cursor-pointer shadow-sm">
                                 Main Sekarang
                             </button>
                         </div>
@@ -99,10 +99,10 @@
                                   <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 19.5 8.25 12l7.5-7.5" />
                                 </svg>
                             </button>
-                            <span class="text-xs font-semibold text-green uppercase tracking-widest bg-gray-900 border border-gray-800 px-3 py-2 rounded-md mr-1 font-body" x-text="getCategoryTitle()"></span>
+                            <span class="text-xs font-semibold text-purple uppercase tracking-widest bg-gray-900 border border-gray-800 px-3 py-2 rounded-md mr-1 font-body" x-text="getCategoryTitle()"></span>
                             
                             <!-- BGM Toggle Button -->
-                            <button @click="toggleBgm()" class="p-2 rounded-md bg-gray-900 border border-gray-800 hover:bg-gray-800 text-white hover:text-green transition duration-120 cursor-pointer flex items-center justify-center shrink-0 animate-none" title="Mute/Unmute Musik">
+                            <button @click="toggleBgm()" class="p-2 rounded-md bg-gray-900 border border-gray-800 hover:bg-gray-800 text-white hover:text-purple transition duration-120 cursor-pointer flex items-center justify-center shrink-0 animate-none" title="Mute/Unmute Musik">
                                 <template x-if="bgmEnabled">
                                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="w-4 h-4">
                                       <path stroke-linecap="round" stroke-linejoin="round" d="M19.114 5.636a9 9 0 0 1 0 12.728M16.463 8.288a5.25 5.25 0 0 1 0 7.424M6.75 8.25l4.72-4.72a.75.75 0 0 1 1.28.53v15.88a.75.75 0 0 1-1.28.53l-4.72-4.72H4.51c-.88 0-1.704-.507-1.938-1.354A9.009 9.009 0 0 1 2.25 12c0-.83.112-1.633.322-2.396C2.806 8.756 3.63 8.25 4.51 8.25H6.75Z" />
@@ -124,57 +124,56 @@
                             <!-- Score Display -->
                             <div class="px-4 py-1 bg-gray-900 border border-gray-800 rounded-md text-right">
                                 <span class="text-[9px] font-bold text-muted uppercase tracking-widest block">Skor</span>
-                                <span class="text-lg font-bold text-green font-body" x-text="score"></span>
+                                <span class="text-lg font-bold text-purple font-body" x-text="score"></span>
                             </div>
                         </div>
                     </div>
 
-                    <!-- Timer Bar (Shrinks and changes color) -->
+                    <!-- Timer Bar (45 seconds total for sentences) -->
                     <div class="w-full bg-gray-900 border border-gray-800 h-3.5 rounded-pill overflow-hidden mt-3 relative">
                         <div class="h-full rounded-pill transition-all duration-100 linear"
-                             :style="'width: ' + (timeLeft / 30 * 100) + '%'"
-                             :class="timeLeft > 15 ? 'bg-green' : (timeLeft > 6 ? 'bg-yellow' : 'bg-red animate-pulse')">
+                             :style="'width: ' + (timeLeft / 45 * 100) + '%'"
+                             :class="timeLeft > 20 ? 'bg-purple' : (timeLeft > 10 ? 'bg-yellow' : 'bg-red animate-pulse')">
                         </div>
                     </div>
 
-                    <!-- Word Tracker Progress Bubbles -->
+                    <!-- Sentence Progress Bubbles -->
                     <div class="flex justify-center items-center gap-1.5 mt-4">
-                        <template x-for="idx in 10">
+                        <template x-for="idx in 5">
                             <span class="w-3.5 h-3.5 rounded-full border transition-all duration-300"
-                                  :class="idx <= currentWordIndex ? 'bg-green border-green shadow-md shadow-green/30' : 'bg-gray-900 border-gray-800'"></span>
+                                  :class="idx <= currentSentenceIndex ? 'bg-purple border-purple shadow-md shadow-purple/30' : 'bg-gray-900 border-gray-800'"></span>
                         </template>
                     </div>
 
-                    <!-- Word Board: Clue and Scrambled Letters -->
-                    <div class="my-auto py-4 space-y-6 text-center font-body">
-                        <!-- The Scrambled word letter slots -->
-                        <div class="flex justify-center flex-wrap gap-2.5 min-h-[50px] items-center">
-                            <template x-for="(letter, index) in userAnswer" :key="letter.id">
-                                <button @click="removeLetter(index)" 
-                                        class="w-12 h-12 bg-gray-900/80 border-2 border-green text-green hover:border-green-light font-bold text-xl rounded-md flex items-center justify-center shadow-lg shadow-green/10 transform hover:-translate-y-0.5 active:translate-y-0 transition duration-120 cursor-pointer">
-                                    <span x-text="letter.char"></span>
+                    <!-- Sentence Workspace: Dropzone and Scrambled Words -->
+                    <div class="my-auto py-4 space-y-8 text-center font-body flex flex-col justify-center">
+                        <!-- Translation Clue Box -->
+                        <div class="max-w-2xl mx-auto bg-gray-900/60 border border-gray-800 p-5 rounded-lg backdrop-blur-sm shadow-md">
+                            <span class="text-[9px] font-bold text-muted uppercase tracking-widest block mb-1">Clue / Terjemahan</span>
+                            <p class="text-base text-white font-bold leading-relaxed" x-text="getSentenceClue()"></p>
+                        </div>
+
+                        <!-- Dropzone (User Answer words list) -->
+                        <div class="flex justify-center flex-wrap gap-2.5 min-h-[60px] p-4 bg-black/40 border border-gray-800 rounded-lg max-w-3xl mx-auto w-full items-center">
+                            <template x-for="(word, index) in userAnswer" :key="word.id">
+                                <button @click="removeWord(index)" 
+                                        class="px-4 py-2 bg-purple/10 border-2 border-purple text-purple-light hover:border-purple-light font-bold text-sm rounded-md flex items-center justify-center shadow-lg transform hover:-translate-y-0.5 active:translate-y-0 transition duration-120 cursor-pointer">
+                                    <span x-text="word.text"></span>
                                 </button>
                             </template>
-                            <!-- Empty dashes when letters are not filled -->
-                            <template x-for="n in Math.max(0, getWordLength() - userAnswer.length)">
-                                <span class="w-12 h-12 border-2 border-dashed border-gray-800 bg-gray-900/45 rounded-md flex items-center justify-center text-muted font-bold">?</span>
+                            <template x-if="userAnswer.length === 0">
+                                <span class="text-sm text-gray-500 font-medium">Klik kata-kata di bawah untuk menyusun kalimat...</span>
                             </template>
                         </div>
 
-                        <!-- Clue Box -->
-                        <div class="max-w-xl mx-auto bg-gray-900/60 border border-gray-800 p-4 rounded-lg backdrop-blur-sm shadow-md">
-                            <span class="text-[9px] font-bold text-muted uppercase tracking-widest block mb-1">Clue / Definisi</span>
-                            <p class="text-sm text-white font-bold leading-relaxed" x-text="getWordClue()"></p>
-                        </div>
-
-                        <!-- Scrambled bubbles selector -->
-                        <div class="flex justify-center flex-wrap gap-3 pt-2">
-                            <template x-for="letter in scrambledLetters" :key="letter.id">
-                                <button @click="clickLetter(letter)" 
-                                        :disabled="letter.selected"
-                                        :class="letter.selected ? 'opacity-10 scale-90 border-ink bg-ink text-muted' : 'bg-gray-900/40 border border-gray-800 hover:border-green hover:bg-gray-900/85 hover:-translate-y-0.5 text-white w-12 h-12 rounded-md flex items-center justify-center transition duration-120 select-none cursor-pointer shadow-md'"
-                                        class="w-12 h-12 border font-bold text-lg rounded-md flex items-center justify-center transition duration-120 select-none cursor-pointer shadow-md">
-                                    <span x-text="letter.char"></span>
+                        <!-- Scrambled selector bubbles -->
+                        <div class="flex justify-center flex-wrap gap-3 max-w-3xl mx-auto">
+                            <template x-for="word in scrambledWords" :key="word.id">
+                                <button @click="clickWord(word)" 
+                                        :disabled="word.selected"
+                                        :class="word.selected ? 'opacity-10 scale-95 border-ink bg-ink text-muted' : 'bg-gray-900/40 border border-gray-800 hover:border-purple hover:bg-gray-900/85 hover:-translate-y-0.5 text-white px-4 py-2.5 rounded-md flex items-center justify-center transition duration-120 select-none cursor-pointer shadow-md'"
+                                        class="font-bold text-sm rounded-md flex items-center justify-center transition duration-120 select-none cursor-pointer shadow-md">
+                                    <span x-text="word.text"></span>
                                 </button>
                             </template>
                         </div>
@@ -182,53 +181,45 @@
 
                     <!-- Action Controls Footer -->
                     <div class="flex items-center justify-between gap-4 border-t border-gray-800 pt-5 font-body">
-                        <button @click="resetCurrentWord()" class="inline-flex items-center gap-1.5 px-4 py-2.5 rounded-md bg-gray-900 border border-gray-800 hover:bg-gray-800 text-white text-xs font-semibold transition duration-120 cursor-pointer shadow-md">
+                        <button @click="resetCurrentSentence()" class="inline-flex items-center gap-1.5 px-4 py-2.5 rounded-md bg-gray-900 border border-gray-800 hover:bg-gray-800 text-white text-xs font-semibold transition duration-120 cursor-pointer shadow-md">
                             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="w-4 h-4">
                               <path stroke-linecap="round" stroke-linejoin="round" d="M16.023 9.348h4.992v-.001M2.985 19.644v-4.992m0 0h4.992m-4.993 0 3.181 3.183a8.25 8.25 0 0 0 13.803-3.7M4.031 9.865a8.25 8.25 0 0 1 13.803-3.7l3.181 3.182m0-4.991v4.99" />
                             </svg>
-                            <span>Reset</span>
+                            <span>Reset Kalimat</span>
                         </button>
 
                         <div class="flex items-center gap-2">
-                            <button @click="useHint()" 
-                                    :disabled="hintsUsed >= 3 || score < 50 || timeLeft < 5"
-                                    :class="hintsUsed >= 3 || score < 50 || timeLeft < 5 ? 'opacity-40 cursor-not-allowed bg-yellow-light/30 text-yellow/70 border border-gray-800' : 'bg-yellow hover:bg-yellow-dark text-ink border border-yellow'"
-                                     class="inline-flex items-center gap-1.5 px-4 py-2.5 rounded-md text-xs font-semibold transition duration-120 cursor-pointer shadow-md">
-                                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="w-4 h-4">
-                                   <path stroke-linecap="round" stroke-linejoin="round" d="M12 18a3.75 3.75 0 0 0 .495-7.467 5.99 5.99 0 0 0-1.925 3.546 5.974 5.974 0 0 1-2.133-1A3.75 3.75 0 0 0 12 18Z" />
-                                   <path stroke-linecap="round" stroke-linejoin="round" d="M12 18a3.75 3.75 0 0 0 .495-7.467 5.99 5.99 0 0 0-1.925 3.546 5.974 5.974 0 0 1-2.133-1A3.75 3.75 0 0 0 12 18Z" />
-                                   <path stroke-linecap="round" stroke-linejoin="round" d="M12 2.25V4.5m5.3-2.3-1.6 1.6m3.8 3.7h-2.25M12 19.5v2.25m-5.3-2.3 1.6-1.6m-3.8-3.7h2.25" />
-                                 </svg>
-                                <span>Hint (-50pt)</span>
+                            <button @click="submitCheck()" class="inline-flex items-center gap-1.5 px-6 py-2.5 rounded-md bg-purple-600 hover:bg-purple-700 text-white text-xs font-bold transition duration-120 cursor-pointer shadow-md">
+                                <span>Periksa Kalimat</span>
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="w-4 h-4">
+                                  <path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75 11.25 15 15 9.75M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
+                                </svg>
                             </button>
 
-                            <button @click="skipWord()" class="inline-flex items-center gap-1.5 px-4 py-2.5 rounded-md bg-gray-900 border border-gray-800 hover:bg-gray-800 text-white text-xs font-semibold transition duration-120 cursor-pointer shadow-md">
+                            <button @click="skipSentence()" class="inline-flex items-center gap-1.5 px-4 py-2.5 rounded-md bg-gray-900 border border-gray-800 hover:bg-gray-800 text-white text-xs font-semibold transition duration-120 cursor-pointer shadow-md">
                                 <span>Skip</span>
-                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="w-4 h-4">
-                                  <path stroke-linecap="round" stroke-linejoin="round" d="M3 8.25V18a2.25 2.25 0 0 0 2.25 2.25h13.5A2.25 2.25 0 0 0 21 18V8.25m-18 0V6a2.25 2.25 0 0 1 2.25-2.25h13.5A2.25 2.25 0 0 1 21 6v2.25m-18 0h18M5.25 6h.008v.008H5.25V6ZM7.5 6h.008v.008H7.5V6Zm2.25 0h.008v.008H9.75V6Zm2.25 0h.008v.008H9.75V6ZM12 6h.008v.008H12V6Z" />
-                                </svg>
                             </button>
                         </div>
                     </div>
                 </div>
 
-                <!-- SECTION 3: GAME OVER / SUMMARY (Ink Dark Mode) -->
+                <!-- SECTION 3: GAME OVER / SUMMARY -->
                 <div x-show="gameState === 'game_over'" class="fixed inset-0 w-screen h-screen flex flex-col justify-center items-center bg-ink text-white z-50 p-6" style="display: none;">
                     <div class="space-y-3 text-center font-body">
-                        <div class="inline-flex p-4 bg-green/10 border border-green/30 rounded-full text-green shadow-md animate-bounce">
+                        <div class="inline-flex p-4 bg-purple/10 border border-purple/30 rounded-full text-purple shadow-md animate-bounce">
                             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="w-12 h-12">
                               <path stroke-linecap="round" stroke-linejoin="round" d="M16.5 18.75h-9m9 0a3 3 0 0 1 3 3h-15a3 3 0 0 1 3-3m9 0v-3.375c0-.621-.503-1.125-1.125-1.125h-6.75c-.622 0-1.125.504-1.125 1.125v3.375m9 0h-9M9 3.75h6m-6 3h6m-6 3h6m-9 3h12" />
                             </svg>
                         </div>
-                        <h3 class="text-3xl font-bold text-green tracking-tight font-body">Permainan Selesai!</h3>
-                        <p class="text-sm text-muted font-medium max-w-sm mx-auto font-body font-normal">Bagus sekali! Anda berhasil menyelesaikan semua kata di sesi ini.</p>
+                        <h3 class="text-3xl font-bold text-purple-400 tracking-tight font-body">Latihan Selesai!</h3>
+                        <p class="text-sm text-muted font-medium max-w-sm mx-auto font-body font-normal">Luar biasa! Struktur kalimat Anda sudah semakin mantap.</p>
                     </div>
 
                     <!-- Final Score panel -->
                     <div class="max-w-xs w-full mx-auto bg-gray-900 border border-gray-800 rounded-lg p-6 grid grid-cols-2 gap-4 my-6 shadow-xl font-body">
                         <div class="border-r border-gray-800 text-center">
                             <span class="text-[9px] font-bold text-muted uppercase tracking-widest block font-body">Skor Akhir</span>
-                            <span class="text-2xl font-bold text-green font-body" x-text="score"></span>
+                            <span class="text-2xl font-bold text-purple-400 font-body" x-text="score"></span>
                         </div>
                         <div class="text-center">
                             <span class="text-[9px] font-bold text-muted uppercase tracking-widest block font-body">Max Combo</span>
@@ -238,7 +229,7 @@
 
                     <!-- Action buttons -->
                     <div class="flex flex-col sm:flex-row justify-center gap-3 pt-4 font-body">
-                        <button @click="selectCategory(selectedCategory)" class="px-6 py-3.5 bg-green hover:bg-green-dark text-white font-semibold rounded-md shadow-lg transition duration-120 cursor-pointer border border-green/20">
+                        <button @click="selectCategory(selectedCategory)" class="px-6 py-3.5 bg-purple-600 hover:bg-purple-700 text-white font-semibold rounded-md shadow-lg transition duration-120 cursor-pointer border border-purple/20">
                             Main Lagi
                         </button>
                         <button @click="gameState = 'select_category'" class="px-6 py-3.5 bg-gray-900 hover:bg-gray-800 border border-gray-800 text-white font-semibold rounded-md transition duration-120 cursor-pointer">
@@ -251,7 +242,7 @@
         </div>
     </div>
 
-    <!-- Word Scramble Game Script -->
+    <!-- Sentence Builder Game Script -->
     <script>
         // Web Audio API Synthesized Sounds
         let audioCtx = null;
@@ -285,13 +276,6 @@
                     gain.gain.linearRampToValueAtTime(0, now + 0.25);
                     osc.start(now);
                     osc.stop(now + 0.25);
-                } else if (type === 'hint') {
-                    osc.type = 'sine';
-                    osc.frequency.setValueAtTime(880, now); // A5
-                    gain.gain.setValueAtTime(0.25, now);
-                    gain.gain.linearRampToValueAtTime(0, now + 0.12);
-                    osc.start(now);
-                    osc.stop(now + 0.12);
                 } else if (type === 'tick') {
                     osc.type = 'triangle';
                     osc.frequency.setValueAtTime(1000, now);
@@ -331,7 +315,7 @@
             confettiCanvas.width = confettiCanvas.parentElement.clientWidth;
             confettiCanvas.height = confettiCanvas.parentElement.clientHeight;
             confettiParticles = [];
-            const colors = ['#52B788', '#2D6A4F', '#F4A261', '#E63946', '#B7E4C7', '#1A3C2B'];
+            const colors = ['#8B5CF6', '#C084FC', '#2D6A4F', '#F4A261', '#E63946', '#1A3C2B'];
             for (let i = 0; i < 50; i++) {
                 confettiParticles.push({
                     x: confettiCanvas.width / 2 + (Math.random() - 0.5) * 40,
@@ -381,52 +365,37 @@
             }
         }
 
-        // Alpine.js Word Scramble Game Controller
-        function wordScrambleGame() {
+        // Alpine.js Sentence Builder Controller
+        function sentenceBuilderGame() {
             const categories = {
-                vocabulary: {
-                    title: "EnglishUp Academic Vocabulary",
-                    words: [
-                        { word: "STUDY", clue: "Belajar atau memeriksa sesuatu secara mendalam." },
-                        { word: "RESULT", clue: "Hasil akhir atau efek dari suatu tindakan atau percobaan." },
-                        { word: "GROUP", clue: "Kumpulan orang, hewan, atau benda yang memiliki kesamaan." },
-                        { word: "REPORT", clue: "Laporan atau informasi tertulis tentang suatu topik." },
-                        { word: "CREATE", clue: "Membuat, menghasilkan, atau melahirkan sesuatu yang baru." },
-                        { word: "SOURCE", clue: "Asal, permulaan, atau sumber utama informasi." },
-                        { word: "DATA", clue: "Fakta, angka, atau informasi yang dikumpulkan untuk dianalisis." },
-                        { word: "SIMPLE", clue: "Mudah dipahami, tidak rumit, atau mendasar." },
-                        { word: "METHOD", clue: "Cara, prosedur, atau jalan terstruktur untuk mencapai sesuatu." },
-                        { word: "TOPIC", clue: "Subjek utama atau tema pokok yang sedang dibicarakan." }
+                daily: {
+                    title: "Everyday Conversations",
+                    sentences: [
+                        { full: "How can I help you today?", translation: "Bagaimana saya bisa membantu Anda hari ini?", words: ["How", "can", "I", "help", "you", "today?"] },
+                        { full: "Would you like some coffee?", translation: "Apakah Anda mau kopi?", words: ["Would", "you", "like", "some", "coffee?"] },
+                        { full: "It is nice to meet you.", translation: "Senang bertemu dengan Anda.", words: ["It", "is", "nice", "to", "meet", "you."] },
+                        { full: "I will call you back later.", translation: "Saya akan menelepon Anda kembali nanti.", words: ["I", "will", "call", "you", "back", "later."] },
+                        { full: "Please make yourself at home.", translation: "Anggap saja seperti di rumah sendiri.", words: ["Please", "make", "yourself", "at", "home."] }
                     ]
                 },
-                grammar: {
-                    title: "Grammar Mastery",
-                    words: [
-                        { word: "NOUN", clue: "Kata benda (contoh: book, cat, table, school)." },
-                        { word: "VERB", clue: "Kata kerja yang menunjukkan tindakan (contoh: run, eat, read)." },
-                        { word: "TENSE", clue: "Bentuk kata kerja yang menunjukkan waktu kejadian (past, present, future)." },
-                        { word: "PLURAL", clue: "Bentuk jamak yang menunjukkan benda berjumlah lebih dari satu." },
-                        { word: "WORD", clue: "Kumpulan huruf yang memiliki makna atau arti tertentu." },
-                        { word: "SENTENCE", clue: "Kumpulan kata-kata yang membentuk satu pikiran utuh." },
-                        { word: "SUBJECT", clue: "Pelaku atau tokoh utama yang melakukan tindakan dalam kalimat." },
-                        { word: "OBJECT", clue: "Benda atau penerima tindakan dari subjek dalam kalimat." },
-                        { word: "PRONOUN", clue: "Kata ganti benda atau orang (contoh: he, she, they, we)." },
-                        { word: "ADJECTIVE", clue: "Kata sifat yang menerangkan kata benda (contoh: happy, red, big)." }
+                toefl_structure: {
+                    title: "TOEFL Structure",
+                    sentences: [
+                        { full: "Seldom have I seen such a beautiful painting.", translation: "Jarang sekali saya melihat lukisan seindah itu. (Inversi)", words: ["Seldom", "have", "I", "seen", "such", "a", "beautiful", "painting."] },
+                        { full: "Had I known the truth, I would have acted differently.", translation: "Seandainya saya tahu kebenarannya, saya pasti bertindak berbeda. (Kondisional Lampau)", words: ["Had", "I", "known", "the", "truth,", "I", "would", "have", "acted", "differently."] },
+                        { full: "Not only did she pass, but she also scored highest.", translation: "Dia tidak hanya lulus, tetapi dia juga mendapat nilai tertinggi. (Inversi Not Only)", words: ["Not", "only", "did", "she", "pass,", "but", "she", "also", "scored", "highest."] },
+                        { full: "Under no circumstances should you press this red button.", translation: "Dalam kondisi bagaimanapun, Anda tidak boleh menekan tombol merah ini.", words: ["Under", "no", "circumstances", "should", "you", "press", "this", "red", "button."] },
+                        { full: "The book which you lent me was extremely fascinating.", translation: "Buku yang Anda pinjamkan kepada saya sangat mengasyikkan. (Relative Clause)", words: ["The", "book", "which", "you", "lent", "me", "was", "extremely", "fascinating."] }
                     ]
                 },
-                synonyms: {
-                    title: "Daily Synonyms",
-                    words: [
-                        { word: "HUGE", clue: "Persamaan kata atau sinonim dari kata 'BIG' (Sangat besar)." },
-                        { word: "TINY", clue: "Persamaan kata atau sinonim dari kata 'SMALL' (Sangat kecil)." },
-                        { word: "HAPPY", clue: "Persamaan kata atau sinonim dari kata 'GLAD' (Senang)." },
-                        { word: "SMART", clue: "Persamaan kata atau sinonim dari kata 'CLEVER' (Pintar/cerdas)." },
-                        { word: "ANGRY", clue: "Persamaan kata atau sinonim dari kata 'MAD' (Marah/kesal)." },
-                        { word: "QUICK", clue: "Persamaan kata atau sinonim dari kata 'FAST' (Cepat)." },
-                        { word: "SILENT", clue: "Persamaan kata atau sinonim dari kata 'QUIET' (Sunyi/sepi)." },
-                        { word: "STRONG", clue: "Persamaan kata atau sinonim dari kata 'POWERFUL' (Kuat)." },
-                        { word: "EASY", clue: "Persamaan kata atau sinonim dari kata 'SIMPLE' (Mudah)." },
-                        { word: "PRETTY", clue: "Persamaan kata atau sinonim dari kata 'BEAUTIFUL' (Cantik/menawan)." }
+                idioms: {
+                    title: "Idioms & Sayings",
+                    sentences: [
+                        { full: "Actions speak louder than words.", translation: "Tindakan berbicara lebih keras daripada kata-kata. (Bukti nyata)", words: ["Actions", "speak", "louder", "than", "words."] },
+                        { full: "Don't cry over spilled milk.", translation: "Jangan menyesali apa yang sudah berlalu/terjadi.", words: ["Don't", "cry", "over", "spilled", "milk."] },
+                        { full: "A piece of cake.", translation: "Sangat mudah sekali / perkara gampang.", words: ["A", "piece", "of", "cake."] },
+                        { full: "Barking up the wrong tree.", translation: "Menuduh orang yang salah / salah sasaran.", words: ["Barking", "up", "the", "wrong", "tree."] },
+                        { full: "Bite the bullet.", translation: "Menghadapi situasi sulit dengan keteguhan hati.", words: ["Bite", "the", "bullet."] }
                     ]
                 }
             };
@@ -437,41 +406,26 @@
                 score: 0,
                 combo: 0,
                 maxCombo: 0,
-                currentWordIndex: 0,
-                timeLeft: 30,
-                scrambledLetters: [],
+                currentSentenceIndex: 0,
+                timeLeft: 45,
+                scrambledWords: [],
                 userAnswer: [],
                 feedbackState: '',
-                hintsUsed: 0,
                 timerInterval: null,
                 highScores: {},
                 bgmEnabled: true,
                 bgmPlaying: false,
 
                 init() {
-                    const savedScores = localStorage.getItem('toefl_game_highscores');
+                    const savedScores = localStorage.getItem('toefl_sentence_highscores');
                     if (savedScores) {
                         this.highScores = JSON.parse(savedScores);
                     }
 
-                    // Set BGM Volume
                     const bgm = document.getElementById('bgm-audio');
                     if (bgm) {
                         bgm.volume = 1.0;
                     }
-                    
-                    // Listen for keyboard input
-                    window.addEventListener('keydown', (e) => {
-                        if (this.gameState !== 'playing') return;
-                        const key = e.key.toUpperCase();
-                        if (key === 'BACKSPACE') {
-                            this.removeLastLetter();
-                        } else if (key === 'ENTER') {
-                            this.submitCheck();
-                        } else if (key.length === 1 && key >= 'A' && key <= 'Z') {
-                            this.typeLetter(key);
-                        }
-                    });
                 },
 
                 playBgm() {
@@ -480,7 +434,7 @@
                         bgm.play().then(() => {
                             this.bgmPlaying = true;
                         }).catch(err => {
-                            console.log("BGM play blocked by browser policy, retry on interaction:", err);
+                            console.log("BGM play blocked:", err);
                             this.bgmPlaying = false;
                         });
                     }
@@ -508,48 +462,46 @@
                     this.score = 0;
                     this.combo = 0;
                     this.maxCombo = 0;
-                    this.currentWordIndex = 0;
-                    this.loadWord();
+                    this.currentSentenceIndex = 0;
+                    this.loadSentence();
                     this.gameState = 'playing';
                     this.playBgm();
                 },
 
-                loadWord() {
+                loadSentence() {
                     this.userAnswer = [];
                     this.feedbackState = '';
-                    this.hintsUsed = 0;
-                    this.timeLeft = 30;
+                    this.timeLeft = 45;
 
-                    const wordsList = categories[this.selectedCategory].words;
-                    const wordObj = wordsList[this.currentWordIndex];
+                    const sentenceList = categories[this.selectedCategory].sentences;
+                    const sentenceObj = sentenceList[this.currentSentenceIndex];
                     
-                    // Scramble letters
-                    let letters = wordObj.word.split('').map((char, index) => ({
-                        char: char,
+                    // Map words to objects
+                    let words = sentenceObj.words.map((word, index) => ({
+                        text: word,
                         id: index,
                         selected: false
                     }));
 
                     // Shuffle (Fisher-Yates)
                     do {
-                        for (let i = letters.length - 1; i > 0; i--) {
+                        for (let i = words.length - 1; i > 0; i--) {
                             const j = Math.floor(Math.random() * (i + 1));
-                            [letters[i], letters[j]] = [letters[j], letters[i]];
+                            [words[i], words[j]] = [words[j], words[i]];
                         }
-                    } while (letters.map(l => l.char).join('') === wordObj.word);
+                    } while (words.map(w => w.text).join(' ') === sentenceObj.words.join(' '));
 
-                    this.scrambledLetters = letters;
+                    this.scrambledWords = words;
 
                     // Start timer
                     if (this.timerInterval) clearInterval(this.timerInterval);
                     
-                    let lastWholeSecond = 30;
+                    let lastWholeSecond = 45;
                     this.timerInterval = setInterval(() => {
                         this.timeLeft -= 0.1;
                         
-                        // play tick sound
                         const currentWholeSecond = Math.ceil(this.timeLeft);
-                        if (this.timeLeft <= 5 && currentWholeSecond < lastWholeSecond && currentWholeSecond > 0) {
+                        if (this.timeLeft <= 6 && currentWholeSecond < lastWholeSecond && currentWholeSecond > 0) {
                             playSound('tick');
                             lastWholeSecond = currentWholeSecond;
                         }
@@ -562,55 +514,41 @@
                     }, 100);
                 },
 
-                clickLetter(letterObj) {
-                    if (letterObj.selected) return;
-                    letterObj.selected = true;
-                    this.userAnswer.push(letterObj);
-
-                    // Check if complete
-                    if (this.userAnswer.length === this.getWordLength()) {
-                        this.submitCheck();
-                    }
+                clickWord(wordObj) {
+                    if (wordObj.selected) return;
+                    wordObj.selected = true;
+                    this.userAnswer.push(wordObj);
                 },
 
-                removeLetter(index) {
-                    const letterObj = this.userAnswer[index];
-                    letterObj.selected = false;
+                removeWord(index) {
+                    const wordObj = this.userAnswer[index];
+                    wordObj.selected = false;
                     this.userAnswer.splice(index, 1);
                 },
 
-                removeLastLetter() {
-                    if (this.userAnswer.length > 0) {
-                        this.removeLetter(this.userAnswer.length - 1);
-                    }
-                },
-
-                resetCurrentWord() {
+                resetCurrentSentence() {
                     this.userAnswer = [];
-                    this.scrambledLetters.forEach(l => l.selected = false);
-                },
-
-                typeLetter(char) {
-                    const available = this.scrambledLetters.find(l => l.char === char && !l.selected);
-                    if (available) {
-                        this.clickLetter(available);
-                    }
+                    this.scrambledWords.forEach(w => w.selected = false);
                 },
 
                 submitCheck() {
-                    const answer = this.userAnswer.map(l => l.char).join('');
-                    const correctWord = categories[this.selectedCategory].words[this.currentWordIndex].word;
+                    if (this.userAnswer.length !== this.scrambledWords.length) {
+                        alert("Harap susun semua kata terlebih dahulu!");
+                        return;
+                    }
 
-                    if (answer === correctWord) {
+                    const answerString = this.userAnswer.map(w => w.text).join(' ');
+                    const correctString = categories[this.selectedCategory].sentences[this.currentSentenceIndex].words.join(' ');
+
+                    if (answerString === correctString) {
                         // Correct!
                         clearInterval(this.timerInterval);
                         playSound('correct');
                         triggerConfetti();
                         
-                        // Calculate score
-                        const speedBonus = Math.round(this.timeLeft * 12);
-                        const comboMultiplier = 1 + (this.combo * 0.15);
-                        const pointsGained = Math.round((100 + speedBonus) * comboMultiplier);
+                        const speedBonus = Math.round(this.timeLeft * 8);
+                        const comboMultiplier = 1 + (this.combo * 0.2);
+                        const pointsGained = Math.round((150 + speedBonus) * comboMultiplier);
                         
                         this.score += pointsGained;
                         this.combo++;
@@ -618,8 +556,8 @@
                         this.feedbackState = 'correct';
 
                         setTimeout(() => {
-                            this.nextWord();
-                        }, 1300);
+                            this.nextSentence();
+                        }, 1500);
                     } else {
                         // Incorrect
                         playSound('wrong');
@@ -627,11 +565,9 @@
                         this.feedbackState = 'wrong';
                         
                         setTimeout(() => {
-                            if (this.feedbackState === 'wrong') {
-                                this.feedbackState = '';
-                                this.resetCurrentWord();
-                            }
-                        }, 1000);
+                            this.feedbackState = '';
+                            this.resetCurrentSentence();
+                        }, 1200);
                     }
                 },
 
@@ -640,63 +576,46 @@
                     this.combo = 0;
                     this.feedbackState = 'wrong';
                     
-                    const correctWord = categories[this.selectedCategory].words[this.currentWordIndex].word;
-                    this.userAnswer = correctWord.split('').map((char, index) => ({
-                        char: char,
+                    const sentenceObj = categories[this.selectedCategory].sentences[this.currentSentenceIndex];
+                    this.userAnswer = sentenceObj.words.map((w, index) => ({
+                        text: w,
                         id: 'timeout-' + index
                     }));
 
                     setTimeout(() => {
-                        this.nextWord();
-                    }, 2200);
+                        this.nextSentence();
+                    }, 2500);
                 },
 
-                useHint() {
-                    if (this.hintsUsed >= 3 || this.score < 50 || this.timeLeft < 5) return;
-                    
-                    const correctWord = categories[this.selectedCategory].words[this.currentWordIndex].word;
-                    const nextCorrectChar = correctWord[this.userAnswer.length];
-                    
-                    this.score -= 50;
-                    this.hintsUsed++;
-                    playSound('hint');
-
-                    const targetLetterObj = this.scrambledLetters.find(l => l.char === nextCorrectChar && !l.selected);
-                    if (targetLetterObj) {
-                        this.clickLetter(targetLetterObj);
-                    }
-                },
-
-                skipWord() {
+                skipSentence() {
                     clearInterval(this.timerInterval);
                     this.combo = 0;
-                    this.nextWord();
+                    this.nextSentence();
                 },
 
-                nextWord() {
-                    this.currentWordIndex++;
-                    const wordsList = categories[this.selectedCategory].words;
+                nextSentence() {
+                    this.currentSentenceIndex++;
+                    const sentenceList = categories[this.selectedCategory].sentences;
                     
-                    if (this.currentWordIndex >= wordsList.length) {
+                    if (this.currentSentenceIndex >= sentenceList.length) {
                         clearInterval(this.timerInterval);
                         playSound('win');
                         
-                        // Save high score
                         const currentHigh = this.highScores[this.selectedCategory] || 0;
                         if (this.score > currentHigh) {
                             this.highScores[this.selectedCategory] = this.score;
-                            localStorage.setItem('toefl_game_highscores', JSON.stringify(this.highScores));
+                            localStorage.setItem('toefl_sentence_highscores', JSON.stringify(this.highScores));
                         }
                         
                         this.gameState = 'game_over';
                         this.pauseBgm();
                     } else {
-                        this.loadWord();
+                        this.loadSentence();
                     }
                 },
 
                 quitGame() {
-                    if (confirm("Apakah Anda yakin ingin keluar dari permainan? Skor Anda saat ini tidak akan disimpan.")) {
+                    if (confirm("Apakah Anda yakin ingin keluar? Skor Anda saat ini akan hilang.")) {
                         if (this.timerInterval) clearInterval(this.timerInterval);
                         this.gameState = 'select_category';
                         this.pauseBgm();
@@ -707,16 +626,8 @@
                     return categories[this.selectedCategory]?.title || '';
                 },
 
-                getWordClue() {
-                    return categories[this.selectedCategory]?.words[this.currentWordIndex]?.clue || '';
-                },
-
-                getWordLength() {
-                    return categories[this.selectedCategory]?.words[this.currentWordIndex]?.word.length || 0;
-                },
-
-                getWordWord() {
-                    return categories[this.selectedCategory]?.words[this.currentWordIndex]?.word || '';
+                getSentenceClue() {
+                    return categories[this.selectedCategory]?.sentences[this.currentSentenceIndex]?.translation || '';
                 }
             };
         }
