@@ -5,7 +5,7 @@
 
 ## 1. Product Brief
 
-**Product:** Englishify — platform belajar bahasa Inggris dan simulasi tes TOEFL.
+**Product:** Masbro — platform belajar bahasa Inggris dan simulasi tes TOEFL.
 **Audience:** Mahasiswa dan fresh graduate Indonesia, usia 18–26 tahun.
 **Vibes:** Duolingo — playful, colorful, gamified. Terasa seperti main, bukan belajar.
 **Font character:** Plus Jakarta Sans — clean, rounded, readable seperti Airbnb Cereal. Tidak ada italic di mana pun.

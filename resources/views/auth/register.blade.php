@@ -1,7 +1,7 @@
 <x-guest-layout>
     <div class="text-center mb-8">
         <h2 class="text-display-sm font-display text-ink">Daftar Akun Baru</h2>
-        <p class="text-body-sm text-muted mt-2">Buat akun untuk memulai perjalanan belajarmu di Englishify</p>
+        <p class="text-body-sm text-muted mt-2">Buat akun untuk memulai perjalanan belajarmu di Masbro</p>
     </div>
 
     <form method="POST" action="{{ route('register') }}" class="space-y-5">

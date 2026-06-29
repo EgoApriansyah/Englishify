@@ -3,10 +3,10 @@
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <title>Englishify - Platform TOEFL & Pembelajaran Bahasa Inggris</title>
+        <title>Masbro - Platform TOEFL & Pembelajaran Bahasa Inggris</title>
 
         <!-- Meta tags for SEO -->
-        <meta name="description" content="Tingkatkan skor TOEFL ITP Anda dengan simulasi standar resmi dan pembelajaran terstruktur di Englishify.">
+        <meta name="description" content="Tingkatkan skor TOEFL ITP Anda dengan simulasi standar resmi dan pembelajaran terstruktur di Masbro.">
 
         <!-- Fonts -->
         <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -23,7 +23,7 @@
             <div class="max-w-container mx-auto px-6 lg:px-8 h-full flex justify-between items-center">
                 <a href="/" class="flex items-center gap-3 text-ink">
                     
-                    <span class="text-xl font-bold tracking-tight">Englishify<span class="text-green">•</span></span>
+                    <span class="text-xl font-bold tracking-tight">Masbro<span class="text-green">•</span></span>
                 </a>
                 <div class="flex items-center gap-6">
                     @if (Route::has('login'))
@@ -274,7 +274,7 @@
                                 <div class="w-3 h-3 rounded-full bg-yellow"></div>
                                 <div class="w-3 h-3 rounded-full bg-green"></div>
                             </div>
-                            <span class="text-xs font-semibold text-muted">englishify.id/dashboard</span>
+                            <span class="text-xs font-semibold text-muted">Masbro.id/dashboard</span>
                         </div>
                         
                         <!-- Middle contents: mockup streak widget & XP progress bar -->
@@ -323,7 +323,7 @@
                     <!-- Testimonial 1 -->
                     <div class="bg-canvas border border-hairline rounded-lg p-6 shadow-card flex flex-col justify-between hover:shadow-md transition">
                         <p class="text-body-md text-ink leading-relaxed mb-6">
-                            "Mengerjakan simulasi TOEFL di Englishify membuat saya terbiasa dengan tekanan waktu ujian sesungguhnya. Navigasi soal sangat nyaman, audionya jernih, dan hasil estimasi skornya sangat akurat dengan hasil tes resmi saya!"
+                            "Mengerjakan simulasi TOEFL di Masbro membuat saya terbiasa dengan tekanan waktu ujian sesungguhnya. Navigasi soal sangat nyaman, audionya jernih, dan hasil estimasi skornya sangat akurat dengan hasil tes resmi saya!"
                         </p>
                         <div class="flex items-center gap-4">
                             <div class="w-10 h-10 rounded-full bg-green text-white font-bold flex items-center justify-center">
@@ -367,7 +367,7 @@
                 <div class="text-center max-w-2xl mx-auto mb-16 space-y-3">
                     <span class="text-label-lg text-green uppercase tracking-wider block font-bold">Proses Belajar</span>
                     <h2 class="text-display-md font-bold text-ink">
-                        Bagaimana Englishify Bekerja?
+                        Bagaimana Masbro Bekerja?
                     </h2>
                 </div>
 
@@ -445,7 +445,7 @@
                     <div class="space-y-4">
                         <a href="/" class="flex items-center gap-3 text-ink">
                             
-                            <span class="text-lg font-bold tracking-tight text-ink">Englishify<span class="text-green">•</span></span>
+                            <span class="text-lg font-bold tracking-tight text-ink">Masbro<span class="text-green">•</span></span>
                         </a>
                         <p class="text-xs text-muted max-w-xs leading-relaxed">
                             Belajar TOEFL ITP Lebih Efektif. Latihan simulasi real-time, materi terstruktur, dan analisis skor akurat.
@@ -476,14 +476,14 @@
                     <div class="space-y-3">
                         <h4 class="text-ink font-bold text-body-sm">Hubungi Kami</h4>
                         <ul class="space-y-2 text-xs">
-                            <li>Email: support@englishify.id</li>
+                            <li>Email: support@Masbro.id</li>
                             <li>WhatsApp: +62-812-3456-7890</li>
                         </ul>
                     </div>
                 </div>
 
                 <div class="border-t border-hairline mt-10 pt-6 text-center text-xs">
-                    <p>&copy; {{ date('Y') }} Englishify Portal. Hak Cipta Dilindungi.</p>
+                    <p>&copy; {{ date('Y') }} Masbro Portal. Hak Cipta Dilindungi.</p>
                 </div>
             </div>
         </footer>

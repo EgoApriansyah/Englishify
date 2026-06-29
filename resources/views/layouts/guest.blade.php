@@ -5,7 +5,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="csrf-token" content="{{ csrf_token() }}">
 
-        <title>{{ config('app.name', 'Englishify') }} - Authentication</title>
+        <title>{{ config('app.name', 'Masbro') }} - Authentication</title>
 
         <!-- Fonts -->
         <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -28,7 +28,7 @@
                     <!-- Logo / Brand -->
                     <div class="flex justify-center items-center gap-3 mb-8">
                        
-                        <span class="text-2xl font-bold text-ink tracking-tight">Englishify<span class="text-green">•</span></span>
+                        <span class="text-2xl font-bold text-ink tracking-tight">Masbro<span class="text-green">•</span></span>
                     </div>
 
                     <!-- Slot Content (Login/Register Form) -->
@@ -38,7 +38,7 @@
                 <!-- Footer Links -->
                 <div class="mt-8 flex justify-between w-full max-w-md text-xs font-semibold text-muted">
                     <a href="#" class="hover:text-green-dark transition-colors">Privacy Policy</a>
-                    <p>&copy; {{ date('Y') }} Englishify Portal</p>
+                    <p>&copy; {{ date('Y') }} Masbro Portal</p>
                 </div>
             </div>
 

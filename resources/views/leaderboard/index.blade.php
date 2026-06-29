@@ -12,7 +12,7 @@
                 <div class="relative z-10 space-y-12">
                     <!-- Header Panel -->
                     <div class="text-center space-y-3 max-w-xl mx-auto">
-                        <h3 class="text-2xl md:text-3.5xl font-bold text-ink tracking-tight">Papan Peringkat Englishify</h3>
+                        <h3 class="text-2xl md:text-3.5xl font-bold text-ink tracking-tight">Papan Peringkat Masbro</h3>
                         <p class="text-sm text-muted leading-relaxed font-body font-normal">
                             Daftar skor tertinggi dari simulasi ujian TOEFL ITP peserta. Tunjukkan kemampuan terbaik Anda dan raih puncak klasemen!
                         </p>

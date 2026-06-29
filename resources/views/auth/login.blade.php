@@ -4,7 +4,7 @@
 
     <div class="text-center mb-8">
         <h2 class="text-display-sm font-display text-ink">Selamat Datang Kembali</h2>
-        <p class="text-body-sm text-muted mt-2">Masuk untuk melanjutkan pembelajaran di Englishify</p>
+        <p class="text-body-sm text-muted mt-2">Masuk untuk melanjutkan pembelajaran di Masbro</p>
     </div>
 
     <form method="POST" action="{{ route('login') }}" class="space-y-5">

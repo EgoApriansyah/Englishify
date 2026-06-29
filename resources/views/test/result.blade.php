@@ -20,32 +20,32 @@
     <div class="py-12 bg-surface min-h-screen font-body">
         <div class="max-w-container mx-auto px-6 lg:px-8 space-y-12">
             
-            <!-- Hero Skor (Ink Background) -->
-            <div class="bg-ink rounded-lg shadow-lg overflow-hidden border border-hairline relative p-10 md:p-12">
+            <!-- Hero Skor (Light Blue Background) -->
+            <div class="bg-[#CDE8F6] rounded-lg shadow-lg overflow-hidden border border-blue-200 relative p-10 md:p-12">
                 <!-- Decorative background score text -->
-                <div class="absolute bottom-0 right-0 text-[180px] md:text-[240px] font-bold text-white/[0.03] leading-none select-none translate-y-24 translate-x-12 pointer-events-none font-body">
+                <div class="absolute bottom-0 right-0 text-[180px] md:text-[240px] font-bold text-ink/[0.03] leading-none select-none translate-y-24 translate-x-12 pointer-events-none font-body">
                     {{ $totalScore }}
                 </div>
 
                 <div class="relative z-10 grid grid-cols-1 md:grid-cols-12 gap-8 items-center font-body">
                     <div class="md:col-span-8 space-y-4">
-                        <span class="text-label-sm text-green uppercase tracking-widest block font-bold">Skor TOEFL ITP Estimasi</span>
+                        <span class="text-label-sm text-green-dark uppercase tracking-widest block font-bold">Skor TOEFL ITP Estimasi</span>
                         <div class="flex items-center gap-6 flex-wrap">
-                            <h3 class="text-white font-bold text-[64px] leading-none select-text">{{ $totalScore }}</h3>
+                            <h3 class="text-ink font-bold text-[64px] leading-none select-text">{{ $totalScore }}</h3>
                             <span class="inline-flex items-center px-4 py-1.5 rounded-pill text-xs font-bold uppercase tracking-wider {{ $levelClass }}">
                                 {{ $levelName }}
                             </span>
                         </div>
-                        <p class="text-white/80 text-body-sm max-w-xl font-body leading-relaxed pt-2">
+                        <p class="text-ink/80 text-body-sm max-w-xl font-body leading-relaxed pt-2">
                             Skor dihitung menggunakan formula konversi standar linier berdasarkan jumlah jawaban benar di setiap seksi tes yang diselesaikan.
                         </p>
                     </div>
 
                     <div class="md:col-span-4 flex justify-end">
-                        <div class="bg-white/5 border border-white/10 rounded-md p-5 text-left text-white max-w-xs w-full font-body">
-                            <span class="text-label-sm text-green uppercase tracking-widest block mb-2 font-bold">Skala Resmi ITP</span>
-                            <span class="text-xl font-bold font-body">310 &mdash; 677</span>
-                            <p class="text-[11px] text-white/60 leading-relaxed mt-2 font-body font-normal">
+                        <div class="bg-white/40 border border-white/60 rounded-md p-5 text-left text-ink max-w-xs w-full font-body">
+                            <span class="text-label-sm text-green-dark uppercase tracking-widest block mb-2 font-bold">Skala Resmi ITP</span>
+                            <span class="text-xl font-bold font-body text-ink">310 &mdash; 677</span>
+                            <p class="text-[11px] text-ink/75 leading-relaxed mt-2 font-body font-normal">
                                 Skala resmi TOEFL ITP berkisar antara 310 untuk nilai minimum hingga 677 untuk nilai maksimum.
                             </p>
                         </div>
@@ -112,7 +112,7 @@
                     <span class="text-label-sm text-red uppercase tracking-widest font-bold block font-body">Rekomendasi Perbaikan</span>
                     <h4 class="text-body-lg font-bold text-ink font-body">Tingkatkan Manajemen Waktu</h4>
                     <p class="text-body-sm text-muted leading-relaxed font-body font-normal">
-                        Perhatikan batas waktu di seksi tertentu. Manfaatkan fitur latihan soal per-seksi di Englishify untuk melatih kecepatan membaca dan analisis struktur tata bahasa Anda.
+                        Perhatikan batas waktu di seksi tertentu. Manfaatkan fitur latihan soal per-seksi di Masbro untuk melatih kecepatan membaca dan analisis struktur tata bahasa Anda.
                     </p>
                 </div>
             </div>

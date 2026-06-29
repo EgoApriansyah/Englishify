@@ -12,7 +12,7 @@
 
                 <div class="p-8 md:p-10 flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0 relative z-10">
                     <div class="space-y-2 max-w-xl md:max-w-2xl">
-                        <h3 class="text-2xl md:text-3xl font-bold tracking-tight text-white font-body">Pusat Pembelajaran Englishify</h3>
+                        <h3 class="text-2xl md:text-3xl font-bold tracking-tight text-white font-body">Pusat Pembelajaran Masbro</h3>
                         <p class="text-white/70 text-sm md:text-base font-normal font-body">
                             Tingkatkan pemahaman tata bahasa, strategi mendengarkan, dan teknik membaca cepat dengan panduan materi terstruktur di bawah ini.
                         </p>

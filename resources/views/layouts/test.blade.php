@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>Englishify Test - {{ $title ?? 'Section' }}</title>
+    <title>Masbro Test - {{ $title ?? 'Section' }}</title>
 
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -22,7 +22,7 @@
             <div class="max-w-container mx-auto px-6 lg:px-8 h-16 flex items-center justify-between">
                 <div class="flex items-center space-x-3">
                     <span class="text-xl font-bold tracking-tight text-ink flex items-center">
-                        Englishify<span class="text-green ml-0.5">•</span>
+                        Masbro<span class="text-green ml-0.5">•</span>
                     </span>
                     @php
                         $badgeColor = 'bg-green-light text-green-dark border-green-muted';
@@ -63,7 +63,7 @@
         <!-- Minimal Footer -->
         <footer class="bg-canvas border-t border-hairline py-4 text-center text-xs text-muted font-body">
             <div class="max-w-container mx-auto px-6">
-                &copy; {{ date('Y') }} Englishify Portal. Hak Cipta Dilindungi. Jangan memuat ulang halaman untuk mencegah hilangnya data pengerjaan.
+                &copy; {{ date('Y') }} Masbro Portal. Hak Cipta Dilindungi. Jangan memuat ulang halaman untuk mencegah hilangnya data pengerjaan.
             </div>
         </footer>
     </div>

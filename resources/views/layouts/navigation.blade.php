@@ -23,7 +23,7 @@
         <a href="{{ route('dashboard') }}" class="flex items-center gap-3 px-3 py-2 mb-8 border-b border-white/10 pb-4">
 
             <span class="text-xl font-bold text-white tracking-tight flex items-center">
-                Englishify<span class="text-green ml-0.5">•</span>
+                Masbro<span class="text-green ml-0.5">•</span>
             </span>
         </a>
 
