@@ -49,6 +49,14 @@
                 <span>Materi</span>
             </a>
 
+            <!-- Tanya AI Link -->
+            <a href="{{ route('ai.index') }}" class="flex items-center gap-3 px-3 py-2.5 rounded-md text-sm font-medium transition-all duration-120 {{ request()->routeIs('ai.*') ? 'bg-green/15 text-green font-semibold' : 'text-white/60 hover:bg-white/5 hover:text-white' }}">
+                <svg class="w-5 h-5 shrink-0" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M8.625 12a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Zm0 0H8.25m4.125 0a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Zm0 0H12m4.125 0a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Zm0 0h-.375M21 12c0 4.556-4.03 8.25-9 8.25a9.764 9.764 0 0 1-2.555-.337A5.972 5.972 0 0 1 5.41 20.97a5.969 5.969 0 0 1-.474-.065 4.48 4.48 0 0 0 .978-2.025c.09-.457-.133-.901-.467-1.226C3.93 16.178 3 14.189 3 12c0-4.556 4.03-8.25 9-8.25s9 3.694 9 8.25Z" />
+                </svg>
+                <span>Tanya AI</span>
+            </a>
+
             <!-- Mini Game Link -->
             <a href="{{ route('game.index') }}" class="flex items-center gap-3 px-3 py-2.5 rounded-md text-sm font-medium transition-all duration-120 {{ request()->routeIs('game.*') ? 'bg-green/15 text-green font-semibold' : 'text-white/60 hover:bg-white/5 hover:text-white' }}">
                 <svg class="w-5 h-5 shrink-0" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
@@ -137,6 +145,14 @@
             <path stroke-linecap="round" stroke-linejoin="round" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
         </svg>
         <span class="text-[10px] mt-0.5">Materi</span>
+    </a>
+
+    <!-- Tanya AI Link -->
+    <a href="{{ route('ai.index') }}" class="flex flex-col items-center justify-center flex-grow py-1 text-center {{ request()->routeIs('ai.*') ? 'text-green font-bold' : 'text-muted' }}">
+        <svg class="w-5 h-5" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M8.625 12a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Zm0 0H8.25m4.125 0a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Zm0 0H12m4.125 0a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Zm0 0h-.375M21 12c0 4.556-4.03 8.25-9 8.25a9.764 9.764 0 0 1-2.555-.337A5.972 5.972 0 0 1 5.41 20.97a5.969 5.969 0 0 1-.474-.065 4.48 4.48 0 0 0 .978-2.025c.09-.457-.133-.901-.467-1.226C3.93 16.178 3 14.189 3 12c0-4.556 4.03-8.25 9-8.25s9 3.694 9 8.25Z" />
+        </svg>
+        <span class="text-[10px] mt-0.5">Tanya AI</span>
     </a>
 
     <!-- Game Link -->

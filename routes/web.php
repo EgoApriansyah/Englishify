@@ -7,6 +7,7 @@ use App\Http\Controllers\ResultController;
 use App\Http\Controllers\MaterialController;
 use App\Http\Controllers\GameController;
 use App\Http\Controllers\LeaderboardController;
+use App\Http\Controllers\AiController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
 
@@ -48,6 +49,10 @@ Route::middleware(['auth'])->group(function () {
 
     // Leaderboard
     Route::get('/leaderboard', [LeaderboardController::class, 'index'])->name('leaderboard.index');
+
+    // Tanya AI
+    Route::get('/tanya-ai', [AiController::class, 'index'])->name('ai.index');
+    Route::post('/tanya-ai/chat', [AiController::class, 'chat'])->name('ai.chat');
 
     // Profile Settings
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');

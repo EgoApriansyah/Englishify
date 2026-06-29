@@ -427,17 +427,7 @@
                         bgm.volume = 0.4; // Pleasant background volume
                     }
 
-                    // Try playing immediately
-                    this.playBgm();
 
-                    // Register interaction triggers to bypass browser autoplay restrictions
-                    const startBgmOnInteraction = () => {
-                        this.playBgm();
-                        window.removeEventListener('click', startBgmOnInteraction);
-                        window.removeEventListener('keydown', startBgmOnInteraction);
-                    };
-                    window.addEventListener('click', startBgmOnInteraction);
-                    window.addEventListener('keydown', startBgmOnInteraction);
                 },
 
                 playBgm() {
